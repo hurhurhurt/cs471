@@ -52,7 +52,7 @@ def parse(text):
 
     def expr():
         t = term()
-        while (check('+') or (check('-'))):
+        while (check('+') or check('-') or check('**')):
             kind = lookahead.kind
             match(kind)
             t1 = term()
@@ -63,6 +63,12 @@ def parse(text):
         if (check('-')):
             match('-')
             return Ast('-', term())
+        elif tokens[index].kind == '**':
+            t = int(lookahead.lexeme)
+            match('INT')
+            match('**')
+            t1 = term()
+            return Ast('**', t, t1)
         else:
             return factor()
 
@@ -95,7 +101,7 @@ def scan(text):
         if (m): return (m, None)
         m = re.compile(r'\d+').match(text)
         if (m): return (m, 'INT')
-        m = re.compile(r'.').match(text)  #must be last: match any char
+        m = re.compile(r'\*\*|.').match(text)  #must be last: match any char
         if (m): return (m, m.group())
 
     tokens = []
