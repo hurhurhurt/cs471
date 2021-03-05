@@ -10,7 +10,8 @@ c) (append (cdr (cdr list1)) (cdr (cdr (cdr list2))))
 3.
 a) (define (perimeter width height) (* 2 (+ width height)))
 b1) (define (line-length x1 y1 x2 y2) (sqrt (+ (expt (- x1 x2) 2) (expt (- y1 y2) 2))))
-b2)  (define (line-length '(x1 . x2) '(y1 . y2))) (sqrt (+ (expt (- x1 x2) 2) (expt (- y1 y2) 2)))
+b2) (define (line-length p1 p2) (sqrt ( + (expt (- (car p1) (car p2)) 2) (expt (- (cadr p1) (cadr p2)) 2))))
+
 
 4.
 a)
