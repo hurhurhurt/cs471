@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../../assets/styles/article.css" rel="stylesheet" type="text/css" /> 
+    <title>CS 471: Project 1</title>
+    <link href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" 
+       rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" async=""></script>    
+<link href="prj1/hl-fine_blue.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <nav>
+      <ul>
+	<li><a href="../../index.html" class="material-icons">house</a></li>
+	<li><a href="../../docs/index.html">Docs</a></li>
+	<li><a href="../../exercises/index.html">Exercises</a></li>
+	<li><a href="../../hws/index.html">Homeworks</a></li>
+	<li><a href="../../labs/index.html">Labs</a></li>
+	<li><a href="../../misc/index.html">Misc</a></li>
+	<li><a href="../../projects/index.html">Projects</a></li>
+	<li><a href="../../slides/index.html">Slides</a></li>
+	<li><a id="loginAction"></a></li>
+      </ul>
+    </nav>
+    <div class="content">
+      <section data-coord="prj1.umt:1:0"><h1 data-coord="prj1.umt:1:0">Project 1</h1><p data-coord="prj1.umt:3:0"><strong data-coord="prj1.umt:3:0">Due</strong>: Mar 8, before midnight.
+</p><p data-coord="prj1.umt:5:0"><strong data-coord="prj1.umt:5:0">Important Reminder</strong>: As per the course <em data-coord="prj1.umt:5:110"><a href="../../misc/academic-honesty-statement/academic-honesty-policy.html" data-coord="prj1.umt:5:110">Academic Honesty Statement</a></em>,
+cheating of any kind will minimally result in your letter grade
+for the entire course being reduced by one level.
+</p><p data-coord="prj1.umt:9:0">This document first provides the aims of this project, followed by a
+discussion of its background.  It then lists the requirements as
+explicitly as possible.  It then hints at how these requirements can
+be met.  Finally, it describes how it can be submitted.
+</p><section data-coord="prj1.umt:14:0"><h2 data-coord="prj1.umt:14:0">Aims</h2><p data-coord="prj1.umt:17:0">The aims of this project are as follows:
+</p><ul data-coord="prj1.umt:19:0"><li data-coord="prj1.umt:19:0"><p data-coord="prj1.umt:19:4">To get you to transform a grammar into one which is
+better suited to implementing a parser.
+</p></li><li data-coord="prj1.umt:22:0"><p data-coord="prj1.umt:22:4">To encourage you to use regular expressions to implement a trivial
+scanner.
+</p></li><li data-coord="prj1.umt:25:0"><p data-coord="prj1.umt:25:4">To make you implement a recursive-descent parser for a
+tiny language.
+</p></li><li data-coord="prj1.umt:28:0"><p data-coord="prj1.umt:28:4">To use JSON to represent abstract syntax trees.
+</p></li></ul></section><section data-coord="prj1.umt:30:0"><h2 data-coord="prj1.umt:30:0">A Tiny Language</h2><p data-coord="prj1.umt:34:0">A <strong data-coord="prj1.umt:34:2">Tiny Language</strong>  TL is specified by the following EBNF grammar
+</p><p data-coord="prj1.umt:36:0">The grammar uses the following notation:
+</p><ul data-coord="prj1.umt:38:0"><li data-coord="prj1.umt:38:0"><p data-coord="prj1.umt:38:4">Terminal symbols are shown in all uppercase or within
+single quotes.  All other symbols are non-terminals.
+</p></li><li data-coord="prj1.umt:41:0"><p data-coord="prj1.umt:41:4">The basic grammar notation uses <samp data-coord="prj1.umt:41:36">:</samp> to separate the LHS
+non-terminal from the first rule, <samp data-coord="prj1.umt:41:98">|</samp> to separate additional rules
+and <samp data-coord="prj1.umt:41:139">;</samp> to terminate the rules for a LHS non-terminal.
+</p></li><li data-coord="prj1.umt:45:0"><p data-coord="prj1.umt:45:4">EBNF extensions include an unquoted <samp data-coord="prj1.umt:45:40">?</samp> to indicate that the
+previous construct is optional and an unquoted <samp data-coord="prj1.umt:45:116">*</samp> to indicate
+zero-or-more repetitions of the previous construct.  Unquoted
+parentheses are used for grouping,
+</p></li><li data-coord="prj1.umt:50:0"><p data-coord="prj1.umt:50:4">Grammar comments are delimited by the <samp data-coord="prj1.umt:50:42">#</samp> character and
+end-of-line.
+</p></li></ul><pre data-coord="prj1.umt:54:0">program                      # [ (def|expr)* ]
+  : def program
+  | expr program
+  | #empty
+  ;
+
+def
+  : 'def' id '(' formals ')' expr   # ast: DEF(id, formals, expr)
+  ;
+
+formals
+  : id  ( ',' id )*   # ast: FORMALS(id*)
+  | #empty            # ast: FORMALS()
+  ;
+
+expr
+  : expr '?' expr ':' expr   # ast: ?:(expr, expr, expr)
+  | expr '&lt;' expr            # ast: &lt;(expr, expr)
+  | expr '&lt;=' expr           # ast: &lt;=(expr, expr)
+  | expr '&gt;' expr            # ast: &gt;(expr, expr)
+  | expr '&gt;=' expr           # ast: &gt;=(expr, expr)
+  | expr '==' expr           # ast: ==(expr, expr)
+  | expr '!=' expr           # ast: !=(expr, expr)
+  | expr '+' expr            # ast: +(expr, expr)
+  | expr '-' expr            # ast: -(expr, expr)
+  | expr '*' expr            # ast: *(expr, expr)
+  | expr '/' expr            # ast: /(expr, expr)
+  | '-' expr                 # ast: -(expr)
+  | integer                  # ast: integer
+  | id                       # ast: id
+  | '(' expr ')'             # ast: expr
+  | id '(' actuals ')'       # ast: APP(id, actuals)
+  ;
+
+actuals
+  : expr ( ',' expr )*       # ast: ACTUALS(expr*)
+  | #empty                   # ast: ACTUALS()
+  ;
+integer
+  : INT                      # ast: INT() @value: integer value
+  ;
+
+id
+  : ID                       # ast: ID() @id: lexeme for ID
+  ;
+</pre><section data-coord="prj1.umt:101:0"><h3 data-coord="prj1.umt:101:0">Lexical Constraints</h3><p data-coord="prj1.umt:104:0">TL programs need to meet the following lexical constraints:
+</p><ul data-coord="prj1.umt:106:0"><li data-coord="prj1.umt:106:0"><p data-coord="prj1.umt:106:4">Comments start with a <samp data-coord="prj1.umt:106:26">#</samp> character and extend till end-of-line.
+Comments and whitespace are not significant to TL programs.
+</p></li><li data-coord="prj1.umt:109:0"><p data-coord="prj1.umt:109:4">The terminal <samp data-coord="prj1.umt:109:17">INT</samp> must be a sequence of one-or-more digits.
+</p></li><li data-coord="prj1.umt:111:0"><p data-coord="prj1.umt:111:4">The terminal <samp data-coord="prj1.umt:111:17">ID</samp> must be a sequence of alphanumerics or <samp data-coord="prj1.umt:111:61">_</samp> but
+cannot start with a digit.
+</p></li><li data-coord="prj1.umt:114:0"><p data-coord="prj1.umt:114:4">All tokens output by the scanner must have <samp data-coord="prj1.umt:114:47">kind</samp> and <samp data-coord="prj1.umt:114:58">lexeme</samp>
+fields.
+</p><ul data-coord="prj1.umt:117:0"><li data-coord="prj1.umt:117:0"><p data-coord="prj1.umt:117:8">The <samp data-coord="prj1.umt:117:12">lexeme</samp> field must always contain the substring of the
+source program corresponding to the token.
+</p></li><li data-coord="prj1.umt:120:0"><p data-coord="prj1.umt:120:8">All tokens except those with <samp data-coord="prj1.umt:120:37">kind</samp> <samp data-coord="prj1.umt:120:44">ID</samp> and <samp data-coord="prj1.umt:120:53">INT</samp> must have
+their <samp data-coord="prj1.umt:120:83">kind</samp> field set to the all-uppercase version of the
+<samp data-coord="prj1.umt:120:144">lexeme</samp> field.
+</p></li></ul></li></ul></section><section data-coord="prj1.umt:124:0"><h3 data-coord="prj1.umt:124:0">Syntactic Constraints</h3><ul data-coord="prj1.umt:128:0"><li data-coord="prj1.umt:128:0"><p data-coord="prj1.umt:128:4">The precedence of the operators is listed below from lowest to
+highest with operators on the same line having the same
+precedence:
+</p><p data-coord="prj1.umt:132:6"><strong data-coord="prj1.umt:132:6">Conditional operator</strong>: <samp data-coord="prj1.umt:132:30">?:</samp> <br data-coord="prj1.umt:132:35"/>
+<strong data-coord="prj1.umt:132:44">Relational operators</strong>: <samp data-coord="prj1.umt:132:68">&lt;</samp>, <samp data-coord="prj1.umt:132:73">&lt;=</samp>, <samp data-coord="prj1.umt:132:79">&gt;</samp>, <samp data-coord="prj1.umt:132:84">&gt;=</samp>, <samp data-coord="prj1.umt:132:90">==</samp>, <samp data-coord="prj1.umt:132:96">!=</samp> <br data-coord="prj1.umt:132:101"/>
+<strong data-coord="prj1.umt:132:110">Additive operators</strong>: <samp data-coord="prj1.umt:132:132">+</samp>, <samp data-coord="prj1.umt:132:137">-</samp> (binary) <br data-coord="prj1.umt:132:150"/>
+<strong data-coord="prj1.umt:132:159">Multiplicative operators</strong>: <samp data-coord="prj1.umt:132:187">*</samp>, <samp data-coord="prj1.umt:132:192">/</samp> <br data-coord="prj1.umt:132:196"/>
+<strong data-coord="prj1.umt:132:205">Unary minus</strong>: <samp data-coord="prj1.umt:132:220">-</samp> <br data-coord="prj1.umt:132:224"/>
+</p><p data-coord="prj1.umt:138:4">The conditional operator <samp data-coord="prj1.umt:138:29">?:</samp> is right-associative, the relational
+operators are non-associative, all other operators are
+left-associative.
+</p></li><li data-coord="prj1.umt:142:0"><p data-coord="prj1.umt:142:4">An AST must have at least 2 fields: <samp data-coord="prj1.umt:142:40">tag</samp> and <samp data-coord="prj1.umt:142:50">kids</samp>; the value of
+the former must be a string and the value of the latter a list
+(possibly empty) of AST's.
+</p></li><li data-coord="prj1.umt:146:0"><p data-coord="prj1.umt:146:4">In tbe above grammar, an AST with tag <samp data-coord="prj1.umt:146:42">T</samp> and kids <samp data-coord="prj1.umt:146:55">K1</samp>, <samp data-coord="prj1.umt:146:61">K2</samp>,
+\(\ldots\), <samp data-coord="prj1.umt:146:82">Kn</samp> is shown as <samp data-coord="prj1.umt:146:99">T(K1, K2...,Kn)</samp>.
+</p><p data-coord="prj1.umt:149:4">Extra fields F added to an AST node are shown as @F.  This applies
+to AST's corresponding to primitive tokens.
+</p><ul data-coord="prj1.umt:152:0"><li data-coord="prj1.umt:152:0"><p data-coord="prj1.umt:152:8">The AST for the integer 7 should have the following fields:
+</p><p data-coord="prj1.umt:154:10"><samp data-coord="prj1.umt:154:10">tag</samp>: <samp data-coord="prj1.umt:154:17">INT</samp> <br data-coord="prj1.umt:154:23"/>
+<samp data-coord="prj1.umt:154:36">kids</samp>: <samp data-coord="prj1.umt:154:44">[]</samp> <br data-coord="prj1.umt:154:49"/>
+<samp data-coord="prj1.umt:154:62">value</samp>: <samp data-coord="prj1.umt:154:71">7</samp>; note this should be of type integer.
+</p></li><li data-coord="prj1.umt:158:0"><p data-coord="prj1.umt:158:8">The AST for the id xyz should be
+</p><p data-coord="prj1.umt:160:10"><samp data-coord="prj1.umt:160:10">tag</samp>: <samp data-coord="prj1.umt:160:17">ID</samp> <br data-coord="prj1.umt:160:22"/>
+<samp data-coord="prj1.umt:160:35">kids</samp>: <samp data-coord="prj1.umt:160:43">[]</samp> <br data-coord="prj1.umt:160:48"/>
+<samp data-coord="prj1.umt:160:61">id</samp>: <samp data-coord="prj1.umt:160:67">"xyz"</samp>
+</p></li></ul></li><li data-coord="prj1.umt:164:0"><p data-coord="prj1.umt:164:4">The AST for an overall program is a list of <samp data-coord="prj1.umt:164:48">expr</samp> and DEF AST's
+in the same order as the corresponding source code.
+</p></li><li data-coord="prj1.umt:167:0"><p data-coord="prj1.umt:167:4">The AST with tag FORMALS must have a <samp data-coord="prj1.umt:167:41">ID</samp> kid for each formal
+parameter.
+</p></li><li data-coord="prj1.umt:170:0"><p data-coord="prj1.umt:170:4">The AST with tag ACTUALS must have a <samp data-coord="prj1.umt:170:41">expr</samp> kid for each argument.
+</p></li><li data-coord="prj1.umt:172:0"><p data-coord="prj1.umt:172:4">The order of an AST's kids must be the same as that of the
+corresponding symbols in the rule.
+</p></li></ul></section></section><section data-coord="prj1.umt:176:0"><h2 data-coord="prj1.umt:176:0">Requirements</h2><p data-coord="prj1.umt:180:0">Use your favorite programming language to implement a recognizer for
+TL.  Specifically, update your github repository with a directory
+<samp data-coord="prj1.umt:180:135">submit/prj1-sol</samp> such that:
+</p><ol data-coord="prj1.umt:184:0"><li data-coord="prj1.umt:184:0"><p data-coord="prj1.umt:184:4">Typing <samp data-coord="prj1.umt:184:11">./make.sh</samp> within that directory will build any artifacts
+needed to run your program.
+</p></li><li data-coord="prj1.umt:187:0"><p data-coord="prj1.umt:187:4">Typing <samp data-coord="prj1.umt:187:11">./scan.sh</samp> within that directory will read a TL program
+from standard input and output on standard output a JSON list of
+the tokens corresponding to the TL program followed by a newline.
+Each token is as specified above.  Note that characters which
+are not legal TL characters should still be recognized as
+single-character tokens.
+</p></li><li data-coord="prj1.umt:194:0"><p data-coord="prj1.umt:194:4">Typing <samp data-coord="prj1.umt:194:11">./parse.sh</samp> within that directory will read a TL program
+from standard input and output on standard output a JSON list of
+the AST's corresponding to the TL program followed by a newline.
+</p><p data-coord="prj1.umt:198:4">If there are errors in the TL program, the program should
+terminate after detecting the first syntax error.  It should
+output a reasonably detailed error message on standard error.
+</p></li></ol><p data-coord="prj1.umt:202:0">The JSON output should not contain any non-significant whitespace except
+for the terminating newline.
+</p></section><section data-coord="prj1.umt:205:0"><h2 data-coord="prj1.umt:205:0">Provided Files</h2><p data-coord="prj1.umt:208:0">The <a href="./prj1-sol" data-coord="prj1.umt:208:18">prj1-sol</a> directory contains starter
+shell scripts for the three scripts your submission
+is required to contain as well as a template
+README.
+</p><p data-coord="prj1.umt:213:0">The <a href="./extras" data-coord="prj1.umt:213:16">extras</a> directory contains example TL programs, and some sample
+JSON outputs.  Note that the JSON outputs are quite unreadable because of
+the lack of whitespace but that is easily remedied:
+</p><pre>$ <span class="hl kwb">cd</span> ~<span class="hl opt">/</span>cs471<span class="hl opt">/</span>projects<span class="hl opt">/</span>prj<span class="hl num">1</span><span class="hl opt">/</span>extras
+$ <span class="hl kwc">cat</span> simple-asts.json | json_pp </pre><p data-coord="prj1.umt:223:0">It also contains a backend for translating your JSON AST's into
+working C code which can then be run:
+</p><pre>$ <span class="hl kwb">cd</span> ~<span class="hl opt">/</span>cs471<span class="hl opt">/</span>projects<span class="hl opt">/</span>prj<span class="hl num">1</span><span class="hl opt">/</span>extras<span class="hl opt">/</span>backends
+$ mkdir <span class="hl kwb">-p</span> ~<span class="hl opt">/</span>tmp
+$ .<span class="hl opt">/</span>c-target.mjs <span class="hl opt">&lt;</span> ..<span class="hl opt">/</span>example-asts.json <span class="hl opt">&gt;</span> ~<span class="hl opt">/</span>tmp<span class="hl opt">/</span>example.c
+$ <span class="hl kwb">cd</span> ~<span class="hl opt">/</span>tmp
+$ gcc <span class="hl kwb">-g -Wall</span> example.c <span class="hl kwb">-o</span> example
+$ .<span class="hl opt">/</span>example
+<span class="hl num">1</span>
+<span class="hl num">24</span>
+<span class="hl num">720</span>
+<span class="hl num">1</span>
+<span class="hl num">24</span>
+<span class="hl num">720</span>
+<span class="hl num">1</span>
+<span class="hl num">2</span>
+<span class="hl num">21</span>
+<span class="hl num">144</span>
+<span class="hl num">1</span>
+<span class="hl num">2</span>
+<span class="hl num">21</span>
+<span class="hl num">144</span></pre></section><section data-coord="prj1.umt:250:0"><h2 data-coord="prj1.umt:250:0">Git</h2><ul data-coord="prj1.umt:254:0"><li data-coord="prj1.umt:254:0"><p data-coord="prj1.umt:254:4">Always ensure that your local copy of the <samp data-coord="prj1.umt:254:46">cs471</samp> course
+repository is up-to-date (this manual step is particularly
+necessary if you are connecting to an existing x2go session):
+</p><pre>        $ <span class="hl kwb">cd</span> ~<span class="hl opt">/</span>cs471
+        $ git pull</pre></li><li data-coord="prj1.umt:264:0"><p data-coord="prj1.umt:264:4">You will likely be submitting multiple labs while working on this
+project.  To avoid having updates to the labs and project stepping
+over each other, it is imperative that you create a separate
+branch for this project and for each lab.
+</p><p data-coord="prj1.umt:269:4">Create a branch for this project in your working copy of your
+github respository:
+</p><pre>        $ <span class="hl kwb">cd</span> ~<span class="hl opt">/</span>i471?           <span class="hl slc">#go to clone of github repo</span>
+        $ git checkout main    <span class="hl slc">#ensure in main branch</span>
+        $ git pull             <span class="hl slc">#ensure main up-to-date</span>
+        $ git checkout <span class="hl kwb">-b</span> prj1 <span class="hl slc">#create a new branch for this project</span></pre><p data-coord="prj1.umt:280:4">Whenever you restart work on this project, it is <strong data-coord="prj1.umt:280:53">imperative</strong> to
+ensure that you are in the correct branch.  You can use commands
+like the following to ensure that you are in your <samp data-coord="prj1.umt:280:192">prj1</samp> branch:
+</p><pre>    $ <span class="hl kwb">cd</span> ~<span class="hl opt">/</span>i471?
+    $ git branch <span class="hl kwb">-l</span>            <span class="hl slc">#list all branches;</span>
+                               <span class="hl slc">#current branch marked by a *.</span>
+    $ git checkout prj1        <span class="hl slc">#checkout project branch</span>
+    $ <span class="hl kwb">cd</span> submit<span class="hl opt">/</span>prj1-sol       <span class="hl slc">#go to project dir</span></pre></li></ul></section><section data-coord="prj1.umt:293:0"><h2 data-coord="prj1.umt:293:0">Hints</h2><p data-coord="prj1.umt:296:0">This section is not prescriptive in that you may choose to ignore
+them as long as you meet all the project requirements.
+</p><p data-coord="prj1.umt:299:0">You may proceed as follows:
+</p><ol data-coord="prj1.umt:301:0"><li data-coord="prj1.umt:301:0"><p data-coord="prj1.umt:301:4">Review the material covered in class on regex's, scanners,
+grammars and recursive-descent parsing.  Review the
+<em data-coord="prj1.umt:301:168"><a href="../../slides/syntax/code/arith/index.html" data-coord="prj1.umt:301:168">online parser</a></em> to
+make sure you understand the gist of how
+<a href="../../slides/syntax/code/arith/arith.mjs?colorize=true" data-coord="prj1.umt:301:298">arith.mjs</a> works without getting bogged down in the details of
+JavaScript.
+</p></li><li data-coord="prj1.umt:309:0"><p data-coord="prj1.umt:309:4">Read the project requirements thoroughly.
+</p></li><li data-coord="prj1.umt:311:0"><p data-coord="prj1.umt:311:4">Choose the implementation language for your project.  Ideally
+it should support the following:
+</p><ul data-coord="prj1.umt:314:0"><li data-coord="prj1.umt:314:0"><p data-coord="prj1.umt:314:8">Does not require any explicit memory management.  This
+would rule out lower-level languages like C, C++, Rust.
+</p></li><li data-coord="prj1.umt:317:0"><p data-coord="prj1.umt:317:8">Support regex's either in the language or via standard
+libraries.
+</p></li><li data-coord="prj1.umt:320:0"><p data-coord="prj1.umt:320:8">Easy support for JSON, ideally via standard libraries.
+</p></li></ul><p data-coord="prj1.umt:322:4">Scripting languages like Python, Ruby, Perl or JavaScript
+will probably make the development easiest.
+</p></li><li data-coord="prj1.umt:325:0"><p data-coord="prj1.umt:325:4">Start your project in a manner similar to how you start a lab.
+</p><ol data-coord="prj1.umt:328:0"><li data-coord="prj1.umt:328:0"><p data-coord="prj1.umt:328:8">Copy over the provided files and commit them to github:
+</p><pre>        $ <span class="hl kwb">cd</span> ~<span class="hl opt">/</span>i471?<span class="hl opt">/</span>submit
+        $ <span class="hl kwc">cp</span> <span class="hl kwb">-pr</span> ~<span class="hl opt">/</span>cs471<span class="hl opt">/</span>projects<span class="hl opt">/</span>prj<span class="hl num">1</span><span class="hl opt">/</span>prj1-sol .
+        $ <span class="hl kwb">cd</span> prj1-sol
+        $ git add .
+        $ git commit <span class="hl kwb">-m</span> <span class="hl str">&apos;started prj1&apos;</span>
+        $ git push <span class="hl kwb">-u</span> origin prj1 <span class="hl slc">#push prj1 branch to github</span></pre></li></ol></li><li data-coord="prj1.umt:340:0"><p data-coord="prj1.umt:340:4">Fill in your details in the <samp data-coord="prj1.umt:340:32">README</samp> template.  Commit and push
+your changes.
+</p></li><li data-coord="prj1.umt:343:0"><p data-coord="prj1.umt:343:4">The requirements forbid extraneous whitespace in the JSON output
+which makes the output quite hard to read.  To get around this,
+pipe the output through a JSON pretty-printer like <samp data-coord="prj1.umt:343:192">json_pp</samp>
+which is available on <samp data-coord="prj1.umt:343:228">remote.cs</samp>. Unfortunately, it seems
+to output the keys of an object in sorted order by name, which
+means that <samp data-coord="prj1.umt:343:347">kids</samp> print before <samp data-coord="prj1.umt:343:367">tag</samp>.  This is irritating but
+not a show-stopper.
+</p></li><li data-coord="prj1.umt:351:0"><p data-coord="prj1.umt:351:4">Start work on your lexer.  The tokens it needs to recognize are
+particularly simple:
+</p><ul data-coord="prj1.umt:354:0"><li data-coord="prj1.umt:354:0"><p data-coord="prj1.umt:354:8">The reserved word <samp data-coord="prj1.umt:354:26">def</samp> which is recognized as a token
+with <samp data-coord="prj1.umt:354:76">kind</samp> set to <samp data-coord="prj1.umt:354:90">DEF</samp>.
+</p></li><li data-coord="prj1.umt:357:0"><p data-coord="prj1.umt:357:8">Multiple character operators like <samp data-coord="prj1.umt:357:42">&lt;=</samp>, <samp data-coord="prj1.umt:357:48">&gt;=</samp>, <samp data-coord="prj1.umt:357:54">==</samp>,
+<samp data-coord="prj1.umt:357:68">!=</samp>.
+</p></li><li data-coord="prj1.umt:360:0"><p data-coord="prj1.umt:360:8">Integer literals with <samp data-coord="prj1.umt:360:30">kind</samp> set to <samp data-coord="prj1.umt:360:44">INT</samp>.
+</p></li><li data-coord="prj1.umt:362:0"><p data-coord="prj1.umt:362:8">Identifiers with <samp data-coord="prj1.umt:362:25">kind</samp> set to <samp data-coord="prj1.umt:362:39">ID</samp>.
+</p></li><li data-coord="prj1.umt:364:0"><p data-coord="prj1.umt:364:8">All other single character operators.
+</p></li></ul><p data-coord="prj1.umt:366:4">Additionally, the lexer needs to be set up to ignore whitespace
+and <samp data-coord="prj1.umt:366:76">#</samp> to end-of-line comments.
+</p><p data-coord="prj1.umt:369:4">[These requirements are simple enough that it is quite simple to
+implement the lexer without using regex's, but it is even simpler
+using regex's.]
+</p><p data-coord="prj1.umt:373:4">Decide whether your lexer will deliver tokens one at a time or
+all at once in a list (the latter is a simpler choice).
+</p><p data-coord="prj1.umt:376:4">Your lexer should read the <strong data-coord="prj1.umt:376:31">entire</strong> standard input into a string.
+(this makes the subsequent recognition of tokens easier).  The
+lexer should be set up as a loop which loops while you do not
+have a token.
+</p><ol data-coord="prj1.umt:381:0"><li data-coord="prj1.umt:381:0"><p data-coord="prj1.umt:381:8">At the start of the loop check whether the unprocessed
+portion of the input starts with whitespace.  If so,
+continue with the loop with the whitespace discarded
+from the input.
+</p></li><li data-coord="prj1.umt:386:0"><p data-coord="prj1.umt:386:8">Check whether the unprocessed portion of the input starts with
+a <samp data-coord="prj1.umt:386:81">#</samp> comment.  If so, continue with the loop with the
+comment discarded from the input.
+</p></li><li data-coord="prj1.umt:390:0"><p data-coord="prj1.umt:390:8">Check whether the unprocessed portion of the input starts
+with any of the multiple character tokens like <samp data-coord="prj1.umt:390:121">ID</samp>,
+<samp data-coord="prj1.umt:390:135">INT</samp> or any of the multiple character operators.  If
+so, produce the corresponding token and discard the
+matching lexeme from the input.
+</p></li><li data-coord="prj1.umt:396:0"><p data-coord="prj1.umt:396:8">If none of the above cases apply, produce a single character
+token with both <samp data-coord="prj1.umt:396:93">kind</samp> and <samp data-coord="prj1.umt:396:104">lexeme</samp> set to the character.
+Discard the character from the input.
+</p></li></ol><p data-coord="prj1.umt:400:4">It is key that you set up your regex's to match only at the
+<strong data-coord="prj1.umt:400:68">start</strong> of the unprocessed portion of the input.  In most
+regex engines this can be achieved by using the <samp data-coord="prj1.umt:400:178">^</samp> anchor.
+</p></li><li data-coord="prj1.umt:404:0"><p data-coord="prj1.umt:404:4">Transform the provided grammar into an EBNF grammar suitable for
+recursive-descent parsing.  These transformations will be needed
+for the operator part of the grammar.
+</p><ul data-coord="prj1.umt:408:0"><li data-coord="prj1.umt:408:0"><p data-coord="prj1.umt:408:8">Use separate non-terminals for each precedence level
+(repeated here, in order of increasing precedence):
+</p><p data-coord="prj1.umt:411:8"><strong data-coord="prj1.umt:411:8">Conditional operator</strong>: <samp data-coord="prj1.umt:411:32">?:</samp> (right-assoc) <br data-coord="prj1.umt:411:51"/>
+<strong data-coord="prj1.umt:411:62">Relational operators</strong>: <samp data-coord="prj1.umt:411:86">&lt;</samp>, <samp data-coord="prj1.umt:411:91">&lt;=</samp>, <samp data-coord="prj1.umt:411:97">&gt;</samp>, <samp data-coord="prj1.umt:411:102">&gt;=</samp>, <samp data-coord="prj1.umt:411:108">==</samp>, <samp data-coord="prj1.umt:411:114">!=</samp> (non-assoc) <br data-coord="prj1.umt:411:131"/>
+<strong data-coord="prj1.umt:411:142">Additive operators</strong>: <samp data-coord="prj1.umt:411:164">+</samp>, <samp data-coord="prj1.umt:411:169">-</samp> (binary) (left-assoc) <br data-coord="prj1.umt:411:195"/>
+<strong data-coord="prj1.umt:411:206">Multiplicative operators</strong>: <samp data-coord="prj1.umt:411:234">*</samp>, <samp data-coord="prj1.umt:411:239">/</samp> (left-assoc) <br data-coord="prj1.umt:411:256"/>
+<strong data-coord="prj1.umt:411:267">Unary minus</strong>: <samp data-coord="prj1.umt:411:282">-</samp> <br data-coord="prj1.umt:411:286"/>
+</p></li><li data-coord="prj1.umt:417:0"><p data-coord="prj1.umt:417:8">The non-terminal for a precedence level will be defined using
+the non-terminal for the next higher precedence level.
+</p></li><li data-coord="prj1.umt:420:0"><p data-coord="prj1.umt:420:8">If the operators for a level are right-associative, then
+use right-recursive rules.
+</p></li><li data-coord="prj1.umt:423:0"><p data-coord="prj1.umt:423:8">If the operators for a level are left-associative, then
+use the Kleene-closure operator <samp data-coord="prj1.umt:423:104">( ... )*</samp>.
+</p></li><li data-coord="prj1.umt:426:0"><p data-coord="prj1.umt:426:8">If the operators for a level are non-associative, then the
+rules for that level will not be recursive.
+</p></li><li data-coord="prj1.umt:429:0"><p data-coord="prj1.umt:429:8">The highest precedence level should contain a right-recursive rule
+for unary minus plus rules for parenthesized expressions,
+function calls and primitive expressions like identifiers and
+integers.
+</p></li></ul></li><li data-coord="prj1.umt:434:0"><p data-coord="prj1.umt:434:4">Set up your parser to maintain a <samp data-coord="prj1.umt:434:37">lookahead</samp> token as some
+sort of "global" or instance variable.  Make sure that
+when your parser is initialized, it primes the <samp data-coord="prj1.umt:434:174">lookahead</samp>
+with the first token read from the lexer.
+</p></li><li data-coord="prj1.umt:439:0"><p data-coord="prj1.umt:439:4">Write a <samp data-coord="prj1.umt:439:12">check()</samp> function which returns true iff the <samp data-coord="prj1.umt:439:58">kind</samp>
+of the <samp data-coord="prj1.umt:439:76">lookahead</samp> token matches the <samp data-coord="prj1.umt:439:106">kind</samp> provided as its
+argument.
+</p></li><li data-coord="prj1.umt:443:0"><p data-coord="prj1.umt:443:4">Write a <samp data-coord="prj1.umt:443:12">match()</samp> function which sets <samp data-coord="prj1.umt:443:42">lookahead</samp> to the next
+token from the lexer if the <samp data-coord="prj1.umt:443:98">lookahead</samp> token matches the <samp data-coord="prj1.umt:443:128">kind</samp>
+provided as its argument.  If that is not the case, it should set
+things up to output a detailed error message to standard error and
+terminate the program.
+</p></li><li data-coord="prj1.umt:449:0"><p data-coord="prj1.umt:449:4">Write some kind of <samp data-coord="prj1.umt:449:23">Ast</samp> <samp data-coord="prj1.umt:449:29">class</samp> which supports standard <samp data-coord="prj1.umt:449:61">tag</samp> and
+<samp data-coord="prj1.umt:449:75">kids</samp> fields as well as an optional <samp data-coord="prj1.umt:449:112">value</samp> field when <samp data-coord="prj1.umt:449:131">tag</samp> is
+<samp data-coord="prj1.umt:449:144">INT</samp>'s and an optional <samp data-coord="prj1.umt:449:168">id</samp> field when <samp data-coord="prj1.umt:449:184">tag</samp> is <samp data-coord="prj1.umt:449:193">ID</samp>.
+</p></li><li data-coord="prj1.umt:453:0"><p data-coord="prj1.umt:453:4">Develop your parser in the following order so that you can
+test at each stage:
+</p><ol data-coord="prj1.umt:456:0"><li data-coord="prj1.umt:456:0"><p data-coord="prj1.umt:456:8">Primitive integer and identifier expressions.
+</p></li><li data-coord="prj1.umt:458:0"><p data-coord="prj1.umt:458:8">Unary minus expressions.
+</p></li><li data-coord="prj1.umt:460:0"><p data-coord="prj1.umt:460:8">Multiplicative expressions.
+</p></li><li data-coord="prj1.umt:462:0"><p data-coord="prj1.umt:462:8">Additive expressions.
+</p></li><li data-coord="prj1.umt:464:0"><p data-coord="prj1.umt:464:8">Relational expressions.
+</p></li><li data-coord="prj1.umt:466:0"><p data-coord="prj1.umt:466:8">Conditional expressions.
+</p></li><li data-coord="prj1.umt:468:0"><p data-coord="prj1.umt:468:8">Parenthesized expressions.
+</p></li><li data-coord="prj1.umt:470:0"><p data-coord="prj1.umt:470:8">Function call expressions.  This will require you to
+define a parsing function for the <samp data-coord="prj1.umt:470:103">actuals</samp> non-terminal
+in the grammar specification.
+</p></li><li data-coord="prj1.umt:474:0"><p data-coord="prj1.umt:474:8">Function definitions.
+</p></li></ol><p data-coord="prj1.umt:476:4">Adjust your top-level parsing function at each stage to call the
+current function which is under development.  Output the results
+of your top-level parsing function as JSON (pipe the result
+through <samp data-coord="prj1.umt:476:214">json_pp</samp> to pretty-print the result).
+</p><p data-coord="prj1.umt:481:4">It is important to keep in mind that calling <samp data-coord="prj1.umt:481:49">match()</samp> destroys
+the current value of <samp data-coord="prj1.umt:481:93">lookahead</samp>.  Hence if you need part of
+the <samp data-coord="prj1.umt:481:141">lookahead</samp> for subsequent building of the AST, then it is
+<strong data-coord="prj1.umt:481:204">imperative</strong> that you squirrel away that information into a local
+variable before calling <samp data-coord="prj1.umt:481:298">match()</samp>.
+</p><p data-coord="prj1.umt:487:4">The provided <a href="extras/devel.tl" data-coord="prj1.umt:487:36">devel.tl</a> is set up with test cases
+which you can uncomment in successive stages of development.
+</p></li><li data-coord="prj1.umt:490:0"><p data-coord="prj1.umt:490:4">Iterate until you meet all requirements.
+</p></li></ol><p data-coord="prj1.umt:492:0">It is always a good idea to keep committing your project to github
+periodically to ensure that you do not accidentally lose work.
+</p></section><section data-coord="prj1.umt:495:0"><h2 data-coord="prj1.umt:495:0">Submission</h2><p data-coord="prj1.umt:498:0">Submit using a procedure similar to that used in your labs:
+</p><pre>    $ <span class="hl kwb">cd</span> ~<span class="hl opt">/</span>i471X
+    $ git branch <span class="hl kwb">-l</span>       <span class="hl slc">#list all branches;</span>
+                          <span class="hl slc"># current branch has *, should be prj1.</span>
+    $ git checkout main   <span class="hl slc">#goto main branch</span>
+    $ git pull            <span class="hl slc"># pull changes (if any)</span>
+    $ git checkout prj1   <span class="hl slc">#back to prj1 branch</span>
+    $ git merge <span class="hl kwb">-m</span> <span class="hl str">&apos;merged main&apos;</span> main  <span class="hl slc"># may not do anything</span>
+    $ git status <span class="hl kwb">-s</span>       <span class="hl slc">#should show any non-committed changes</span>
+    $ git commit <span class="hl kwb">-a -m</span> <span class="hl str">&apos;completing prj1&apos;</span>
+    $ git push            <span class="hl slc">#push prj1 branch to github</span>
+    $ git checkout main <span class="hl slc">#switch to main branch</span>
+    $ git merge prj1 <span class="hl kwb">-m</span> <span class="hl str">&apos;merged prj1&apos;</span> <span class="hl slc">#merge in prj1 branch</span>
+    $ git push            <span class="hl slc">#submit project</span></pre></section><section data-coord="prj1.umt:518:0"><h2 data-coord="prj1.umt:518:0">References</h2><ul data-coord="prj1.umt:521:0"><li data-coord="prj1.umt:521:0"><p data-coord="prj1.umt:521:4"><em data-coord="prj1.umt:521:81"><a href="https://en.wikipedia.org/wiki/Recursive_descent_parser#Example_parser" data-coord="prj1.umt:521:81">Example Parser</a></em> <span id="refs" data-coord="prj1.umt:521:106">from</span> Wikipedia article on <em data-coord="prj1.umt:521:132">Recursive
+    descent parser</em>.  Note that the grammar notation is slightly
+different:
+</p><ul data-coord="prj1.umt:526:0"><li data-coord="prj1.umt:526:0"><p data-coord="prj1.umt:526:8"><samp data-coord="prj1.umt:526:8">{</samp> X <samp data-coord="prj1.umt:526:14">}</samp> is used to indicate 0-or-more repetitions of X instead of
+<samp data-coord="prj1.umt:526:84">X*</samp>.
+</p></li><li data-coord="prj1.umt:529:0"><p data-coord="prj1.umt:529:8"><samp data-coord="prj1.umt:529:8">[ X ]</samp> is used to indicate an optional <samp data-coord="prj1.umt:529:48">X</samp> instead of <samp data-coord="prj1.umt:529:63">X?</samp>.
+</p></li></ul><p data-coord="prj1.umt:531:4">The parser uses <samp data-coord="prj1.umt:531:20">accept()</samp> and <samp data-coord="prj1.umt:531:35">expect()</samp> instead of our <samp data-coord="prj1.umt:531:61">check()</samp>
+and <samp data-coord="prj1.umt:531:79">match()</samp>.  The semantics of the routines are slightly
+different: they get the next token in <samp data-coord="prj1.umt:531:176">accept()</samp>, whereas we get
+the next token in <samp data-coord="prj1.umt:531:225">match()</samp>.
+</p></li><li data-coord="prj1.umt:536:0"><p data-coord="prj1.umt:536:4"><em data-coord="prj1.umt:536:82"><a href="https://www.cs.cornell.edu/courses/cs2112/2015fa/lectures/lec_parsing/" data-coord="prj1.umt:536:82">Grammars and Parsing</a></em>, discusses building ASTs.  The <samp data-coord="prj1.umt:536:136">peek()</samp> and
+<samp data-coord="prj1.umt:536:153">consume()</samp> routines are exactly equivalent to our <samp data-coord="prj1.umt:536:204">check()</samp> and
+<samp data-coord="prj1.umt:536:222">match()</samp>.
+</p></li></ul></section></section>
+    </div> <!-- #content -->
+    <script src="../../assets/scripts/loginAction.js"></script>
+  </body>
+</html>

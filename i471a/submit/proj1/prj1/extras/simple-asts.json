@@ -1,0 +1,1 @@
+[{"tag":"DEF","kids":[{"tag":"ID","kids":[],"id":"sum"},{"tag":"FORMALS","kids":[{"tag":"ID","kids":[],"id":"a"},{"tag":"ID","kids":[],"id":"b"}]},{"tag":"+","kids":[{"tag":"ID","kids":[],"id":"a"},{"tag":"APP","kids":[{"tag":"ID","kids":[],"id":"f"},{"tag":"ACTUALS","kids":[{"tag":"ID","kids":[],"id":"a"},{"tag":"ID","kids":[],"id":"b"}]}]}]}]}]
