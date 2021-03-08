@@ -3,5 +3,6 @@ B-Number:	B00690038
 Email:		thur1@binghamton.edu
 
 Status: Complete
+USAGE: Please run using: ./parse.sh [filename] > [outputfile], NOT ./parse.sh < [filename] > [outputfile] 
 Verified with devel.tl, example.tl, fact.tl, simple.tl
 
