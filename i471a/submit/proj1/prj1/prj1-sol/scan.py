@@ -5,73 +5,125 @@ import sys
 from collections import namedtuple
 import json
 
-#Using the next_match() function provides a workaround for the fact
-#that Python 3.7 does not support assignment expressions.  In fact,
-#the clumsy nested if-then-else handling in exactly this situation of
-#regex matching is cited as part of the rationale for the recent
-#addition of assignment expressions using the `:=` walrus operator to
-#Python 3.8.
-#<https://www.python.org/dev/peps/pep-0572/#the-importance-of-real-code>
+def parse(text):
+    def check(kind): return lookahead.kind == kind
+    def match(kind):
+        nonlocal lookahead
+        if (lookahead.kind == kind):
+            lookahead = nextToken()
+        else:
+            print(f'expecting {kind} at {lookahead.lexeme}',
+                  file=sys.stderr)
+            sys.exit(1)
 
+    def nextToken():
+        nonlocal index
+        if (index >= len(tokens)):
+            return Token('EOF', '<EOF>')
+        else:
+            tok = tokens[index]
+            index += 1
+            return tok
 
-#returns pair containing regex match-object and token kind.  If token
-#should be ignored, kind should be returned as None.
-#note that m.group() gives lexeme after a successful match
-def next_match(text):
-    m = re.compile(r'#.*|\s+').match(text)
-    if (m): return (m, None)  #None kind means ignore
+    def program():
+        tokens = []
+        while not check('EOF'):
+            tokens.append(expr())
+            match(';')
+        return tokens
 
-    m = re.compile(r'def').match(text)
-    if (m): return (m, 'DEF')
+    def expr():
+        t = term()
+        while check('+') or check('-'):
+            kind = lookahead.kind
+            match(kind)
+            t1 = expr()
+        return t1
 
-    m = re.compile(r'<=').match(text)
-    if (m): return (m, '<=')
+    def term():
+        t = factor()
+        if check('*') or check('/'):
+            kind = lookahead.kind
+            match(kind)
+            t1 = term()
+        return t
 
-    m = re.compile(r'>=').match(text)
-    if (m): return (m, '>=')
+    def factor():
+        if check('INT'):
+            value = int(lookahead.lexeme)
+            match('INT')
+            return value
+        elif check('-'):
+            match('-')
+            return -factor()
+        else:
+            match('(')
+            value = expr()
+            match(')')
+        return value
 
-    m = re.compile(r'==').match(text)
-    if (m): return (m, '==')
-
-    m = re.compile(r'!=').match(text)
-    if (m): return (m, '!=')
-    
-    m = re.compile(r'^[a-zA-Z_][a-zA-Z_\d+]*').match(text)
-    if (m): return (m, 'ID')
-
-    m = re.compile(r'\d+').match(text)
-    if (m): return (m, 'INT')
-
-    m = re.compile(r'.').match(text)  #must be last: match any char
-    if (m): return (m, m.group())
+    #begin parse
+    tokens = scan(text)
+    index = 0
+    lookahead = nextToken()
+    value = program()
+    if (not check('EOF')):
+        print(f'expecting <EOF>, got {lookahead.lexeme}', file=sys.stderr)
+    sys.exit(1)
+    return value
 
 
 def scan(text):
+    def next_match(text):
+        
+        # Relational
+        m = re.compile(r'<=').match(text)
+        if (m): return (m, '<=')
+        m = re.compile(r'>=').match(text)
+        if (m): return (m, ">=")
+        m = re.compile(r'==').match(text)
+        if (m): return (m, '==')
+        m = re.compile(r'!=').match(text)
+        if (m): return (m, '!=')
+        m = re.compile(r'<').match(text)
+        if (m): return (m, "<")
+        m = re.compile(r'>').match(text)
+
+        # Others
+        if (m): return (m, ">")
+        m = re.compile(r'def').match(text)
+        if (m): return (m, 'DEF')
+        m = re.compile(r'#.*|\s+').match(text)
+        if (m): return (m, None)
+        m = re.compile(r'^[a-zA-Z_][a-zA-Z_\d+]*').match(text)
+        if (m): return (m, 'ID')
+        m = re.compile(r'\d+').match(text)
+        if (m): return (m, 'INT')
+        m = re.compile(r'\*\*|.').match(text)  #must be last: match any char
+        if (m): return (m, m.group())
+
     tokens = []
     while (len(text) > 0):
         (match, kind) = next_match(text)
         lexeme = match.group()
-        if (kind): tokens.append(Token('kind : ' + kind, 'lexeme : ' + lexeme))
+        if (kind): tokens.append(Token(kind, lexeme))
         text = text[len(lexeme):]
-    tokens.append(Token('kind : <EOF>', 'lexeme : <EOF>'))
+    tokens.append(Token("<EOF>",  "<EOF>"))
     return tokens
 
 def main():
     if (len(sys.argv) != 2): usage();
     contents = readFile(sys.argv[1]);
     tokens = scan(contents)
-    print(json.dumps(tokens))
-    
-    '''
-    tokens = scan(contents)
-    for t in tokens: print(t)
-    '''
+    print(json.dumps(scan(contents),separators=(',', ':')))
+
 def readFile(path):
     with open(path, 'r') as file:
         content = file.read()
     return content
 
-Token = namedtuple('Token', ['kind', 'lexeme'])
+def Token(kind, lexeme):
+    return {'kind': kind, 'lexeme': lexeme }
 
 def usage():
     print(f'usage: {sys.argv[0]} DATA_FILE')

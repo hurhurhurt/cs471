@@ -5,24 +5,6 @@ import sys
 from collections import namedtuple
 import json
 
-"""
-program
-  : expr ';' program
-  | #empty
-  ;
-expr
-  : term ( ( '+' | '-' ) term )*
-  ;
-term
-  : '-' term
-  | factor
-  ;
-factor
-  : INT
-  | '(' expr ')'
-  ;
-"""
-
 def parse(text):
     def check(kind): return lookahead.kind == kind
 
@@ -52,7 +34,6 @@ def parse(text):
                 asts.append(definition())
             else:
                 asts.append(conditional())
-            #match(';')
         return asts
 
     def definition():
@@ -60,20 +41,18 @@ def parse(text):
         match('(')
         params = formals()
         match(')')
-        expression = conditional()
         return Ast('DEF', i, params, conditional())
 
     def formals():
         ids = []
         while not check(')'):
-            i = id1()
-            ids.append(i)
-            if check(')'):
-                break
-            else:
+            ids.append(id1())
+            if not check(')'):
                 match(',')
 
-        return Ast('FORMALS', ids)
+        t = Ast('FORMALS')
+        t['kids'] = ids
+        return t
 
     def id1():
         ast = Ast('ID')
@@ -87,8 +66,7 @@ def parse(text):
             match('COND1')
             t1 = conditional()
             match('COND2')
-            t2 = conditional()
-            t = Ast('?:', t, t1, t2)
+            t = Ast('?:', t, t1, conditional())
         return t
 
     def relational():
@@ -96,8 +74,7 @@ def parse(text):
         if check('<=') or check('<') or check('>') or check('>=') or check('==') or check('!='):
             kind = lookahead.kind
             match(kind)
-            t1 = relational()
-            t = Ast(kind, t, t1)
+            t = Ast(kind, t, relational())
         return t
 
     def expr():
@@ -105,19 +82,16 @@ def parse(text):
         if (check('+') or check('-')):
             kind = lookahead.kind
             match(kind)
-            t1 = expr()
-            t = Ast(kind, t, t1)
+            t = Ast(kind, t, expr())
         return t
         
     def term():
-        f = factor()
+        t = factor()
         if check('*') or check('/'):
             kind = lookahead.kind
             match(kind)
-            f1 = term()
-            f = Ast(kind, f, f1)
-        return f
-
+            t = Ast(kind, t, term())
+        return t
 
     def factor():
         if check('-'):
@@ -147,13 +121,13 @@ def parse(text):
     def actuals():
         expressions = []
         while not check(')'):
-            e = conditional()
-            expressions.append(e)
-            if check(')'):
-                break
-            else:
+            expressions.append(conditional())
+            if not check(')'):
                 match(',')
-        return Ast('ACTUALS', expressions)
+        t = Ast('ACTUALS')
+        t['kids'] = expressions
+        return t
+
 
     #begin parse()
     tokens = scan(text)
