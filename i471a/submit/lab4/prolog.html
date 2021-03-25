@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../../assets/styles/article.css" rel="stylesheet" type="text/css" /> 
+    <title>CS 471: Lab 4 Prolog</title>
+    <link href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" 
+       rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" async=""></script>    
+<link href="prolog/hl-fine_blue.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <nav>
+      <ul>
+	<li><a href="../../index.html" class="material-icons">house</a></li>
+	<li><a href="../../docs/index.html">Docs</a></li>
+	<li><a href="../../exercises/index.html">Exercises</a></li>
+	<li><a href="../../hws/index.html">Homeworks</a></li>
+	<li><a href="../../labs/index.html">Labs</a></li>
+	<li><a href="../../misc/index.html">Misc</a></li>
+	<li><a href="../../projects/index.html">Projects</a></li>
+	<li><a href="../../slides/index.html">Slides</a></li>
+	<li><a id="loginAction"></a></li>
+      </ul>
+    </nav>
+    <div class="content">
+      <section data-coord="prolog.umt:1:0"><h1 data-coord="prolog.umt:1:0">Lab 4 Prolog</h1><p data-coord="prolog.umt:3:0"><strong data-coord="prolog.umt:3:0">Date</strong>: Mar 25, 2021
+</p><p data-coord="prolog.umt:5:0">This document first describes the aims of this lab followed by
+exercises which need to be performed.
+</p><p data-coord="prolog.umt:8:0">You should perform all exercises using the <samp data-coord="prolog.umt:8:43">swipl</samp> dialect of Prolog
+which is installed on remote.cs.  
+</p><section data-coord="prolog.umt:11:0"><h2 data-coord="prolog.umt:11:0">Aims</h2><p data-coord="prolog.umt:14:0">The aim of this lab is to introduce you to Prolog.  After completing
+this lab, you should have some familiarity with the following topics:
+</p><ul data-coord="prolog.umt:17:0"><li data-coord="prolog.umt:17:0"><p data-coord="prolog.umt:17:4">Using Prolog's bidirectional pattern matching to access and
+construct data structures.
+</p></li><li data-coord="prolog.umt:20:0"><p data-coord="prolog.umt:20:4">Writing simple Prolog programs which do arithmetic.
+</p></li><li data-coord="prolog.umt:22:0"><p data-coord="prolog.umt:22:4">Writing simple list processing functions in Prolog.
+</p></li></ul></section><section data-coord="prolog.umt:25:0"><h2 data-coord="prolog.umt:25:0">Exercises</h2><section data-coord="prolog.umt:28:0"><h3 data-coord="prolog.umt:28:0">Starting up</h3><p data-coord="prolog.umt:31:0">Follow the <em data-coord="prolog.umt:31:38"><a href="../working/working.html" data-coord="prolog.umt:31:38">provided directions</a></em> for
+starting up this lab in a new git <samp data-coord="prolog.umt:31:98">lab4</samp> branch and a new
+<samp data-coord="prolog.umt:31:122">submit/lab4</samp> directory.
+</p><p data-coord="prolog.umt:35:0">For this lab, all code should be written in a single file
+<samp data-coord="prolog.umt:35:58">lab4-sol.pro</samp> residing in your <samp data-coord="prolog.umt:35:90">submit/lab4</samp> directory. Submit that
+file along with a log of your terminal interaction.
+</p><p data-coord="prolog.umt:39:0">Note that you can repeately load that file into your Prolog
+interpreter using:
+</p><pre data-coord="prolog.umt:43:0">?- ['lab4-sol.pro'].
+true.
+</pre></section><section data-coord="prolog.umt:48:0"><h3 data-coord="prolog.umt:48:0">Exercise 1: Prolog Pattern Matching</h3><p data-coord="prolog.umt:51:0">Recall from class that Prolog terms are either atomic (symbols or
+numbers), structures which are applications of constructor functions,
+or variables.  Syntactically, numbers have the usual syntax while
+Prolog symbols are identifiers starting with lower-case letters or
+quoted within single-quotes or a sequence of certain non-word
+characters.  Prolog variables are identifiers starting with
+upper-case characters or <samp data-coord="prolog.umt:51:416">_</samp>.
+</p><p data-coord="prolog.umt:59:0">Prolog does (almost) all computation using a general form of
+pattern matching called <strong data-coord="prolog.umt:59:85">unification</strong>. The matching works
+by finding the most general substitution for Prolog variables
+which makes two terms identical.
+</p><p data-coord="prolog.umt:64:0">Try the following attempts at pattern matching in the swipl
+interpreter and observe the results:
+</p><pre data-coord="prolog.umt:68:0">f(X, a) = f(a, Y).
+f(X, a) = f(a, X).
+f(X, a) = f(b, X).
+f(X, Y) = f(a, a), g(X, Y) = g(a, b).
+</pre><p data-coord="prolog.umt:74:0">The first two matches will succeed, but the third one will fail
+because there is no consistent substitution for <samp data-coord="prolog.umt:74:112">X</samp> which makes
+both terms identical.
+</p><p data-coord="prolog.umt:78:0">The fourth example will also fail.  The first match succeeds with <samp data-coord="prolog.umt:78:66">X =
+a</samp> and <samp data-coord="prolog.umt:78:78">Y = a</samp>, but the subsequent match for the <samp data-coord="prolog.umt:78:120">g/2</samp> terms will
+attempt to set <samp data-coord="prolog.umt:78:152">Y</samp> to <samp data-coord="prolog.umt:78:159">b</samp> which fails because it already has the value
+<samp data-coord="prolog.umt:78:208">a</samp>.
+</p><p data-coord="prolog.umt:83:0">Now type matches into the Prolog interpreter to extract the first <samp data-coord="prolog.umt:83:66">z</samp>
+from the following terms into a Prolog variable <samp data-coord="prolog.umt:83:118">X</samp>: (note that you
+can use the special anonymous <samp data-coord="prolog.umt:83:168">_</samp> variable to match terms you are not
+interested in):
+</p><ol data-coord="prolog.umt:88:0"><li data-coord="prolog.umt:88:0"><p data-coord="prolog.umt:88:4"><samp data-coord="prolog.umt:88:4">f(1, 2, z)</samp>.
+</p></li><li data-coord="prolog.umt:90:0"><p data-coord="prolog.umt:90:4"><samp data-coord="prolog.umt:90:4">head(a, tail(z, B), Y)</samp>.
+</p></li><li data-coord="prolog.umt:92:0"><p data-coord="prolog.umt:92:4"><samp data-coord="prolog.umt:92:4">cons(a, cons(b, cons(c, z)))</samp>.
+</p></li></ol></section><section data-coord="prolog.umt:95:0"><h3 data-coord="prolog.umt:95:0">Exercise 2: Matching Lists</h3><p data-coord="prolog.umt:98:0">Recall that a Prolog term is a <strong data-coord="prolog.umt:98:31">proper list</strong> if:
+</p><ul data-coord="prolog.umt:100:0"><li data-coord="prolog.umt:100:0"><p data-coord="prolog.umt:100:4">It is the empty list represented using the atom <samp data-coord="prolog.umt:100:52">[]</samp>.
+</p></li><li data-coord="prolog.umt:102:0"><p data-coord="prolog.umt:102:4">It is a pair <samp data-coord="prolog.umt:102:17">[X|Y]</samp> such that <samp data-coord="prolog.umt:102:35">Y</samp> is a proper list.
+(Note that <samp data-coord="prolog.umt:102:72">[X|Y]</samp> is syntactic sugar for <samp data-coord="prolog.umt:102:103">'[|]'(X, Y)</samp>).
+</p></li></ul><p data-coord="prolog.umt:105:0">Which of the following Prolog terms are proper lists?
+</p><pre data-coord="prolog.umt:108:0">[a, b].
+[a|b].
+[a|[b]].
+[a|[b|c]].
+[A|[B|C]].
+</pre><p data-coord="prolog.umt:115:0">[You can test your predictions by feeding them into the builtin
+procedure <samp data-coord="prolog.umt:115:74">length/2</samp> which matches its second argument with the length
+of the proper list given by its first argument, signalling an error if
+there is no substitution which makes the first argument into a proper
+list].
+</p><p data-coord="prolog.umt:121:0">Write match expressions to extract the following (using Scheme terms):
+</p><ol data-coord="prolog.umt:123:0"><li data-coord="prolog.umt:123:0"><p data-coord="prolog.umt:123:4">The <samp data-coord="prolog.umt:123:8">cddr</samp> of the list <samp data-coord="prolog.umt:123:27">[1, 2, 3, 4]</samp>.
+</p></li><li data-coord="prolog.umt:125:0"><p data-coord="prolog.umt:125:4">The <samp data-coord="prolog.umt:125:8">caddr</samp> of the list <samp data-coord="prolog.umt:125:28">[1, 2, 3, 4]</samp>.
+</p></li><li data-coord="prolog.umt:127:0"><p data-coord="prolog.umt:127:4">The <samp data-coord="prolog.umt:127:8">cdar</samp> of the list <samp data-coord="prolog.umt:127:27">[[1, 2], 3, 4]</samp>.
+</p></li></ol><p data-coord="prolog.umt:129:0">Use racket to ensure that you have the right interpretation of the
+Scheme terms.
+</p></section><section data-coord="prolog.umt:132:0"><h3 data-coord="prolog.umt:132:0">Arithmetic in Prolog</h3><p data-coord="prolog.umt:135:0">The built-in Prolog operator <samp data-coord="prolog.umt:135:29">is/2</samp> provides access to hardware
+arithmetic.  Specifically, <samp data-coord="prolog.umt:135:91">is/2</samp> will succeed if the result of
+<strong data-coord="prolog.umt:135:128">evaluating</strong> its RHS can be matched with its LHS:
+</p><p data-coord="prolog.umt:139:0">Type the following into your Prolog interpreter and observe the
+results:
+</p><pre data-coord="prolog.umt:143:0">N = 1 + 2.
+N is 1 + 2.
+N is 1 + 2*3.
+5 is 7 mod 2.
+X is 7 mod 2.
+X is -7 mod 3.
+N is sqrt(4).
+N = pi.
+N is pi.
+</pre><ol data-coord="prolog.umt:154:0"><li data-coord="prolog.umt:154:0"><p data-coord="prolog.umt:154:4">Write a Prolog procedure <samp data-coord="prolog.umt:154:29">quadratic_roots(A, B, C, Z)</samp> which
+matches <samp data-coord="prolog.umt:154:77">Z</samp> with a root of the equation \(Ax^2 + Bx + C = 0\).
+<strong data-coord="prolog.umt:154:135">Hint</strong>: use different rules for each root.
+</p><pre>    ?<span class="hl opt">-</span> <span class="hl kwd">quadratic_roots</span><span class="hl opt">(</span><span class="hl num">2</span><span class="hl opt">,</span> <span class="hl num">5</span><span class="hl opt">,</span> <span class="hl num">2</span><span class="hl opt">,</span> Z<span class="hl opt">).</span>
+    Z <span class="hl opt">= -</span><span class="hl num">0.5</span> <span class="hl opt">;</span>
+    Z <span class="hl opt">= -</span><span class="hl num">2.0</span><span class="hl opt">.</span></pre></li><li data-coord="prolog.umt:165:0"><p data-coord="prolog.umt:165:4">Restructure your solution to the previous problem to write a
+procedure <samp data-coord="prolog.umt:165:79">quadratic_roots2(A, B, C, Z)</samp> which obtains the same
+result as the previous exercise, but evaluates the discriminant
+only once.  <strong data-coord="prolog.umt:165:217">Hint</strong>: Evaluate the discriminant only once when
+<samp data-coord="prolog.umt:165:270">quadratic_roots2()</samp> is first entered.  Then solve the roots by
+passing the calculated discriminant as an argument to an auxiliary
+procedure having two rules.
+</p></li></ol></section><section data-coord="prolog.umt:174:0"><h3 data-coord="prolog.umt:174:0">List Processing</h3><p data-coord="prolog.umt:177:0">The recipe for processing lists remains the same as in Scheme.  Usually:
+</p><ul data-coord="prolog.umt:179:0"><li data-coord="prolog.umt:179:0"><p data-coord="prolog.umt:179:4">The empty list corresponds to the base case.
+</p></li><li data-coord="prolog.umt:181:0"><p data-coord="prolog.umt:181:4">A non-empty list is processed by recursively processing the tail
+and then combining the head of the list with the result of the
+recursive processing.
+</p></li></ul><ol data-coord="prolog.umt:185:0"><li data-coord="prolog.umt:185:0"><p data-coord="prolog.umt:185:4">Write a procedure <samp data-coord="prolog.umt:185:22">sum_lengths(Ls, Z)</samp> which matches
+Z with the sum of the lengths of the top-level sublists
+constituting elements <samp data-coord="prolog.umt:185:143">Ls</samp>.
+</p><pre>    ?<span class="hl opt">-</span> <span class="hl kwd">sum_lengths</span><span class="hl opt">([[</span><span class="hl num">1</span><span class="hl opt">,</span> <span class="hl num">2</span><span class="hl opt">], [</span><span class="hl num">3</span><span class="hl opt">, [</span><span class="hl num">4</span><span class="hl opt">,</span> <span class="hl num">5</span><span class="hl opt">],</span> <span class="hl num">6</span><span class="hl opt">], [</span><span class="hl num">7</span><span class="hl opt">,</span> <span class="hl num">8</span><span class="hl opt">], [</span><span class="hl num">9</span><span class="hl opt">]],</span> Z<span class="hl opt">).</span>
+    Z <span class="hl opt">=</span> <span class="hl num">8</span><span class="hl opt">.</span></pre><p data-coord="prolog.umt:195:4">This is the results of adding the sublist lengths <samp data-coord="prolog.umt:195:54">2 + 3 + 2 + 1</samp>.
+</p></li><li data-coord="prolog.umt:197:0"><p data-coord="prolog.umt:197:4">Write a Prolog procedure <samp data-coord="prolog.umt:197:29">sum_areas(Shapes, Sum)</samp> which matches
+<samp data-coord="prolog.umt:197:72">Sum</samp> with the sum of the shapes in list <samp data-coord="prolog.umt:197:113">Shapes</samp>.  The
+following shapes should be supported:
+</p><pre data-coord="prolog.umt:202:0">    circle(Radius)
+    rectangle(Width, Height)
+    square(Width)
+</pre><pre>    ?<span class="hl opt">-</span> <span class="hl kwd">sum_areas</span><span class="hl opt">([</span><span class="hl kwd">rectangle</span><span class="hl opt">(</span><span class="hl num">3</span><span class="hl opt">,</span> <span class="hl num">4</span><span class="hl opt">),</span> <span class="hl kwd">circle</span><span class="hl opt">(</span><span class="hl num">1</span><span class="hl opt">),</span> <span class="hl kwd">square</span><span class="hl opt">(</span><span class="hl num">3</span><span class="hl opt">)],</span> Sum<span class="hl opt">).</span>
+    Sum <span class="hl opt">=</span> <span class="hl num">24.141592653589793</span><span class="hl opt">.</span>
+
+    ?<span class="hl opt">-</span> <span class="hl kwd">sum_areas</span><span class="hl opt">([</span><span class="hl kwd">triangle</span><span class="hl opt">(</span><span class="hl num">3</span><span class="hl opt">,</span> <span class="hl num">4</span><span class="hl opt">,</span> <span class="hl num">5</span><span class="hl opt">),</span> <span class="hl kwd">circle</span><span class="hl opt">(</span><span class="hl num">1</span><span class="hl opt">),</span> <span class="hl kwd">square</span><span class="hl opt">(</span><span class="hl num">3</span><span class="hl opt">)],</span>
+                 Sum<span class="hl opt">).</span>
+    false<span class="hl opt">.</span></pre></li></ol></section></section></section>
+    </div> <!-- #content -->
+    <script src="../../assets/scripts/loginAction.js"></script>
+  </body>
+</html>
