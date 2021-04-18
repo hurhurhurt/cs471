@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../../assets/styles/article.css" rel="stylesheet" type="text/css" /> 
+    <title>CS 471: Project 2</title>
+    <link href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" 
+       rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" async=""></script>    
+<link href="prj2/hl-fine_blue.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <nav>
+      <ul>
+	<li><a href="../../index.html" class="material-icons">house</a></li>
+	<li><a href="../../docs/index.html">Docs</a></li>
+	<li><a href="../../exercises/index.html">Exercises</a></li>
+	<li><a href="../../hws/index.html">Homeworks</a></li>
+	<li><a href="../../labs/index.html">Labs</a></li>
+	<li><a href="../../misc/index.html">Misc</a></li>
+	<li><a href="../../projects/index.html">Projects</a></li>
+	<li><a href="../../slides/index.html">Slides</a></li>
+	<li><a id="loginAction"></a></li>
+      </ul>
+    </nav>
+    <div class="content">
+      <section data-coord="prj2.umt:1:0"><h1 data-coord="prj2.umt:1:0">Project 2</h1><p data-coord="prj2.umt:3:0"><strong data-coord="prj2.umt:3:0">Due</strong>: Mar 22, before midnight.
+</p><p data-coord="prj2.umt:5:0"><strong data-coord="prj2.umt:5:0">Important Reminder</strong>: As per the course <em data-coord="prj2.umt:5:110"><a href="../../misc/academic-honesty-statement/academic-honesty-policy.html" data-coord="prj2.umt:5:110">Academic Honesty Statement</a></em>,
+cheating of any kind will minimally result in your letter grade
+for the entire course being reduced by one level.
+</p><p data-coord="prj2.umt:9:0">This document first provides the aims of this project, followed by a
+discussion of its background.  It then lists the requirements as
+explicitly as possible.  It then hints at how these requirements can
+be met.  Finally, it describes how it can be submitted.
+</p><section data-coord="prj2.umt:15:0"><h2 data-coord="prj2.umt:15:0">Aims of This Project</h2><p data-coord="prj2.umt:18:0">The aims of this project are as follows:
+</p><ul data-coord="prj2.umt:20:0"><li data-coord="prj2.umt:20:0"><p data-coord="prj2.umt:20:4">To become adept with recursive programming.
+</p></li><li data-coord="prj2.umt:22:0"><p data-coord="prj2.umt:22:4">To expose you to functional programming.
+</p></li><li data-coord="prj2.umt:24:0"><p data-coord="prj2.umt:24:4">To familiarize you with programming without using destructive
+assignment.
+</p></li></ul></section><section data-coord="prj2.umt:28:0"><h2 data-coord="prj2.umt:28:0">Project Specification</h2><p data-coord="prj2.umt:31:0">Update your github repository with a directory
+<samp data-coord="prj2.umt:31:47">submit/prj2-sol</samp> containing two files <samp data-coord="prj2.umt:31:86">prj2-sol.scm</samp> and <samp data-coord="prj2.umt:31:105">arith-parser.scm</samp>.
+</p><p data-coord="prj2.umt:34:0">The <samp data-coord="prj2.umt:34:4">prj2-sol.scm</samp> file should contain definitions for the
+following functions:
+</p><ol data-coord="prj2.umt:38:0"><li data-coord="prj2.umt:38:0"><p data-coord="prj2.umt:38:4"><samp data-coord="prj2.umt:38:4">(mul-list list x)</samp> which when given a proper list <samp data-coord="prj2.umt:38:55">list</samp> of
+numbers returns the list formed by multiplying each element of
+<samp data-coord="prj2.umt:38:136">list</samp> by <samp data-coord="prj2.umt:38:146">x</samp>.  <em data-coord="prj2.umt:38:152">5-points</em>
+</p></li><li data-coord="prj2.umt:42:0"><p data-coord="prj2.umt:42:4"><samp data-coord="prj2.umt:42:4">(sum-lengths list)</samp> which when given a proper list <samp data-coord="prj2.umt:42:56">list</samp> of
+  proper lists returns the sum of the lengths of all the lists
+  contained directly in <samp data-coord="prj2.umt:42:161">list</samp>. This function should not be
+  tail-recursive.  <em data-coord="prj2.umt:42:220">5-points</em>
+</p></li><li data-coord="prj2.umt:47:0"><p data-coord="prj2.umt:47:4"><samp data-coord="prj2.umt:47:4">(poly-eval coeffs x)</samp> which evaluates the polyomial specified by
+list <samp data-coord="prj2.umt:47:79">coeffs</samp> at <samp data-coord="prj2.umt:47:91">x</samp>.  Specifically, given a list of <samp data-coord="prj2.umt:47:127">n + 1</samp>
+numeric polynomial coefficients <samp data-coord="prj2.umt:47:171">coeffs</samp> <samp data-coord="prj2.umt:47:180">(c[n] c[n-1] ... c[0])</samp>
+and a number <samp data-coord="prj2.umt:47:222">x</samp>, return the value of \(c[n]\times x^n +
+    c[n-1]\times x^{n-1} + \ldots + c[1]\times x + c[0]\).  Your
+computation should evaluate each term as written above; i.e. each
+\(c[i]\times x^i\) term should be explicitly evaluated and added
+together.. This function should not be tail-recursive. <em data-coord="prj2.umt:47:527">10-points</em>
+</p></li><li data-coord="prj2.umt:56:0"><p data-coord="prj2.umt:56:4"><samp data-coord="prj2.umt:56:4">(poly-eval-horner coeffs x)</samp> which uses
+<em data-coord="prj2.umt:56:100"><a href="https://en.wikipedia.org/wiki/Horner%27s_method" data-coord="prj2.umt:56:100">Horner's
+    method</a></em> to evaluate the polynomial given by list <samp data-coord="prj2.umt:56:163">coeffs</samp> at
+number <samp data-coord="prj2.umt:56:186">x</samp>.  The list <samp data-coord="prj2.umt:56:201">coeffs</samp> is as specified in the previous
+exercise. <em data-coord="prj2.umt:56:256">10-points</em>
+</p></li><li data-coord="prj2.umt:62:0"><p data-coord="prj2.umt:62:4"><samp data-coord="prj2.umt:62:4">(count-occurrences s-exp x)</samp> which given a Scheme s-expression
+<samp data-coord="prj2.umt:62:72">s-exp</samp> returns the number of sub-expressions which are <samp data-coord="prj2.umt:62:128">equal?</samp>
+to <samp data-coord="prj2.umt:62:144">x</samp>. <em data-coord="prj2.umt:62:149">10-points</em>
+</p></li><li data-coord="prj2.umt:66:0"><p data-coord="prj2.umt:66:4"><samp data-coord="prj2.umt:66:4">(arith-eval exp)</samp> which returns the result of evaluating
+ arithmetic expression <samp data-coord="prj2.umt:66:89">exp</samp>, where <samp data-coord="prj2.umt:66:102">exp</samp> is either a Scheme
+ number or one of <samp data-coord="prj2.umt:66:149">(</samp> <em data-coord="prj2.umt:66:153">op</em> <em data-coord="prj2.umt:66:158">exp-1</em> <em data-coord="prj2.umt:66:166">exp-2</em> <samp data-coord="prj2.umt:66:174">)</samp> where <em data-coord="prj2.umt:66:184">op</em> is one
+ of <samp data-coord="prj2.umt:66:204">'add</samp>, <samp data-coord="prj2.umt:66:212">'sub</samp>, <samp data-coord="prj2.umt:66:220">'mul</samp> or <samp data-coord="prj2.umt:66:230">'div</samp> specifying respectively the
+ binary arithmetic operators <samp data-coord="prj2.umt:66:298">+</samp>, <samp data-coord="prj2.umt:66:303">-</samp>, <samp data-coord="prj2.umt:66:308">*</samp>, <samp data-coord="prj2.umt:66:313">/</samp> and <samp data-coord="prj2.umt:66:321">exp-1</samp> and
+ <samp data-coord="prj2.umt:66:338">exp-2</samp> are arithmetic expressions.  <em data-coord="prj2.umt:66:375">10-points</em>
+</p></li><li data-coord="prj2.umt:73:0"><p data-coord="prj2.umt:73:4"><samp data-coord="prj2.umt:73:4">(sum-lengths-tr list)</samp> with the same specification as
+<samp data-coord="prj2.umt:73:63">sum-lengths</samp> but with the requirement that all recursive
+calls must be tail-recursive. <em data-coord="prj2.umt:73:155">10-points</em>
+</p></li><li data-coord="prj2.umt:77:0"><p data-coord="prj2.umt:77:4"><samp data-coord="prj2.umt:77:4">(poly-eval-horner-tr coeffs x)</samp> with the same specification as
+<samp data-coord="prj2.umt:77:72">poly-eval-horner</samp> but with the requirement that all recursive
+calls must be tail-recursive. <em data-coord="prj2.umt:77:169">10-points</em>
+</p></li><li data-coord="prj2.umt:81:0"><p data-coord="prj2.umt:81:4"><samp data-coord="prj2.umt:81:4">(mul-list-2 list x)</samp> with the same specification as <samp data-coord="prj2.umt:81:57">mul-list</samp>
+but which replaces all recursion with the use of one or more of
+<samp data-coord="prj2.umt:81:140">map</samp>, <samp data-coord="prj2.umt:81:147">foldl</samp> or <samp data-coord="prj2.umt:81:158">foldr</samp>. <em data-coord="prj2.umt:81:167">5-points</em>
+</p></li><li data-coord="prj2.umt:85:0"><p data-coord="prj2.umt:85:4">Write a function <samp data-coord="prj2.umt:85:21">(sum-lengths-2 list)</samp> with the same
+specification as <samp data-coord="prj2.umt:85:79">sum-lengths but which replaces all recursion
+    with the use of one or more of </samp>map`, <samp data-coord="prj2.umt:85:167">foldl</samp> or <samp data-coord="prj2.umt:85:178">foldr</samp>.
+<em data-coord="prj2.umt:85:191">5-points</em>
+</p></li></ol><p data-coord="prj2.umt:90:0">The <samp data-coord="prj2.umt:90:4">arith-parse.scm</samp> file should contain a definition of a function
+<samp data-coord="prj2.umt:90:69">(arith-parse tokens)</samp> which should return an AST representing the
+structure of the proper list <samp data-coord="prj2.umt:90:165">tokens</samp> as specified by the following
+EBNF grammar:
+</p><pre data-coord="prj2.umt:96:0">expr
+  : term ( '+ term )*
+  ;
+term
+  : factor ( '* factor )*
+  ;
+factor
+  : NUMBER
+  | '&lt; expr '&gt;
+  ;
+</pre><p data-coord="prj2.umt:108:0">Both the <samp data-coord="prj2.umt:108:9">'+</samp> and <samp data-coord="prj2.umt:108:18">'*</samp> operators should be left-associative.
+</p><p data-coord="prj2.umt:110:0">The proper list <samp data-coord="prj2.umt:110:16">tokens</samp> should contain Scheme numbers, <samp data-coord="prj2.umt:110:56">'+</samp>, <samp data-coord="prj2.umt:110:62">'*</samp> and
+<samp data-coord="prj2.umt:110:71">'&lt;</samp> and <samp data-coord="prj2.umt:110:80">'&gt;</samp> (the latter two symbols are used as parentheses).  The
+AST for <samp data-coord="prj2.umt:110:148">'+</samp> and <samp data-coord="prj2.umt:110:157">'*</samp> should use tags <samp data-coord="prj2.umt:110:178">'add</samp> and <samp data-coord="prj2.umt:110:189">'mul</samp> repectively; i.e.
+the output of <samp data-coord="prj2.umt:110:228">arith-parse</samp> should be suitable as input to <samp data-coord="prj2.umt:110:273">arith-eval</samp>.
+</p><p data-coord="prj2.umt:115:0">If <samp data-coord="prj2.umt:115:3">tokens</samp> cannot be parsed according to the above grammar, then
+<samp data-coord="prj2.umt:115:66">(arith-parse tokens)</samp> should return <samp data-coord="prj2.umt:115:103">#f</samp>.  <em data-coord="prj2.umt:115:110">20-points</em>
+</p><p data-coord="prj2.umt:118:0">The project is subject to the following additional restrictions:
+</p><ul data-coord="prj2.umt:120:0"><li data-coord="prj2.umt:120:0"><p data-coord="prj2.umt:120:4">You should not use any of Scheme's mutation operators; i.e. no
+Scheme function with name ending in <samp data-coord="prj2.umt:120:107">!</samp> may be used.
+</p></li><li data-coord="prj2.umt:123:0"><p data-coord="prj2.umt:123:4">The functions defined in <samp data-coord="prj2.umt:123:29">prj2-sol.scm</samp> should not define any
+top-level auxiliary functions; i.e. any auxiliary functions needed
+for the operation of a required function should be defined within
+that function.  This restriction does not apply to
+<samp data-coord="prj2.umt:123:266">arith-parse.scm</samp>.
+</p></li><li data-coord="prj2.umt:129:0"><p data-coord="prj2.umt:129:4">None of the functions may use <samp data-coord="prj2.umt:129:34">map</samp>, <samp data-coord="prj2.umt:129:41">foldl</samp>, or <samp data-coord="prj2.umt:129:53">foldr</samp> unless
+explicitly specified.
+</p></li><li data-coord="prj2.umt:132:0"><p data-coord="prj2.umt:132:4">Some of the function specifications give implementation
+restrictions.  Those must be followed.
+</p></li></ul></section><section data-coord="prj2.umt:135:0"><h2 data-coord="prj2.umt:135:0">Example Log</h2><p data-coord="prj2.umt:138:0">The following provides a log of interaction with the code submitted
+with this project:
+</p><pre data-coord="prj2.umt:142:0">$ racket
+Welcome to Racket v7.2.
+&gt; (load "prj2-sol.scm")
+
+&gt; (mul-list '(3 4 5) 8)
+'(24 32 40)
+&gt; (mul-list '() 8)
+'()
+
+&gt; (sum-lengths '( (1 2 3) (()) (() 2 (3 4 5))))
+7
+&gt; (sum-lengths '( ))
+0
+
+&gt; (poly-eval '(5 4 3 2 1) 1)
+15
+&gt; (poly-eval '(5 4 3 2 1) 2)
+129
+&gt; (poly-eval '() 1)
+0
+
+&gt; (poly-eval-horner '(5 4 3 2 1) 1)
+15
+&gt; (poly-eval-horner '(5 4 3 2 1) 2)
+129
+&gt; (poly-eval-horner '() 1)
+0
+
+&gt; (count-occurrences '( (+ 1 2) (a (+ 1 2) 3) ) 1)
+2
+&gt; (count-occurrences '( (+ 1 2) (a (+ 1 2) 3) ) 3)
+1
+&gt; (count-occurrences '( (+ 1 2) (a (+ 1 2) 3) ) '(+ 1 2))
+2
+&gt; (count-occurrences '( (+ 1 2) (a (+ 1 2) 3) ) '(+ 1 3))
+0
+
+&gt; (arith-eval '(mul 3 (add 4 (mul 4 3))))
+48
+&gt; (arith-eval 45)
+45
+
+&gt; (sum-lengths-tr '( (1 2 3) (()) (() 2 (3 4 5))))
+7
+&gt; (sum-lengths-tr '())
+0
+
+&gt; (poly-eval-horner-tr '(5 4 3 2 1) 1)
+15
+&gt; (poly-eval-horner-tr '(5 4 3 2 1) 2)
+129
+&gt; (poly-eval-horner-tr '() 2)
+0
+
+&gt; (mul-list-2 '(4 5 9) 4)
+'(16 20 36)
+&gt; (mul-list-2 '() 4)
+'()
+
+&gt; (sum-lengths-2 '( (1 2 3) (()) (() 2 (3 4 5))))
+7
+&gt; (sum-lengths-2 '( ))
+0
+
+&gt; (load "arith-parse.scm")
+&gt; (arith-parse '( 1 + 2 +  4 * 3 ))
+'(add (add 1 2) (mul 4 3))
+&gt; (arith-parse '( 1 + &lt; 2 +  4 * 3 &gt; ))
+'(add 1 (add 2 (mul 4 3)))
+&gt; (arith-parse '( 1 + &lt; 2 + + 4 * 3 &gt; ))
+#f
+&gt; (arith-parse '( 1 + 2 +  4 * 3 &gt;))
+#f
+&gt; (arith-parse '( 1 + &lt; 2 +  4 &gt; * 3 ))
+'(add 1 (mul (add 2 4) 3))
+&gt; (arith-parse '( @ 1 + &lt; 2 +  4 &gt; * 3 ))
+#f
+
+&gt; (arith-eval (arith-parse '( 1 + &lt; 2 +  4 &gt; * 3 )))
+19
+&gt;
+$
+</pre></section><section data-coord="prj2.umt:226:0"><h2 data-coord="prj2.umt:226:0">Provided Files</h2><p data-coord="prj2.umt:229:0">The <a href="./prj2-sol" data-coord="prj2.umt:229:18">prj2-sol</a> directory contains the following:
+</p><dl data-coord="prj2.umt:231:0"><dt data-coord="prj2.umt:231:2"> <a href="./prj2-sol/README" data-coord="prj2.umt:231:22">README</a> </dt><dd data-coord="prj2.umt:232:0"><p data-coord="prj2.umt:232:4">A template README; replace the <samp data-coord="prj2.umt:232:35">XXX</samp> with your name, B-number and
+email.  You may add any other information you believe is relevant
+to your project submission.  In particular, you should document
+the data-structure used for your word-store.
+</p></dd><dt data-coord="prj2.umt:237:2"> <a href="./prj2-sol/prj2-sol.scm" data-coord="prj2.umt:237:28">prj2-sol.scm</a> </dt><dd data-coord="prj2.umt:238:0"><p data-coord="prj2.umt:238:4">A file containing skeletons functions for all except the last
+exercise.
+</p></dd><dt data-coord="prj2.umt:241:2"> <a href="./prj2-sol/arith-parse.scm" data-coord="prj2.umt:241:31">arith-parse.scm</a> </dt><dd data-coord="prj2.umt:242:0"><p data-coord="prj2.umt:242:4">A file containing partial code for the last exercise.
+</p></dd></dl></section><section data-coord="prj2.umt:244:0"><h2 data-coord="prj2.umt:244:0">Hints</h2><p data-coord="prj2.umt:248:0">You may choose to work within the <samp data-coord="prj2.umt:248:34">drracket</samp> GUI tool or simply use
+the <samp data-coord="prj2.umt:248:72">racket</samp> CLI.  Documentation is available from within <samp data-coord="prj2.umt:248:126">drracket</samp>
+or from the web site <a href="https://docs.racket-lang.org/" data-coord="prj2.umt:248:191">racket-lang.org.</a>
+</p><p data-coord="prj2.umt:252:0">Note that you can use
+<a href="https://docs.racket-lang.org/reference/debugging.html" data-coord="prj2.umt:252:79">trace</a> to
+debug your code.
+</p><p data-coord="prj2.umt:256:0">The following points are worth noting for the initial exercises:
+</p><ul data-coord="prj2.umt:258:0"><li data-coord="prj2.umt:258:0"><p data-coord="prj2.umt:258:4">It may be a good idea to initially ignore the requirement of not
+creating any new top-level functions. Once you have the code for a
+particular exercise working, then you can squirrel the definitions
+of any auxiliary functions into the body of the top-level
+function using <samp data-coord="prj2.umt:258:292">let</samp>, <samp data-coord="prj2.umt:258:299">let*</samp> or <samp data-coord="prj2.umt:258:309">letrec</samp> as appropriate.
+</p></li><li data-coord="prj2.umt:264:0"><p data-coord="prj2.umt:264:4">Almost all the exercises require recursive solutions. Hence you
+need to clearly identify your base case's and recursive case's.
+For the former, you will need to provide a basic solution not
+involving any recursive calls; for the latter you will need to
+figure out how to combine solutions from one or more recursive
+calls into a solution to the current call.
+</p><p data-coord="prj2.umt:271:4">In many cases, the recursive solutions will be based on the
+structure of the data: this is referred to as <em data-coord="prj2.umt:271:114">structural
+    recursion</em>.
+</p><p data-coord="prj2.umt:275:6">- A list is either <samp data-coord="prj2.umt:275:25">'()</samp> or a pair.
+</p><p data-coord="prj2.umt:277:6">- For the <samp data-coord="prj2.umt:277:16">arith-eval</samp> function, an arith expression is either a
+	Scheme number or <samp data-coord="prj2.umt:277:95">(add exp-1 exp-2)</samp>, \(\ldots\), <samp data-coord="prj2.umt:277:127">(div exp-1 exp-2)</samp>
+	where <samp data-coord="prj2.umt:277:160">exp-1</samp> and <samp data-coord="prj2.umt:277:172">exp-2</samp> are themselves arith expressions.
+	So for the base case, your evaluator function needs to return
+	the evaluation of a Scheme number.  For the recursive cases,
+	all you need to do is combine the results of the recursive calls
+	to the evaluator on the subexpressions appropriately.
+</p><p data-coord="prj2.umt:285:4">The <samp data-coord="prj2.umt:285:8">count-occurrences</samp> function is one which requires you to
+process a Scheme expression to an arbitrary depth.  Make sure you
+clearly identify the base case (one of the examples provided in
+the log should help).
+</p></li></ul><p data-coord="prj2.umt:290:0">The <samp data-coord="prj2.umt:290:4">arith-parser</samp> illustrates the techniques necessary when
+programming using pure functions without destructive assignment.  If
+you understand the provided code in conjunction with the following
+comments, the code needed to complete the functionality should be
+straight-forward:
+</p><ul data-coord="prj2.umt:296:0"><li data-coord="prj2.umt:296:0"><p data-coord="prj2.umt:296:4">Since we cannot use destructive assignment, we pass around the
+list of tokens which still need to be consumed by the parser.  The
+lookahead token will be the head of the list.
+</p></li><li data-coord="prj2.umt:300:0"><p data-coord="prj2.umt:300:4">We represent the state of the parser as a <samp data-coord="prj2.umt:300:46">parse-state</samp> which is
+either a non-empty list of remaining tokens, <samp data-coord="prj2.umt:300:118">'()</samp> representing
+end-of-file, or <samp data-coord="prj2.umt:300:157">#f</samp> representing a syntax error on match failure.
+</p></li><li data-coord="prj2.umt:304:0"><p data-coord="prj2.umt:304:4">If a function returns multiple results it is necessary to package
+up those results into a single return value and then have the
+caller unpack the return value.  An idiom which is used in the
+provided code:
+</p><pre>    <span class="hl opt">(</span><span class="hl kwa">let</span><span class="hl opt">* ([</span>fn-result <span class="hl opt">(</span><span class="hl kwa">fn</span> ...<span class="hl opt">)]</span>
+           <span class="hl opt">[</span>val1 <span class="hl opt">(</span><span class="hl kwa">access-val1</span> fn-result<span class="hl opt">)]</span>
+           <span class="hl opt">[</span>val2 <span class="hl opt">(</span><span class="hl kwa">access-val2</span> fn-result<span class="hl opt">)]</span>
+           ...
+           <span class="hl opt">[</span>valn <span class="hl opt">(</span><span class="hl kwa">access-valn</span> fn-result<span class="hl opt">)])</span>
+           ...<span class="hl opt">)</span></pre><p data-coord="prj2.umt:319:4">for accessor functions <samp data-coord="prj2.umt:319:27">access-val1</samp>, <samp data-coord="prj2.umt:319:42">access-val2</samp>, \(\ldots\),
+<samp data-coord="prj2.umt:319:72">access-valn</samp>.
+</p><p data-coord="prj2.umt:322:4">[This can be done more conveniently in Scheme using <samp data-coord="prj2.umt:322:56">(match ...)</samp>
+or <samp data-coord="prj2.umt:322:77">(values ...)</samp> in conjunction with <samp data-coord="prj2.umt:322:112">(call-with-values ...)</samp> but
+those have not been covered in class.]    
+</p></li><li data-coord="prj2.umt:326:0"><p data-coord="prj2.umt:326:4">The <samp data-coord="prj2.umt:326:8">(check? tok parse-state)</samp> function returns <samp data-coord="prj2.umt:326:52">#t</samp> iff the
+lookahead token in <samp data-coord="prj2.umt:326:88">parse-state</samp> matches <samp data-coord="prj2.umt:326:110">tok</samp> (which should
+be either <samp data-coord="prj2.umt:326:144">'NUMBER</samp> or a Scheme symbol).
+</p></li><li data-coord="prj2.umt:330:0"><p data-coord="prj2.umt:330:4">The <samp data-coord="prj2.umt:330:8">(match tok parse-state)</samp> returns the new <samp data-coord="prj2.umt:330:50">parse-state</samp>
+which returns from matching <samp data-coord="prj2.umt:330:96">tok</samp> against the lookahead
+from <samp data-coord="prj2.umt:330:133">parse-state</samp> and advancing to the next token if the
+match succeeds.    
+</p></li><li data-coord="prj2.umt:335:0"><p data-coord="prj2.umt:335:4">We set up our parsing functions to take a single <samp data-coord="prj2.umt:335:53">parse-state</samp>
+argument and return a compound <samp data-coord="prj2.umt:335:102">parse-result</samp> which contains the
+constructed ast and the next <samp data-coord="prj2.umt:335:169">parse-state</samp>.  Note that the
+constructed ast is set to <samp data-coord="prj2.umt:335:229">#f</samp> on error.
+</p></li><li data-coord="prj2.umt:340:0"><p data-coord="prj2.umt:340:4">Note that our recursive-descent parser recipe would create
+the parsing function for <samp data-coord="prj2.umt:340:92">expr</samp> as:
+</p><pre data-coord="prj2.umt:344:0">    expr() {
+      Ast t = term();
+      while (lookahead == '+') {
+        match('+);
+	Ast t1 = term();
+	t = new Ast('add, t, t1);
+      }
+      return t;
+    }
+</pre><p data-coord="prj2.umt:355:4">In the absence of destructive assignments, we would need to
+implement the <samp data-coord="prj2.umt:355:82">while</samp> loop using a recursive auxiliary function
+like <samp data-coord="prj2.umt:355:141">expr-loop</samp>.
+</p></li><li data-coord="prj2.umt:359:0"><p data-coord="prj2.umt:359:4">The code for <samp data-coord="prj2.umt:359:17">(term...)</samp> would be structured identically to that
+for <samp data-coord="prj2.umt:359:77">(expr...)</samp>.
+</p></li><li data-coord="prj2.umt:362:0"><p data-coord="prj2.umt:362:4">Note that Scheme provides <samp data-coord="prj2.umt:362:30">and</samp> and <samp data-coord="prj2.umt:362:40">or</samp> functions with the usual
+short-circuit semantics but the value returned is that of the
+last expression which is evaluated:
+</p><pre>    <span class="hl opt">&gt; (</span><span class="hl kwa">and</span> <span class="hl num">1</span> <span class="hl opt">&apos;(</span><span class="hl kwa">a</span> b<span class="hl opt">))</span>
+    <span class="hl opt">&apos;(</span><span class="hl kwa">a</span> b<span class="hl opt">)</span>
+    <span class="hl opt">&gt; (</span><span class="hl kwa">or</span> <span class="hl num">1</span> <span class="hl opt">&apos;(</span><span class="hl kwa">a</span> b<span class="hl opt">))</span>
+    <span class="hl num">1</span>
+    <span class="hl opt">&gt; (</span><span class="hl kwa">or</span> <span class="hl opt">#</span>f <span class="hl opt">&apos;(</span><span class="hl kwa">a</span> b<span class="hl opt">))</span>
+    <span class="hl opt">&apos;(</span><span class="hl kwa">a</span> b<span class="hl opt">)</span></pre></li></ul></section></section>
+    </div> <!-- #content -->
+    <script src="../../assets/scripts/loginAction.js"></script>
+  </body>
+</html>

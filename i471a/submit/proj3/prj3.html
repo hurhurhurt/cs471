@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../../assets/styles/article.css" rel="stylesheet" type="text/css" /> 
+    <title>CS 471: Project 3</title>
+    <link href="prj3/hl-fine_blue.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <nav>
+      <ul>
+	<li><a href="../../index.html" class="material-icons">house</a></li>
+	<li><a href="../../docs/index.html">Docs</a></li>
+	<li><a href="../../exercises/index.html">Exercises</a></li>
+	<li><a href="../../hws/index.html">Homeworks</a></li>
+	<li><a href="../../labs/index.html">Labs</a></li>
+	<li><a href="../../misc/index.html">Misc</a></li>
+	<li><a href="../../projects/index.html">Projects</a></li>
+	<li><a href="../../slides/index.html">Slides</a></li>
+	<li><a id="loginAction"></a></li>
+      </ul>
+    </nav>
+    <div class="content">
+      <section data-coord="prj3.umt:1:0"><h1 data-coord="prj3.umt:1:0">Project 3</h1><p data-coord="prj3.umt:3:0"><strong data-coord="prj3.umt:3:0">Due Date</strong>: 04/16 by 11:59p
+</p><p data-coord="prj3.umt:5:0"><strong data-coord="prj3.umt:5:0">Important Reminder</strong>: As per the course Academic Honesty Statement,
+cheating of any kind will minimally result in receiving an F letter
+grade for the entire course.
+</p><section data-coord="prj3.umt:9:0"><h2 data-coord="prj3.umt:9:0">Aims of This Project</h2><p data-coord="prj3.umt:12:0">The aims of this project are as follows:
+</p><ul data-coord="prj3.umt:14:0"><li data-coord="prj3.umt:14:0"><p data-coord="prj3.umt:14:4">To give you an introduction to programming in Prolog.
+</p></li><li data-coord="prj3.umt:16:0"><p data-coord="prj3.umt:16:4">To expose you to using pattern matching for both constructing
+and accessing data-structures.
+</p></li><li data-coord="prj3.umt:19:0"><p data-coord="prj3.umt:19:4">To familiarize you with using backtracking in Prolog.
+</p></li></ul></section><section data-coord="prj3.umt:22:0"><h2 data-coord="prj3.umt:22:0">Project Specification</h2><p data-coord="prj3.umt:26:0">Update your github repository with a directory
+<samp data-coord="prj3.umt:26:47">submit/prj3-sol</samp> which contains a file <samp data-coord="prj3.umt:26:87">prj3-sol.pro</samp> which
+contains implementations of the Prolog procedures documented
+in the skeleton file <a href="prj3-sol/prj3-sol.pro" data-coord="prj3.umt:26:215">prj3-sol.pro.</a>
+</p></section><section data-coord="prj3.umt:32:0"><h2 data-coord="prj3.umt:32:0">Provided Files</h2><p data-coord="prj3.umt:35:0">The &lt;./prj3-sol&gt; directory contains the following:
+</p><dl data-coord="prj3.umt:37:0"><dt data-coord="prj3.umt:37:2"> <a href="prj3-sol/prj3-sol.pro" data-coord="prj3.umt:37:26">prj3-sol.pro</a> </dt><dd data-coord="prj3.umt:38:0"><p data-coord="prj3.umt:38:4">A skeleton file containing the specifications of the
+Prolog procedures you need to implement.
+</p></dd><dt data-coord="prj3.umt:41:2"> <a href="./prj3-sol/README" data-coord="prj3.umt:41:22">README</a> </dt><dd data-coord="prj3.umt:42:0"><p data-coord="prj3.umt:42:4">A template README; replace the <samp data-coord="prj3.umt:42:35">XXX</samp> with your name, B-number and
+email.  You may add any other information you believe is relevant
+to your project submission. 
+</p></dd></dl></section><section data-coord="prj3.umt:47:0"><h2 data-coord="prj3.umt:47:0">Hints</h2><p data-coord="prj3.umt:50:0">You may choose to follow the following hints (they are not by any
+means required). 
+</p><ul data-coord="prj3.umt:53:0"><li data-coord="prj3.umt:53:0"><p data-coord="prj3.umt:53:4">First work on your solutions using Prolog's declarative semantics.
+Write facts and rules for a problem which states something
+about the problem domain.
+</p><p data-coord="prj3.umt:57:4">Then think about the procedural semantics.  It may be a good
+idea to include facts/rules corresponding to base cases
+before facts/rules corresponding to recursive cases (this
+should not affect correctness, but may result in different
+orders of solutions or a solution versus an infinite loop).
+</p></li><li data-coord="prj3.umt:63:0"><p data-coord="prj3.umt:63:4">Review the Prolog Programming Heuristics given in the course
+<a href="../../slides/prolog/prolog.pdf" data-coord="prj3.umt:63:103">slides.</a>
+</p></li></ul><p data-coord="prj3.umt:66:0">Hints for the individual exercise follow:
+</p><ol data-coord="prj3.umt:68:0"><li data-coord="prj3.umt:68:0"><p data-coord="prj3.umt:68:4">Write out a fact for the sum of a <samp data-coord="prj3.umt:68:38">leaf(V)</samp>.  Then write out
+a rule for sum of a <samp data-coord="prj3.umt:68:89">tree(L, V, R)</samp>: recursively compute
+the sum of <samp data-coord="prj3.umt:68:141">L</samp> and <samp data-coord="prj3.umt:68:149">R</samp> and then compute the overall sum in
+terms of those results and <samp data-coord="prj3.umt:68:220">V</samp> using <samp data-coord="prj3.umt:68:230">is/2</samp>.
+</p></li><li data-coord="prj3.umt:73:0"><p data-coord="prj3.umt:73:4">Write out a fact for the naive flatten of a <samp data-coord="prj3.umt:73:48">leaf(V)</samp>.  Then write
+out a rule for the naive flatten of <samp data-coord="prj3.umt:73:111">tree(L, V, R)</samp>: recursively
+flatten the trees <samp data-coord="prj3.umt:73:162">L</samp> and <samp data-coord="prj3.umt:73:170">R</samp> and then compute the overall flatten
+in terms of those results and <samp data-coord="prj3.umt:73:245">V</samp> using <samp data-coord="prj3.umt:73:255">append/3</samp>.
+</p></li><li data-coord="prj3.umt:78:0"><p data-coord="prj3.umt:78:4">Define an auxiliary Prolog procedure which accumulates the flatten
+of the tree in reverse order.  Call the auxiliary procedure with
+this accumulator empty and reverse the result of the auxiliary
+procedure to get the overall flattened list.
+</p></li><li data-coord="prj3.umt:83:0"><p data-coord="prj3.umt:83:4">Proceed as follows:
+</p><ol data-coord="prj3.umt:85:0"><li data-coord="prj3.umt:85:0"><p data-coord="prj3.umt:85:8">Review the material on DCGs from the
+<a href="../../slides/prolog/prolog.pdf" data-coord="prj3.umt:85:87">slides.</a>
+</p></li><li data-coord="prj3.umt:88:0"><p data-coord="prj3.umt:88:8">The provided grammar is left recursive; transform it to
+replace the left recursion with the Kleene closure operator.
+</p></li><li data-coord="prj3.umt:91:0"><p data-coord="prj3.umt:91:8">When using an imperative programming paradigm, the Kleene
+closure operator was implemented using loops.  That will need
+to be implemented in Prolog using recursion.
+</p><p data-coord="prj3.umt:95:8">Introduce new non-terminals in your grammar, say <samp data-coord="prj3.umt:95:57">exprLoop</samp>
+and <samp data-coord="prj3.umt:95:80">termLoop</samp>.  Write out right-recursive rules for each of
+these, using a separate rule for each operator.  So you will
+have 3 rules for <samp data-coord="prj3.umt:95:231">exprLoop</samp>: one for <samp data-coord="prj3.umt:95:251">'+'</samp>, one for <samp data-coord="prj3.umt:95:266">'-'</samp> and
+one for the base-case recognizing empty; similarly for
+<samp data-coord="prj3.umt:95:347">termLoop</samp>.
+</p></li><li data-coord="prj3.umt:102:0"><p data-coord="prj3.umt:102:8">Translate the transformed grammar from the previous step
+to DCG notation.  For now, ignore constructing the AST.
+</p></li><li data-coord="prj3.umt:105:0"><p data-coord="prj3.umt:105:8">Connect your DCG rules to the required <samp data-coord="prj3.umt:105:47">parse_arith/2</samp>,
+leaving the AST variable uninstantiated.
+</p></li><li data-coord="prj3.umt:108:0"><p data-coord="prj3.umt:108:8">Test until your <samp data-coord="prj3.umt:108:24">parse_arith/2</samp> works as a recognizer,
+correctly accepting or rejecting different token lists.
+</p></li><li data-coord="prj3.umt:111:0"><p data-coord="prj3.umt:111:8">Add an AST argument to your DCG.  Note that the AST in the
+head of a rule will be constructed using the AST's constructed
+in the body; it may be a good idea to review the
+<a href="../prj2-sol/arith-parse.scm" data-coord="prj3.umt:111:234">solution</a> to the previous
+project.
+</p></li><li data-coord="prj3.umt:117:0"><p data-coord="prj3.umt:117:8">Iterate until you build the correct AST.
+</p></li></ol></li><li data-coord="prj3.umt:119:0"><p data-coord="prj3.umt:119:4">This problem is extremely straight-forward and illustrates
+the power of Prolog (my solution consists of 5 lines of code).
+The solution will depend on the backtracking behavior of
+<samp data-coord="prj3.umt:119:195">member/2</samp>.  To see how that would work, run the following
+goal:
+</p><pre>    <span class="hl kwd">member</span><span class="hl opt">(</span>s <span class="hl opt">-</span> <span class="hl num">1</span> <span class="hl opt">-</span> S<span class="hl opt">, [</span>x <span class="hl opt">-</span> <span class="hl num">0</span> <span class="hl opt">-</span> y<span class="hl opt">,</span> x <span class="hl opt">-</span> <span class="hl num">1</span> <span class="hl opt">-</span> y<span class="hl opt">,</span>
+                       s <span class="hl opt">-</span> <span class="hl num">0</span> <span class="hl opt">-</span> x<span class="hl opt">,</span> s <span class="hl opt">-</span> <span class="hl num">1</span> <span class="hl opt">-</span>x<span class="hl opt">,</span> s <span class="hl opt">-</span> <span class="hl num">1</span> <span class="hl opt">-</span>t<span class="hl opt">]).</span></pre><p data-coord="prj3.umt:131:4">Once you understand how <samp data-coord="prj3.umt:131:28">member/2</samp> can be used to drive the
+simulation, simply write out your <samp data-coord="prj3.umt:131:102">nfa_sim/2</samp>, recursing on the
+list of input symbols.  You will need one rule for the base case,
+succeeding if the input is empty and the current state is a final
+state, and one rule for the recursive case when the input is
+non-empty.
+</p></li></ol></section></section>
+    </div> <!-- #content -->
+    <script src="../../assets/scripts/loginAction.js"></script>
+  </body>
+</html>
