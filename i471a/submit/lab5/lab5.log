@@ -1,0 +1,2306 @@
+Script started on 2021-04-22 21:01:07-04:00 [TERM="xterm" TTY="/dev/pts/7" COLUMNS="100" LINES="35"]
+thur1@remote01:~/cs471/i471a/submit/lab5$ d[Khuy[K[Kuh[Kgs
+__   __ __  __  ____   ___      _________________________________________
+||   || ||  || ||  || ||__      Hugs 98: Based on the Haskell 98 standard
+||___|| ||__|| ||__||  __||     Copyright (c) 1994-2005
+||---||         ___||           World Wide Web: http://haskell.org/hugs
+||   ||                         Bugs: http://hackage.haskell.org/trac/hugs
+||   || Version: September 2006 _________________________________________
+
+Haskell 98 mode: Restart with command line option -98 to enable extensions
+
+Type :? for help
+Hugs> :l l[K"lab5-sol.hs"
+Main> add 2 3
+5
+Main> conc [1] [2, 3]
+[1,2,3]
+Main> conc ["hello"] ["world"]
+["hello","world"]
+Main> conc (conc ["hello"] ["world"]) [42]
+ERROR - Cannot infer instance
+*** Instance   : Num [Char]
+*** Expression : conc (conc ["hello"] ["world"]) [42]
+
+Main> conc (conc ["hello"] ["world"]) [42][C[1P[1@[[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P [42]] [42]
+ERROR - Cannot infer instance
+*** Instance   : Num [[Char]]
+*** Expression : conc [conc ["hello"] ["world"]] [42]
+
+Main> conc (conc ["hello"] ["world"]) ["goodbye"]
+["hello","world","goodbye"]
+Main> conc (conc ["hello"] ["world"]) ["goodbye"][1P"][1P"][1P"][1P"][1P"][1P"][1P"][1P][C"]4"]2"]
+["hello","world","42"]
+Main> [Leaving Hugs]
+thur1@remote01:~/cs471/i471a/submit/lab5$ hugsemacs lab5-sol.hs 
+[?1049h[22;0;0t[?12;25h[?1h=[H[2J[35d[K[?1l>[?12l[?25h[?1049l[23;0;0t[39;49m[?1049h[22;0;0t[?12;25h[?1h=[H[2J[34d[?25l[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Fundamental) -----------------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[35d[?25lLoading /etc/emacs/site-start.d/00debian.el (source)...done[K[H
+[?12l[?25h[?12;25h[35;33H[?25l50a2ps.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lsymptote.el (source)...[H
+[?12l[?25h[?12;25h[35;59H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lutoconf.el (source)...[K[H
+[?12l[?25h[?12;25h[35;58H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lcmake-data.el (source)...[K[H
+[?12l[?25h[?12;25h[35;60H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ldevhelp.el (source)...[K[H
+[?12l[?25h[?12;25h[35;57H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lictionaries-common.el (source)...[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-default.el (source)...[H
+[?12l[?25h[?12;25h[35;77H[?25ldone[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...done[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50dictionaries-common[6P[H
+[?12l[?25h[?12;25h[35;35H[?25lerlang-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;61H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lhaskell-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/elpa/haskel[34@l-mode-16.1/haskell-mode-autoloads[H
+[?12l[?25h[?12;25h[35;96H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50haskell-mode[34P[H
+[?12l[?25h[?12;25h[35;35H[?25llatex-cjk-common.el (source)...[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/latex-cjk-commo[9@n/cjk-enc[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50latex-cjk-common[9P[H
+[?12l[?25h[?12;25h[35;45H[?25lthai.el (source)...[K[H
+[?12l[?25h[?12;25h[35;64H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lpsvn.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lython-docutils.el (source)...[H
+[?12l[?25h[?12;25h[35;65H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ltcsh.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lexlive-lang-english.el (source)...[H
+[?12l[?25h[?12;25h[35;70H[?25ldone[H
+[?12l[?25h[?12;25h[>0c[35d[?25lLoading /etc/emacs/site-start.d/50texlive-lang-english.el (source)...done[K[H[7mFile Edit Options Buffers Tools Lisp-Interaction Help                                               [0m[39;49m[27m
+[A
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Lisp Interaction ElDoc) ------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[?2004h[35d[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.[K[H
+[?12l[?25h[?12;25h[35d[K[H[?25l[7mFile Edit Options Buffers Tools Haskell Help                                                        [0m[39;49m[27m
+[A
+[31m-- Exercise 1                                                                                       [39;49m
+[A
+[K
+[31m-- function which adds two numbers                                                                  [39;49m
+[A
+[1m[34madd[0m[39;49m n1 n2 [33m=[39;49m n1 [33m+[39;49m n2[K
+[K
+[31m-- same, but define without using args                                                              [39;49m
+[A
+[1m[34mplus[0m[39;49m [33m=[39;49m ([33m+[39;49m)[K
+[K
+[31m-- function which concats two lists                                                                 [39;49m
+[A
+[1m[34mconc[0m[39;49m ls1 ls2 [33m=[39;49m ls1 [33m++[39;49m ls2[K
+[K
+[31m-- Exercise 2                                                                                       [39;49m
+[A
+[K
+[1m[34mfirst[0m[39;49m (v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msecond[0m[39;49m ([1m[36m_[0m[39;49m, v) [33m=[39;49m v[K
+[K
+[31m-- Exercise 3                                                                                       [39;49m
+[A
+[K
+[1m[34mcartesianProduct[0m[39;49m ls1 ls2 [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2 ][K
+[K
+[1m[34mcartesianProductIf[0m[39;49m ls1 ls2 predicate [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2, predicate x y ][K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[7m-UU-:----F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   All L2     (Haskell ElDoc) ---------------------------------------------[0m[39;49m[27m
+[A[3d[?12l[?25h[?12;25h[34;34H[?25l[7m3[0m[39;49m[27m[4;1H[?12l[?25h[?12;25h[34;34H[?25l[7m4[0m[39;49m[27m[5;1H[?12l[?25h[?12;25h[34;34H[?25l[7m5[0m[39;49m[27m[6;1H[?12l[?25h[?12;25h[34;34H[?25l[7m6[0m[39;49m[27m[7;1H[?12l[?25h[?12;25h[34;34H[?25l[7m7[0m[39;49m[27m[8;1H[?12l[?25h[?12;25h[34;34H[?25l[7m8[0m[39;49m[27m[9;1H[?12l[?25h[?12;25h[34;34H[?25l[7m9[0m[39;49m[27m[10;1H[?12l[?25h[?12;25h[34;34H[?25l[7m10[0m[39;49m[27m[11;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[12;1H[?12l[?25h[?12;25h[1;25r[13;1H[1L[1;35r[13;1H[K[34;6H[?25l[7m**--F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   All L12[0m[39;49m[27m[13;1H[?12l[?25h[?12;25h[1;26r[14;1H[1L[1;35r[14;1H[K[34;35H[?25l[7m3[0m[39;49m[27m[14;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[13;1H[?12l[?25h[?12;25h[1;30r[15;1H[4L[1;35r[13;1H[?25l[31m-- partially apply above functions:                                                                 [39;49m
+
+[1m[34madd10[0m[39;49m [33m=[39;49m add 10[K
+[1m[34mplus5[0m[39;49m [33m=[39;49m plus 5[K
+[1m[34mconcHello[0m[39;49m [33m=[39;49m conc [32m"hello"[39;49m[K
+[K[34;35H[7m6[0m[39;49m[27m[17;25H[?12l[?25h[?12;25h[35;1H[?25lSaving file /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs...[17;25H[?12l[?25h[?12;25h[35;1H[?25lWrote /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs[K[17;25H[?12l[?25h[?12;25h[34;6H[?25l[7m--[0m[39;49m[27m[17;25H[?12l[?25h[?12;25h[35;1H[K[17;25H[35;1H[K[?2004l[?1l>[?12l[?25h[?1049l[23;0;0t[39;49mthur1@remote01:~/cs471/i471a/submit/lab5$ emacs lab5-sol.hs hugs[K
+__   __ __  __  ____   ___      _________________________________________
+||   || ||  || ||  || ||__      Hugs 98: Based on the Haskell 98 standard
+||___|| ||__|| ||__||  __||     Copyright (c) 1994-2005
+||---||         ___||           World Wide Web: http://haskell.org/hugs
+||   ||                         Bugs: http://hackage.haskell.org/trac/hugs
+||   || Version: September 2006 _________________________________________
+
+Haskell 98 mode: Restart with command line option -98 to enable extensions
+
+Type :? for help
+Hugs> :l "lab5-sol.hs"
+Main> let tuple = ("hello", 42) in fst tuple
+"hello"
+Main> let tuple = ("hello", 42) in snd tuple
+42
+Main> [Leaving Hugs]
+thur1@remote01:~/cs471/i471a/submit/lab5$ hugs
+__   __ __  __  ____   ___      _________________________________________
+||   || ||  || ||  || ||__      Hugs 98: Based on the Haskell 98 standard
+||___|| ||__|| ||__||  __||     Copyright (c) 1994-2005
+||---||         ___||           World Wide Web: http://haskell.org/hugs
+||   ||                         Bugs: http://hackage.haskell.org/trac/hugs
+||   || Version: September 2006 _________________________________________
+
+Haskell 98 mode: Restart with command line option -98 to enable extensions
+
+Type :? for help
+Hugs> :l "lab5-sol.hs"
+Main> let tuple = "[K("hello", 42) in first tuple
+"hello"
+Main> let tuple = ("hello", 42) in first tuple[1P tuple[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kfirst(v, "H[KHello) = v[K[K[K[K[K") = v
+ERROR - Syntax error in input (unexpected `=')
+Main> first(v, "Hello") = v[C[C[C[C[C[C[Kfirst(v, "Hello") = v[K[K[K[K
+ERROR - Undefined variable "v"
+Main> first(v, "Hello")[1P[1@[[1@]
+[]
+Main> first([], "Hello")[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Leaving Hugs]
+thur1@remote01:~/cs471/i471a/submit/lab5$ hugsemacs lab5-sol.hs 
+[?1049h[22;0;0t[?12;25h[?1h=[H[2J[35d[K[?1l>[?12l[?25h[?1049l[23;0;0t[39;49m[?1049h[22;0;0t[?12;25h[?1h=[H[2J[34d[?25l[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Fundamental) -----------------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[35d[?25lLoading /etc/emacs/site-start.d/00debian.el (source)...done[K[H
+[?12l[?25h[?12;25h[35;33H[?25l50a2ps.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lsymptote.el (source)...[H
+[?12l[?25h[?12;25h[35;59H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lutoconf.el (source)...[K[H
+[?12l[?25h[?12;25h[35;58H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lcmake-data.el (source)...[K[H
+[?12l[?25h[?12;25h[35;60H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ldevhelp.el (source)...[K[H
+[?12l[?25h[?12;25h[35;57H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lictionaries-common.el (source)...[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-default.el (source)...[H
+[?12l[?25h[?12;25h[35;77H[?25ldone[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...done[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50dictionaries-common[6P[H
+[?12l[?25h[?12;25h[35;35H[?25lerlang-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;61H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lhaskell-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/elpa/haskel[34@l-mode-16.1/haskell-mode-autoloads[H
+[?12l[?25h[?12;25h[35;96H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50haskell-mode[34P[H
+[?12l[?25h[?12;25h[35;35H[?25llatex-cjk-common.el (source)...[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/latex-cjk-commo[9@n/cjk-enc[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50latex-cjk-common[9P[H
+[?12l[?25h[?12;25h[35;45H[?25lthai.el (source)...[K[H
+[?12l[?25h[?12;25h[35;64H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lpsvn.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lython-docutils.el (source)...[H
+[?12l[?25h[?12;25h[35;65H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ltcsh.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lexlive-lang-english.el (source)...[H
+[?12l[?25h[?12;25h[35;70H[?25ldone[H
+[?12l[?25h[?12;25h[>0c[35d[?25lLoading /etc/emacs/site-start.d/50texlive-lang-english.el (source)...done[K[H[7mFile Edit Options Buffers Tools Lisp-Interaction Help                                               [0m[39;49m[27m
+[A
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Lisp Interaction ElDoc) ------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[?2004h[35d[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.[K[H
+[?12l[?25h[?12;25h[35d[K[H[?25l[7mFile Edit Options Buffers Tools Haskell Help                                                        [0m[39;49m[27m
+[A
+[31m-- Exercise 1                                                                                       [39;49m
+[A
+[K
+[31m-- function which adds two numbers                                                                  [39;49m
+[A
+[1m[34madd[0m[39;49m n1 n2 [33m=[39;49m n1 [33m+[39;49m n2[K
+[K
+[31m-- same, but define without using args                                                              [39;49m
+[A
+[1m[34mplus[0m[39;49m [33m=[39;49m ([33m+[39;49m)[K
+[K
+[31m-- function which concats two lists                                                                 [39;49m
+[A
+[1m[34mconc[0m[39;49m ls1 ls2 [33m=[39;49m ls1 [33m++[39;49m ls2[K
+[K
+[31m-- partially apply above functions:                                                                 [39;49m
+[A
+[K
+[1m[34madd10[0m[39;49m [33m=[39;49m add 10[K
+[1m[34mplus5[0m[39;49m [33m=[39;49m plus 5[K
+[1m[34mconcHello[0m[39;49m [33m=[39;49m conc [32m"hello"[39;49m[K
+[K
+[31m-- Exercise 2                                                                                       [39;49m
+[A
+[K
+[1m[34mfirst[0m[39;49m (v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msecond[0m[39;49m ([1m[36m_[0m[39;49m, v) [33m=[39;49m v[K
+[K
+[31m-- Exercise 3                                                                                       [39;49m
+[A
+[K
+[1m[34mcartesianProduct[0m[39;49m ls1 ls2 [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2 ][K
+[K
+[1m[34mcartesianProductIf[0m[39;49m ls1 ls2 predicate [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2, predicate x y ][K
+[K
+[K
+[K
+[7m-UU-:----F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   All L2     (Haskell ElDoc) ---------------------------------------------[0m[39;49m[27m
+[A[3d[?12l[?25h[?12;25h[34;34H[?25l[7m3[0m[39;49m[27m[4;1H[?12l[?25h[?12;25h[34;34H[?25l[7m4[0m[39;49m[27m[5;1H[?12l[?25h[?12;25h[34;34H[?25l[7m5[0m[39;49m[27m[6;1H[?12l[?25h[?12;25h[34;34H[?25l[7m6[0m[39;49m[27m[7;1H[?12l[?25h[?12;25h[34;34H[?25l[7m7[0m[39;49m[27m[8;1H[?12l[?25h[?12;25h[34;34H[?25l[7m8[0m[39;49m[27m[9;1H[?12l[?25h[?12;25h[34;34H[?25l[7m9[0m[39;49m[27m[10;1H[?12l[?25h[?12;25h[34;34H[?25l[7m10[0m[39;49m[27m[11;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[12;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[13;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[14;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[15;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[16;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[17;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[19;1H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[20;1H[?12l[?25h[?12;25h[34;34H[?25l[7m20[0m[39;49m[27m[21;1H[?12l[?25h[?12;25h[1;33r[22;1H[1M[1;35r[20;1H[?25l[1m[34mfirst[0m[39;49m (v, [1m[36m_[0m[39;49m) [33m=[39;49m v
+[1m[34msecond[0m[39;49m ([1m[36m_[0m[39;49m, v) [33m=[39;49m v[33;1H[K[34;6H[7m**--F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   All L19[0m[39;49m[27m[20;1H[?12l[?25h[?12;25h[34;34H[?25l[7m20[0m[39;49m[27m[21;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[22;1H[?12l[?25h[?12;25h[?25lf[?12l[?25h[?12;25h[?25ls[?12l[?25h[?12;25h[?25lt[?12l[?25h[?12;25h[35;1H[?25l[1mfst :: (a,b) -> a[0m[22;4H[?12l[?25h[?12;25h[?25l3[?12l[?25h[?12;25h[?25l([?12l[?25h[?12;25h[35;1H[K[22;6H[?25l[1m[34mfst3[0m[39;49m ([?12l[?25h[?12;25h[?25lv[?12l[?25h[?12;25h[?25l,[?12l[?25h[?12;25h[C[?25l[1m[36m_[0m[39;49m[?12l[?25h[?12;25h[?25l,[?12l[?25h[?12;25h[C[?25l[1m[36m_[0m[39;49m[?12l[?25h[?12;25h[22;6H[?25l[46m([39;49mv, [1m[36m_[0m[39;49m, [1m[36m_[0m[39;49m)[?12l[?25h[?12;25h[22;6H[?25l(		[?12l[?25h[?12;25h[?25l[33m=[39;49m[?12l[?25h[?12;25h[C[?25lv[?12l[?25h[?12;25h[1;30r[23;1H[1L[1;35r[23;1H[K[34;35H[?25l[7m2[0m[39;49m[27m[23;1H[?12l[?25h[?12;25h[?25ls[?12l[?25h[?12;25h[?25lc[?12l[?25h[?12;25h[K[?25ln[?12l[?25h[?12;25h[?25ld[?12l[?25h[?12;25h[?25l3[?12l[?25h[?12;25h[C[?25l[1m[34msnd3[0m[39;49m ([?12l[?25h[?12;25h[?25l[1m[36m_[0m[39;49m[?12l[?25h[?12;25h[?25l,[?12l[?25h[?12;25h[C[?25lv[?12l[?25h[?12;25h[?25l_[?12l[?25h[?12;25h[K[?25l,[?12l[?25h[?12;25h[C[?25l[1m[36m_[0m[39;49m[?12l[?25h[?12;25h[23;6H[?25l[46m([39;49m[1m[36m_[0m[39;49m, v, [1m[36m_[0m[39;49m)[?12l[?25h[?12;25h[23;6H[?25l(		[?12l[?25h[?12;25h[?25l[33m=[39;49m[?12l[?25h[?12;25h[C[?25lv[?12l[?25h[?12;25h[35;1H[?25lSaving file /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs...[23;19H[?12l[?25h[?12;25h[35;1H[?25lWrote /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs[K[23;19H[?12l[?25h[?12;25h[34;6H[?25l[7m--[0m[39;49m[27m[23;19H[?12l[?25h[?12;25h[1;31r[24;1H[1L[1;35r[35;1H[K[24d[K[34;6H[?25l[7m**--F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   All L23[0m[39;49m[27m[24;1H[?12l[?25h[?12;25h[35d[?25lSaving file /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs...[24;1H[?12l[?25h[?12;25h[35d[?25lWrote /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs[K[24;1H[?12l[?25h[?12;25h[34;6H[?25l[7m--[0m[39;49m[27m[24;1H[?12l[?25h[?12;25h[35d[K[24d[35d[K[?2004l[?1l>[?12l[?25h[?1049l[23;0;0t[39;49mthur1@remote01:~/cs471/i471a/submit/lab5$ hugs
+__   __ __  __  ____   ___      _________________________________________
+||   || ||  || ||  || ||__      Hugs 98: Based on the Haskell 98 standard
+||___|| ||__|| ||__||  __||     Copyright (c) 1994-2005
+||---||         ___||           World Wide Web: http://haskell.org/hugs
+||   ||                         Bugs: http://hackage.haskell.org/trac/hugs
+||   || Version: September 2006 _________________________________________
+
+Haskell 98 mode: Restart with command line option -98 to enable extensions
+
+Type :? for help
+Hugs> :l "lab5-sol.p[Khs"
+Main> first (12, "hello", [])
+ERROR - Type error in application
+*** Expression     : first (12,"hello",[])
+*** Term           : (12,"hello",[])
+*** Type           : (c,[Char],[d])
+*** Does not match : (a,b)
+
+Main> first (12, "hello", [])[1P[1P[1P[1P[1@s[1@t[1@3
+12
+Main> fst3 (12, "hello", [])[1P[1P[1P[1@s[1P[1P[1@s[1@n[1@d[1@3
+"hello"
+Main> [Leaving Hugs]
+thur1@remote01:~/cs471/i471a/submit/lab5$ hugsemacs lab5-sol.hs 
+[?1049h[22;0;0t[?12;25h[?1h=[H[2J[35d[K[?1l>[?12l[?25h[?1049l[23;0;0t[39;49m[?1049h[22;0;0t[?12;25h[?1h=[H[2J[34d[?25l[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Fundamental) -----------------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[35d[?25lLoading /etc/emacs/site-start.d/00debian.el (source)...done[K[H
+[?12l[?25h[?12;25h[35;33H[?25l50a2ps.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lsymptote.el (source)...[H
+[?12l[?25h[?12;25h[35;59H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lutoconf.el (source)...[K[H
+[?12l[?25h[?12;25h[35;58H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lcmake-data.el (source)...[K[H
+[?12l[?25h[?12;25h[35;60H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ldevhelp.el (source)...[K[H
+[?12l[?25h[?12;25h[35;57H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lictionaries-common.el (source)...[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-default.el (source)...[H
+[?12l[?25h[?12;25h[35;77H[?25ldone[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...done[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50dictionaries-common[6P[H
+[?12l[?25h[?12;25h[35;35H[?25lerlang-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;61H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lhaskell-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/elpa/haskel[34@l-mode-16.1/haskell-mode-autoloads[H
+[?12l[?25h[?12;25h[35;96H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50haskell-mode[34P[H
+[?12l[?25h[?12;25h[35;35H[?25llatex-cjk-common.el (source)...[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/latex-cjk-commo[9@n/cjk-enc[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50latex-cjk-common[9P[H
+[?12l[?25h[?12;25h[35;45H[?25lthai.el (source)...[K[H
+[?12l[?25h[?12;25h[35;64H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lpsvn.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lython-docutils.el (source)...[H
+[?12l[?25h[?12;25h[35;65H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ltcsh.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lexlive-lang-english.el (source)...[H
+[?12l[?25h[?12;25h[35;70H[?25ldone[H
+[?12l[?25h[?12;25h[>0c[35d[?25lLoading /etc/emacs/site-start.d/50texlive-lang-english.el (source)...done[K[H[7mFile Edit Options Buffers Tools Lisp-Interaction Help                                               [0m[39;49m[27m
+[A
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Lisp Interaction ElDoc) ------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[?2004h[35d[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.[K[H
+[?12l[?25h[?12;25h[35d[K[H[?25l[7mFile Edit Options Buffers Tools Haskell Help                                                        [0m[39;49m[27m
+[A
+[31m-- Exercise 1                                                                                       [39;49m
+[A
+[K
+[31m-- function which adds two numbers                                                                  [39;49m
+[A
+[1m[34madd[0m[39;49m n1 n2 [33m=[39;49m n1 [33m+[39;49m n2[K
+[K
+[31m-- same, but define without using args                                                              [39;49m
+[A
+[1m[34mplus[0m[39;49m [33m=[39;49m ([33m+[39;49m)[K
+[K
+[31m-- function which concats two lists                                                                 [39;49m
+[A
+[1m[34mconc[0m[39;49m ls1 ls2 [33m=[39;49m ls1 [33m++[39;49m ls2[K
+[K
+[31m-- partially apply above functions:                                                                 [39;49m
+[A
+[K
+[1m[34madd10[0m[39;49m [33m=[39;49m add 10[K
+[1m[34mplus5[0m[39;49m [33m=[39;49m plus 5[K
+[1m[34mconcHello[0m[39;49m [33m=[39;49m conc [32m"hello"[39;49m[K
+[K
+[31m-- Exercise 2                                                                                       [39;49m
+[A
+[1m[34mfirst[0m[39;49m (v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msecond[0m[39;49m ([1m[36m_[0m[39;49m, v) [33m=[39;49m v[K
+[1m[34mfst3[0m[39;49m (v, [1m[36m_[0m[39;49m, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msnd3[0m[39;49m ([1m[36m_[0m[39;49m, v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[K
+[31m-- Exercise 3                                                                                       [39;49m
+[A
+[K
+[1m[34mcartesianProduct[0m[39;49m ls1 ls2 [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2 ][K
+[K
+[1m[34mcartesianProductIf[0m[39;49m ls1 ls2 predicate [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2, predicate x y ][K
+[K
+[K
+[7m-UU-:----F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   All L2     (Haskell ElDoc) ---------------------------------------------[0m[39;49m[27m
+[A[3d[?12l[?25h[?12;25h[34;34H[?25l[7m3[0m[39;49m[27m[4;1H[?12l[?25h[?12;25h[34;34H[?25l[7m4[0m[39;49m[27m[5;1H[?12l[?25h[?12;25h[34;34H[?25l[7m5[0m[39;49m[27m[6;1H[?12l[?25h[?12;25h[34;34H[?25l[7m6[0m[39;49m[27m[7;1H[?12l[?25h[?12;25h[34;34H[?25l[7m7[0m[39;49m[27m[8;1H[?12l[?25h[?12;25h[34;34H[?25l[7m8[0m[39;49m[27m[9;1H[?12l[?25h[?12;25h[34;34H[?25l[7m9[0m[39;49m[27m[10;1H[?12l[?25h[?12;25h[34;34H[?25l[7m10[0m[39;49m[27m[11;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[12;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[13;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[14;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[15;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[16;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[17;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[19;1H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[20;1H[?12l[?25h[?12;25h[34;34H[?25l[7m20[0m[39;49m[27m[21;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[22;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[23;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[24;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[25;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[26;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[25;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[24;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[25;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[24;1H[?12l[?25h[?12;25h[1;32r[25;1H[1L[1;35r[25;1H[K[34;6H[?25l[7m**--F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   All L24[0m[39;49m[27m[25;1H[?12l[?25h[?12;25h[1;33r[26;1H[1M[1;35r[25;1H[?25l[31m-- Exercise 3                                                                                       [39;49m
+[33d[K[34;35H[7m3[0m[39;49m[27m[24;1H[?12l[?25h[?12;25h[?25ls[?12l[?25h[?12;25h[?25li[?12l[?25h[?12;25h[?25lm[?12l[?25h[?12;25h[?25l,[?12l[?25h[?12;25h[K[K[K[?25lu[?12l[?25h[?12;25h[?25lm[?12l[?25h[?12;25h[?25lF[?12l[?25h[?12;25h[?25lI[?12l[?25h[?12;25h[?25lr[?12l[?25h[?12;25h[?25ls[?12l[?25h[?12;25h[?25lt[?12l[?25h[?12;25h[C[?25l[1m[34msumFIrst[0m[39;49m 2[?12l[?25h[?12;25h[C[?25lsumFIrst[K[C[?12l[?25h[?12;25h[?25l2[?12l[?25h[?12;25h[K[K[K[K[K[?25li[?12l[?25h[?12;25h[?25lr[?12l[?25h[?12;25h[?25ls[?12l[?25h[?12;25h[?25lt[?12l[?25h[?12;25h[?25l2[?12l[?25h[?12;25h[C[?25l[1m[34msumFirst2[0m[39;49m l[?12l[?25h[?12;25h[C[?25ls[?12l[?25h[?12;25h[?25lt[?12l[?25h[?12;25h[C[?25l[33m=[39;49m[?12l[?25h[?12;25h	[?25ls[?12l[?25h[?12;25h[?25lu[?12l[?25h[?12;25h[?25lm[?12l[?25h[?12;25h[35;1H[?25l[1msum :: (Num a) => [a] -> a[0m[24;20H[?12l[?25h[?12;25h[C[35;1H[?25lAuto-saving...[K[24;21H[?12l[?25h[?12;25h[35;1H[?25l[1msum :: (Num a) => [a] -> a[0m[24;21H[?12l[?25h[?12;25h[?25l([?12l[?25h[?12;25h[?25lt[?12l[?25h[?12;25h[?25la[?12l[?25h[?12;25h[?25lk[?12l[?25h[?12;25h[?25le[?12l[?25h[?12;25h[C[?25l2[?12l[?25h[?12;25h[35;1H[K[24;28H[C[?25ll[?12l[?25h[?12;25h[?25li[?12l[?25h[?12;25h[?25ls[?12l[?25h[?12;25h[?25lt[?12l[?25h[?12;25h[24;21H[?25l[46m([39;49mtake 2 list)[?12l[?25h[?12;25h[24;21H[?25l([24;34H[?12l[?25h[?12;25h[35;1H[?25lSaving file /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs...[24;34H[?12l[?25h[?12;25h[35;1H[?25lWrote /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs[K[24;34H[?12l[?25h[?12;25h[34;6H[?25l[7m--[0m[39;49m[27m[24;34H[?12l[?25h[?12;25h[35;1H[K[24;34H[35;1H[K[?2004l[?1l>[?12l[?25h[?1049l[23;0;0t[39;49mthur1@remote01:~/cs471/i471a/submit/lab5$ hugs
+__   __ __  __  ____   ___      _________________________________________
+||   || ||  || ||  || ||__      Hugs 98: Based on the Haskell 98 standard
+||___|| ||__|| ||__||  __||     Copyright (c) 1994-2005
+||---||         ___||           World Wide Web: http://haskell.org/hugs
+||   ||                         Bugs: http://hackage.haskell.org/trac/hugs
+||   || Version: September 2006 _________________________________________
+
+Haskell 98 mode: Restart with command line option -98 to enable extensions
+
+Type :? for help
+Hugs> let list = [5,3,2]
+ERROR - Syntax error in expression (unexpected end of input)
+Hugs> list = [5,3,2]
+ERROR - Syntax error in input (unexpected `=')
+Hugs> take 2 [5,3,2]
+[5,3]
+Hugs> sum (take 2 [5,3,2])
+8
+Hugs> [Leaving Hugs]
+thur1@remote01:~/cs471/i471a/submit/lab5$ hugs
+__   __ __  __  ____   ___      _________________________________________
+||   || ||  || ||  || ||__      Hugs 98: Based on the Haskell 98 standard
+||___|| ||__|| ||__||  __||     Copyright (c) 1994-2005
+||---||         ___||           World Wide Web: http://haskell.org/hugs
+||   ||                         Bugs: http://hackage.haskell.org/trac/hugs
+||   || Version: September 2006 _________________________________________
+
+Haskell 98 mode: Restart with command line option -98 to enable extensions
+
+Type :? for help
+Hugs> :l 
+Hugs> :'[Kkl[K[Kk[Kl "a[Klab5[K-5[K[K5-sol.hs"
+ERROR "lab5-sol.hs":23 - Undefined variable "list"
+Hugs> [Leaving Hugs]
+thur1@remote01:~/cs471/i471a/submit/lab5$ hugsemacs lab5-sol.hs 
+[?1049h[22;0;0t[?12;25h[?1h=[H[2J[35d[K[?1l>[?12l[?25h[?1049l[23;0;0t[39;49m[?1049h[22;0;0t[?12;25h[?1h=[H[2J[34d[?25l[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Fundamental) -----------------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[35d[?25lLoading /etc/emacs/site-start.d/00debian.el (source)...done[K[H
+[?12l[?25h[?12;25h[35;33H[?25l50a2ps.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lsymptote.el (source)...[H
+[?12l[?25h[?12;25h[35;59H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lutoconf.el (source)...[K[H
+[?12l[?25h[?12;25h[35;58H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lcmake-data.el (source)...[K[H
+[?12l[?25h[?12;25h[35;60H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ldevhelp.el (source)...[K[H
+[?12l[?25h[?12;25h[35;57H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lictionaries-common.el (source)...[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-default.el (source)...[H
+[?12l[?25h[?12;25h[35;77H[?25ldone[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...done[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50dictionaries-common[6P[H
+[?12l[?25h[?12;25h[35;35H[?25lerlang-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;61H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lhaskell-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/elpa/haskel[34@l-mode-16.1/haskell-mode-autoloads[H
+[?12l[?25h[?12;25h[35;96H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50haskell-mode[34P[H
+[?12l[?25h[?12;25h[35;35H[?25llatex-cjk-common.el (source)...[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/latex-cjk-commo[9@n/cjk-enc[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50latex-cjk-common[9P[H
+[?12l[?25h[?12;25h[35;45H[?25lthai.el (source)...[K[H
+[?12l[?25h[?12;25h[35;64H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lpsvn.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lython-docutils.el (source)...[H
+[?12l[?25h[?12;25h[35;65H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ltcsh.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lexlive-lang-english.el (source)...[H
+[?12l[?25h[?12;25h[35;70H[?25ldone[H
+[?12l[?25h[?12;25h[>0c[35d[?25lLoading /etc/emacs/site-start.d/50texlive-lang-english.el (source)...done[K[H[7mFile Edit Options Buffers Tools Lisp-Interaction Help                                               [0m[39;49m[27m
+[A
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Lisp Interaction ElDoc) ------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[?2004h[35d[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.[K[H
+[?12l[?25h[?12;25h[35d[K[H[?25l[7mFile Edit Options Buffers Tools Haskell Help                                                        [0m[39;49m[27m
+[A
+[31m-- Exercise 1                                                                                       [39;49m
+[A
+[K
+[31m-- function which adds two numbers                                                                  [39;49m
+[A
+[1m[34madd[0m[39;49m n1 n2 [33m=[39;49m n1 [33m+[39;49m n2[K
+[K
+[31m-- same, but define without using args                                                              [39;49m
+[A
+[1m[34mplus[0m[39;49m [33m=[39;49m ([33m+[39;49m)[K
+[K
+[31m-- function which concats two lists                                                                 [39;49m
+[A
+[1m[34mconc[0m[39;49m ls1 ls2 [33m=[39;49m ls1 [33m++[39;49m ls2[K
+[K
+[31m-- partially apply above functions:                                                                 [39;49m
+[A
+[K
+[1m[34madd10[0m[39;49m [33m=[39;49m add 10[K
+[1m[34mplus5[0m[39;49m [33m=[39;49m plus 5[K
+[1m[34mconcHello[0m[39;49m [33m=[39;49m conc [32m"hello"[39;49m[K
+[K
+[31m-- Exercise 2                                                                                       [39;49m
+[A
+[1m[34mfirst[0m[39;49m (v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msecond[0m[39;49m ([1m[36m_[0m[39;49m, v) [33m=[39;49m v[K
+[1m[34mfst3[0m[39;49m (v, [1m[36m_[0m[39;49m, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msnd3[0m[39;49m ([1m[36m_[0m[39;49m, v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msumFirst2[0m[39;49m lst [33m=[39;49m sum (take 2 list)[K
+[31m-- Exercise 3                                                                                       [39;49m
+[A
+[K
+[1m[34mcartesianProduct[0m[39;49m ls1 ls2 [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2 ][K
+[K
+[1m[34mcartesianProductIf[0m[39;49m ls1 ls2 predicate [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2, predicate x y ][K
+[K
+[K
+[7m-UU-:----F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   All L2     (Haskell ElDoc) ---------------------------------------------[0m[39;49m[27m
+[A[3d[?12l[?25h[?12;25h[34;34H[?25l[7m3[0m[39;49m[27m[4;1H[?12l[?25h[?12;25h[34;34H[?25l[7m4[0m[39;49m[27m[5;1H[?12l[?25h[?12;25h[34;34H[?25l[7m5[0m[39;49m[27m[6;1H[?12l[?25h[?12;25h[34;34H[?25l[7m6[0m[39;49m[27m[7;1H[?12l[?25h[?12;25h[34;34H[?25l[7m7[0m[39;49m[27m[8;1H[?12l[?25h[?12;25h[34;34H[?25l[7m8[0m[39;49m[27m[9;1H[?12l[?25h[?12;25h[34;34H[?25l[7m9[0m[39;49m[27m[10;1H[?12l[?25h[?12;25h[34;34H[?25l[7m10[0m[39;49m[27m[11;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[12;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[13;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[14;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[15;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[16;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[17;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[19;1H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[20;1H[?12l[?25h[?12;25h[34;34H[?25l[7m20[0m[39;49m[27m[21;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[22;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[23;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[24;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[25;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[26;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[27;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[28;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[29;1H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[30;1H[?12l[?25h[?12;25h[34;34H[?25l[7m30[0m[39;49m[27m[31;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[32;1H[?12l[?25h[?12;25h
+
+
+[?25lEnd of buffer[32;1H[?12l[?25h[?12;25h
+
+
+[K[34;35H[?25l[7m0[0m[39;49m[27m[31;1H[?12l[?25h[?12;25h[34;34H[?25l[7m26[0m[39;49m[27m[27;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[26;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[25;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[24;1H[?12l[?25h[?12;25h[C[C[C[C[C[C		[C[C[C[C[C[C		[C[C[C[C[C[C		[C[C[C[C[C[C[?25lst)[K[34;6H[7m**[0m[39;49m[27m[24;30H[?12l[?25h[?12;25h[35;1H[?25lSaving file /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs...[24;30H[?12l[?25h[?12;25h[35;1H[?25lWrote /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs[K[24;30H[?12l[?25h[?12;25h[34;6H[?25l[7m--[0m[39;49m[27m[24;30H[?12l[?25h[?12;25h[35;1H[K[24;30H[35;1H[K[?2004l[?1l>[?12l[?25h[?1049l[23;0;0t[39;49mthur1@remote01:~/cs471/i471a/submit/lab5$ emacs lab5-sol.hs hugs[K
+__   __ __  __  ____   ___      _________________________________________
+||   || ||  || ||  || ||__      Hugs 98: Based on the Haskell 98 standard
+||___|| ||__|| ||__||  __||     Copyright (c) 1994-2005
+||---||         ___||           World Wide Web: http://haskell.org/hugs
+||   ||                         Bugs: http://hackage.haskell.org/trac/hugs
+||   || Version: September 2006 _________________________________________
+
+Haskell 98 mode: Restart with command line option -98 to enable extensions
+
+Type :? for help
+Hugs> :l "lab5-sol.hs"
+Main> ta[K[KsumFirst2 [5,3,2]
+8
+Main> [Leaving Hugs]
+thur1@remote01:~/cs471/i471a/submit/lab5$ hugsemacs lab5-sol.hs 
+[?1049h[22;0;0t[?12;25h[?1h=[H[2J[35d[K[?1l>[?12l[?25h[?1049l[23;0;0t[39;49m[?1049h[22;0;0t[?12;25h[?1h=[H[2J[34d[?25l[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Fundamental) -----------------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[35d[?25lLoading /etc/emacs/site-start.d/00debian.el (source)...done[K[H
+[?12l[?25h[?12;25h[35;33H[?25l50a2ps.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lsymptote.el (source)...[H
+[?12l[?25h[?12;25h[35;59H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lutoconf.el (source)...[K[H
+[?12l[?25h[?12;25h[35;58H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lcmake-data.el (source)...[K[H
+[?12l[?25h[?12;25h[35;60H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ldevhelp.el (source)...[K[H
+[?12l[?25h[?12;25h[35;57H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lictionaries-common.el (source)...[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-default.el (source)...[H
+[?12l[?25h[?12;25h[35;77H[?25ldone[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...done[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50dictionaries-common[6P[H
+[?12l[?25h[?12;25h[35;35H[?25lerlang-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;61H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lhaskell-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/elpa/haskel[34@l-mode-16.1/haskell-mode-autoloads[H
+[?12l[?25h[?12;25h[35;96H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50haskell-mode[34P[H
+[?12l[?25h[?12;25h[35;35H[?25llatex-cjk-common.el (source)...[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/latex-cjk-commo[9@n/cjk-enc[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50latex-cjk-common[9P[H
+[?12l[?25h[?12;25h[35;45H[?25lthai.el (source)...[K[H
+[?12l[?25h[?12;25h[35;64H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lpsvn.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lython-docutils.el (source)...[H
+[?12l[?25h[?12;25h[35;65H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ltcsh.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lexlive-lang-english.el (source)...[H
+[?12l[?25h[?12;25h[35;70H[?25ldone[H
+[?12l[?25h[?12;25h[>0c[35d[?25lLoading /etc/emacs/site-start.d/50texlive-lang-english.el (source)...done[K[H[7mFile Edit Options Buffers Tools Lisp-Interaction Help                                               [0m[39;49m[27m
+[A
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Lisp Interaction ElDoc) ------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[?2004h[35d[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.[K[H
+[?12l[?25h[?12;25h[35d[K[H[?25l[7mFile Edit Options Buffers Tools Haskell Help                                                        [0m[39;49m[27m
+[A
+[31m-- Exercise 1                                                                                       [39;49m
+[A
+[K
+[31m-- function which adds two numbers                                                                  [39;49m
+[A
+[1m[34madd[0m[39;49m n1 n2 [33m=[39;49m n1 [33m+[39;49m n2[K
+[K
+[31m-- same, but define without using args                                                              [39;49m
+[A
+[1m[34mplus[0m[39;49m [33m=[39;49m ([33m+[39;49m)[K
+[K
+[31m-- function which concats two lists                                                                 [39;49m
+[A
+[1m[34mconc[0m[39;49m ls1 ls2 [33m=[39;49m ls1 [33m++[39;49m ls2[K
+[K
+[31m-- partially apply above functions:                                                                 [39;49m
+[A
+[K
+[1m[34madd10[0m[39;49m [33m=[39;49m add 10[K
+[1m[34mplus5[0m[39;49m [33m=[39;49m plus 5[K
+[1m[34mconcHello[0m[39;49m [33m=[39;49m conc [32m"hello"[39;49m[K
+[K
+[31m-- Exercise 2                                                                                       [39;49m
+[A
+[1m[34mfirst[0m[39;49m (v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msecond[0m[39;49m ([1m[36m_[0m[39;49m, v) [33m=[39;49m v[K
+[1m[34mfst3[0m[39;49m (v, [1m[36m_[0m[39;49m, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msnd3[0m[39;49m ([1m[36m_[0m[39;49m, v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msumFirst2[0m[39;49m lst [33m=[39;49m sum (take 2 lst)[K
+[31m-- Exercise 3                                                                                       [39;49m
+[A
+[K
+[1m[34mcartesianProduct[0m[39;49m ls1 ls2 [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2 ][K
+[K
+[1m[34mcartesianProductIf[0m[39;49m ls1 ls2 predicate [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2, predicate x y ][K
+[K
+[K
+[7m-UU-:----F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   All L2     (Haskell ElDoc) ---------------------------------------------[0m[39;49m[27m
+[A[3d[?12l[?25h[?12;25h[34;34H[?25l[7m3[0m[39;49m[27m[4;1H[?12l[?25h[?12;25h[34;34H[?25l[7m4[0m[39;49m[27m[5;1H[?12l[?25h[?12;25h[34;34H[?25l[7m5[0m[39;49m[27m[6;1H[?12l[?25h[?12;25h[34;34H[?25l[7m6[0m[39;49m[27m[7;1H[?12l[?25h[?12;25h[34;34H[?25l[7m7[0m[39;49m[27m[8;1H[?12l[?25h[?12;25h[34;34H[?25l[7m8[0m[39;49m[27m[9;1H[?12l[?25h[?12;25h[34;34H[?25l[7m9[0m[39;49m[27m[10;1H[?12l[?25h[?12;25h[34;34H[?25l[7m10[0m[39;49m[27m[11;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[12;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[13;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[14;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[15;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[16;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[17;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[19;1H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[20;1H[?12l[?25h[?12;25h[34;34H[?25l[7m20[0m[39;49m[27m[21;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[22;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[23;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[24;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[25;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[26;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[27;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[28;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[29;1H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[30;1H[?12l[?25h[?12;25h[34;34H[?25l[7m30[0m[39;49m[27m[31;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[32;1H[?12l[?25h[?12;25h
+
+
+[?25lEnd of buffer[32;1H[?12l[?25h[?12;25h
+
+
+[K[34;35H[?25l[7m0[0m[39;49m[27m[31;1H[?12l[?25h[?12;25h[34;34H[?25l[7m29[0m[39;49m[27m[30;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[29;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[28;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[27;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[26;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[25;1H[?12l[?25h[?12;25h[1;32r[25;1H[1L[1;35r[25;1H[K[34;6H[?25l[7m**--F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   All L25[0m[39;49m[27m[26;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[25;1H[?12l[?25h[?12;25h[?25lf[?12l[?25h[?12;25h[?25ln[?12l[?25h[?12;25h[?25lF[?12l[?25h[?12;25h[?25li[?12l[?25h[?12;25h[?25lr[?12l[?25h[?12;25h[?25ls[?12l[?25h[?12;25h[?25lt[?12l[?25h[?12;25h[?25l2[?12l[?25h[?12;25h[C[?25l[1m[34mfnFirst2[0m[39;49m l[?12l[?25h[?12;25h[?25ls[?12l[?25h[?12;25h[C[?25lf[?12l[?25h[?12;25h[?25l1[?12l[?25h[?12;25h	[?25lf[?12l[?25h[?12;25h[?25l2[?12l[?25h[?12;25h[C[?25l[33m=[39;49m[?12l[?25h[?12;25h[C[?25li[?12l[?25h[?12;25h[?25l[1m[36mif[0m[39;49m[?12l[?25h[?12;25h	[35;1H[?25lif exp then exp else exp[25;24H[?12l[?25h[?12;25h[?25ll[?12l[?25h[?12;25h[?25le[?12l[?25h[?12;25h[?25ln[?12l[?25h[?12;25h[?25lg[?12l[?25h[?12;25h[?25lt[?12l[?25h[?12;25h[?25lh[?12l[?25h[?12;25h[C[?25ll[?12l[?25h[?12;25h[?25ls[?12l[?25h[?12;25h[35;1H[K[25;33H[35;1H[?25l[1mlength :: [a] -> Int[0m[25;24H[?12l[?25h[?12;25h[?25l[1@([?12l[?25h[?12;25h[C[C[C[C[C[C		[C[35;1H[K[25;34H			[?25l[46m([39;49mlength ls)[?12l[?25h[?12;25h			[?25l([25;36H[?12l[?25h[?12;25h[?25l[33m>[39;49m[?12l[?25h[?12;25h[C[K[C[?25l[33m=[39;49m[?12l[?25h[?12;25h[C[?25l2[?12l[?25h[?12;25h	[?25lt[?12l[?25h[?12;25h[?25lh[?12l[?25h[?12;25h[?25le[?12l[?25h[?12;25h[?25l[1m[36mthen[0m[39;49m[?12l[?25h[?12;25h[C[35;1H[?25lif exp then exp else exp[25;45H[?12l[?25h[?12;25h[?25lf[?12l[?25h[?12;25h[?25l1[?12l[?25h[?12;25h	[35;1H[K[25;48H[?25l([?12l[?25h[?12;25h[K	[?25ll[?12l[?25h[?12;25h[K	[?25lt[?12l[?25h[?12;25h[?25la[?12l[?25h[?12;25h[?25lk[?12l[?25h[?12;25h[?25le[?12l[?25h[?12;25h[?25l2[?12l[?25h[?12;25h[K[K[K[K[K	[?25l([?12l[?25h[?12;25h[?25lt[?12l[?25h[?12;25h[?25la[?12l[?25h[?12;25h[?25lk[?12l[?25h[?12;25h[?25le[?12l[?25h[?12;25h[C[?25l2[?12l[?25h[?12;25h	[?25ll[?12l[?25h[?12;25h[?25ls[?12l[?25h[?12;25h[25;48H[?25l[46m([39;49mtake 2 ls)[?12l[?25h[?12;25h[25;48H[?25l([25;60H[?12l[?25h[?12;25h[?25le[?12l[?25h[?12;25h[?25ll[?12l[?25h[?12;25h[?25ls[?12l[?25h[?12;25h[?25l[1m[36melse[0m[39;49m[?12l[?25h[?12;25h	[35;1H[?25lif exp then exp else exp[25;65H[?12l[?25h[?12;25h[?25lf[?12l[?25h[?12;25h[?25l2[?12l[?25h[?12;25h[C[?25l([?12l[?25h[?12;25h[?25lt[?12l[?25h[?12;25h[?25la[?12l[?25h[?12;25h[?25lk[?12l[?25h[?12;25h[?25le[?12l[?25h[?12;25h[C[?25l2[?12l[?25h[?12;25h[C[?25ll[?12l[?25h[?12;25h[?25ls[?12l[?25h[?12;25h[25;68H[?25l[46m([39;49mtake 2 ls)[?12l[?25h[?12;25h[35;1H[K[25;79H[35;1H[?25lNo matching parenthesis found[25;79H[?12l[?25h[?12;25h[25;68H[?25l(take 2 ls))[?12l[?25h[?12;25h[35;1H[K[25;79H[K[35;1H[?25lSaving file /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs...[25;79H[?12l[?25h[?12;25h[35;1H[?25lWrote /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs[K[25;79H[?12l[?25h[?12;25h[34;6H[?25l[7m--[0m[39;49m[27m[25;79H[?12l[?25h[?12;25h[35;1H[K[25;79H[35;1H[K[?2004l[?1l>[?12l[?25h[?1049l[23;0;0t[39;49mthur1@remote01:~/cs471/i471a/submit/lab5$ emacs lab5-sol.hs hugs[K
+__   __ __  __  ____   ___      _________________________________________
+||   || ||  || ||  || ||__      Hugs 98: Based on the Haskell 98 standard
+||___|| ||__|| ||__||  __||     Copyright (c) 1994-2005
+||---||         ___||           World Wide Web: http://haskell.org/hugs
+||   ||                         Bugs: http://hackage.haskell.org/trac/hugs
+||   || Version: September 2006 _________________________________________
+
+Haskell 98 mode: Restart with command line option -98 to enable extensions
+
+Type :? for help
+Hugs> :l "lab5-sol.hs"
+ERROR "lab5-sol.hs":24 - Syntax error in expression (unexpected `=')
+Hugs> [Leaving Hugs]
+thur1@remote01:~/cs471/i471a/submit/lab5$ hugsemacs lab5-sol.hs 
+[?1049h[22;0;0t[?12;25h[?1h=[H[2J[35d[K[?1l>[?12l[?25h[?1049l[23;0;0t[39;49m[?1049h[22;0;0t[?12;25h[?1h=[H[2J[34d[?25l[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Fundamental) -----------------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[35d[?25lLoading /etc/emacs/site-start.d/00debian.el (source)...done[K[H
+[?12l[?25h[?12;25h[35;33H[?25l50a2ps.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lsymptote.el (source)...[H
+[?12l[?25h[?12;25h[35;59H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lutoconf.el (source)...[K[H
+[?12l[?25h[?12;25h[35;58H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lcmake-data.el (source)...[K[H
+[?12l[?25h[?12;25h[35;60H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ldevhelp.el (source)...[K[H
+[?12l[?25h[?12;25h[35;57H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lictionaries-common.el (source)...[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-default.el (source)...[H
+[?12l[?25h[?12;25h[35;77H[?25ldone[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...done[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50dictionaries-common[6P[H
+[?12l[?25h[?12;25h[35;35H[?25lerlang-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;61H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lhaskell-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/elpa/haskel[34@l-mode-16.1/haskell-mode-autoloads[H
+[?12l[?25h[?12;25h[35;96H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50haskell-mode[34P[H
+[?12l[?25h[?12;25h[35;35H[?25llatex-cjk-common.el (source)...[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/latex-cjk-commo[9@n/cjk-enc[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50latex-cjk-common[9P[H
+[?12l[?25h[?12;25h[35;45H[?25lthai.el (source)...[K[H
+[?12l[?25h[?12;25h[35;64H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lpsvn.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lython-docutils.el (source)...[H
+[?12l[?25h[?12;25h[35;65H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ltcsh.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lexlive-lang-english.el (source)...[H
+[?12l[?25h[?12;25h[35;70H[?25ldone[H
+[?12l[?25h[?12;25h[>0c[35d[?25lLoading /etc/emacs/site-start.d/50texlive-lang-english.el (source)...done[K[H[7mFile Edit Options Buffers Tools Lisp-Interaction Help                                               [0m[39;49m[27m
+[A
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Lisp Interaction ElDoc) ------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[?2004h[35d[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.[K[H
+[?12l[?25h[?12;25h[35d[K[H[?25l[7mFile Edit Options Buffers Tools Haskell Help                                                        [0m[39;49m[27m
+[A
+[31m-- Exercise 1                                                                                       [39;49m
+[A
+[K
+[31m-- function which adds two numbers                                                                  [39;49m
+[A
+[1m[34madd[0m[39;49m n1 n2 [33m=[39;49m n1 [33m+[39;49m n2[K
+[K
+[31m-- same, but define without using args                                                              [39;49m
+[A
+[1m[34mplus[0m[39;49m [33m=[39;49m ([33m+[39;49m)[K
+[K
+[31m-- function which concats two lists                                                                 [39;49m
+[A
+[1m[34mconc[0m[39;49m ls1 ls2 [33m=[39;49m ls1 [33m++[39;49m ls2[K
+[K
+[31m-- partially apply above functions:                                                                 [39;49m
+[A
+[K
+[1m[34madd10[0m[39;49m [33m=[39;49m add 10[K
+[1m[34mplus5[0m[39;49m [33m=[39;49m plus 5[K
+[1m[34mconcHello[0m[39;49m [33m=[39;49m conc [32m"hello"[39;49m[K
+[K
+[31m-- Exercise 2                                                                                       [39;49m
+[A
+[1m[34mfirst[0m[39;49m (v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msecond[0m[39;49m ([1m[36m_[0m[39;49m, v) [33m=[39;49m v[K
+[1m[34mfst3[0m[39;49m (v, [1m[36m_[0m[39;49m, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msnd3[0m[39;49m ([1m[36m_[0m[39;49m, v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msumFirst2[0m[39;49m lst [33m=[39;49m sum (take 2 lst)[K
+[1m[34mfnFirst2[0m[39;49m ls f1 f2 [33m=[39;49m [1m[36mif[0m[39;49m (length ls) [33m=[39;49m 2 [1m[36mthen[0m[39;49m f1 (take 2 ls) [1m[36melse[0m[39;49m f2 (take 2 ls)[K
+[31m-- Exercise 3                                                                                       [39;49m
+[A
+[K
+[1m[34mcartesianProduct[0m[39;49m ls1 ls2 [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2 ][K
+[K
+[1m[34mcartesianProductIf[0m[39;49m ls1 ls2 predicate [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2, predicate x y ][K
+[K
+[7m-UU-:----F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   All L2     (Haskell ElDoc) ---------------------------------------------[0m[39;49m[27m
+[A[3d[?12l[?25h[?12;25h[34;34H[?25l[7m3[0m[39;49m[27m[4;1H[?12l[?25h[?12;25h[34;34H[?25l[7m4[0m[39;49m[27m[5;1H[?12l[?25h[?12;25h[34;34H[?25l[7m5[0m[39;49m[27m[6;1H[?12l[?25h[?12;25h[34;34H[?25l[7m6[0m[39;49m[27m[7;1H[?12l[?25h[?12;25h[34;34H[?25l[7m7[0m[39;49m[27m[8;1H[?12l[?25h[?12;25h[34;34H[?25l[7m8[0m[39;49m[27m[9;1H[?12l[?25h[?12;25h[34;34H[?25l[7m9[0m[39;49m[27m[10;1H[?12l[?25h[?12;25h[34;34H[?25l[7m10[0m[39;49m[27m[11;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[12;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[13;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[14;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[15;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[16;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[17;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[19;1H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[20;1H[?12l[?25h[?12;25h[34;34H[?25l[7m20[0m[39;49m[27m[21;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[22;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[23;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[24;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[25;1H[?12l[?25h[?12;25h[C[25;6H[C		[C[C[C[C[C[C		[C[C[C[C[C[C		[C[C[C[C[C[C		[C[C[C[35;1H[?25lif exp then exp else exp[25;21H[?12l[?25h[?12;25h[C[C		[C[C[C[C[C[C		[C[C[C[C[35;1H[K[25;37H[?25l[1@[33m=[39;49m[34;6H[7m**[0m[39;49m[27m[25;38H[?12l[?25h[?12;25h[C[?25l[1@ [?12l[?25h[?12;25h[35;1H[?25lSaving file /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs...[25;39H[?12l[?25h[?12;25h[35;1H[?25lWrote /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs[K[25;39H[?12l[?25h[?12;25h[34;6H[?25l[7m--[0m[39;49m[27m[25;39H[?12l[?25h[?12;25h[35;1H[K[25;39H[35;1H[K[?2004l[?1l>[?12l[?25h[?1049l[23;0;0t[39;49mthur1@remote01:~/cs471/i471a/submit/lab5$ emacs lab5-sol.hs hugs[Kemacs lab5-sol.hs 
+[?1049h[22;0;0t[?12;25h[?1h=[H[2J[35d[K[?1l>[?12l[?25h[?1049l[23;0;0t[39;49m[?1049h[22;0;0t[?12;25h[?1h=[H[2J[34d[?25l[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Fundamental) -----------------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[35d[?25lLoading /etc/emacs/site-start.d/00debian.el (source)...done[K[H
+[?12l[?25h[?12;25h[35;33H[?25l50a2ps.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lsymptote.el (source)...[H
+[?12l[?25h[?12;25h[35;59H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lutoconf.el (source)...[K[H
+[?12l[?25h[?12;25h[35;58H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lcmake-data.el (source)...[K[H
+[?12l[?25h[?12;25h[35;60H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ldevhelp.el (source)...[K[H
+[?12l[?25h[?12;25h[35;57H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lictionaries-common.el (source)...[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-default.el (source)...[H
+[?12l[?25h[?12;25h[35;77H[?25ldone[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...done[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50dictionaries-common[6P[H
+[?12l[?25h[?12;25h[35;35H[?25lerlang-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;61H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lhaskell-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/elpa/haskel[34@l-mode-16.1/haskell-mode-autoloads[H
+[?12l[?25h[?12;25h[35;96H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50haskell-mode[34P[H
+[?12l[?25h[?12;25h[35;35H[?25llatex-cjk-common.el (source)...[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/latex-cjk-commo[9@n/cjk-enc[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50latex-cjk-common[9P[H
+[?12l[?25h[?12;25h[35;45H[?25lthai.el (source)...[K[H
+[?12l[?25h[?12;25h[35;64H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lpsvn.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lython-docutils.el (source)...[H
+[?12l[?25h[?12;25h[35;65H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ltcsh.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lexlive-lang-english.el (source)...[H
+[?12l[?25h[?12;25h[35;70H[?25ldone[H
+[?12l[?25h[?12;25h[>0c[35d[?25lLoading /etc/emacs/site-start.d/50texlive-lang-english.el (source)...done[K[H[7mFile Edit Options Buffers Tools Lisp-Interaction Help                                               [0m[39;49m[27m
+[A
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Lisp Interaction ElDoc) ------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[?2004h[35d[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.[K[H
+[?12l[?25h[?12;25h[35d[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.[K[H[7mFile Edit Options Buffers Tools Haskell Help                                                        [0m[39;49m[27m
+[A
+[31m-- Exercise 1                                                                                       [39;49m
+[A
+[K
+[31m-- function which adds two numbers                                                                  [39;49m
+[A
+[1m[34madd[0m[39;49m n1 n2 [33m=[39;49m n1 [33m+[39;49m n2[K
+[K
+[31m-- same, but define without using args                                                              [39;49m
+[A
+[1m[34mplus[0m[39;49m [33m=[39;49m ([33m+[39;49m)[K
+[K
+[31m-- function which concats two lists                                                                 [39;49m
+[A
+[1m[34mconc[0m[39;49m ls1 ls2 [33m=[39;49m ls1 [33m++[39;49m ls2[K
+[K
+[31m-- partially apply above functions:                                                                 [39;49m
+[A
+[K
+[1m[34madd10[0m[39;49m [33m=[39;49m add 10[K
+[1m[34mplus5[0m[39;49m [33m=[39;49m plus 5[K
+[1m[34mconcHello[0m[39;49m [33m=[39;49m conc [32m"hello"[39;49m[K
+[K
+[31m-- Exercise 2                                                                                       [39;49m
+[A
+[1m[34mfirst[0m[39;49m (v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msecond[0m[39;49m ([1m[36m_[0m[39;49m, v) [33m=[39;49m v[K
+[1m[34mfst3[0m[39;49m (v, [1m[36m_[0m[39;49m, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msnd3[0m[39;49m ([1m[36m_[0m[39;49m, v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msumFirst2[0m[39;49m lst [33m=[39;49m sum (take 2 lst)[K
+[1m[34mfnFirst2[0m[39;49m ls f1 f2 [33m=[39;49m [1m[36mif[0m[39;49m (length ls) [33m==[39;49m  2 [1m[36mthen[0m[39;49m f1 (take 2 ls) [1m[36melse[0m[39;49m f2 (take 2 ls)[K
+[31m-- Exercise 3                                                                                       [39;49m
+[A
+[K
+[1m[34mcartesianProduct[0m[39;49m ls1 ls2 [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2 ][K
+[K
+[1m[34mcartesianProductIf[0m[39;49m ls1 ls2 predicate [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2, predicate x y ][K
+[K
+[7m-UU-:----F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   All L1     (Haskell ElDoc) ---------------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[35d[K[2d[35d[K[?2004l[?1l>[?12l[?25h[?1049l[23;0;0t[39;49mthur1@remote01:~/cs471/i471a/submit/lab5$ emacs lab5-sol.hs 
+[?1049h[22;0;0t[?12;25h[?1h=[H[2J[35d[K[?1l>[?12l[?25h[?1049l[23;0;0t[39;49m[?1049h[22;0;0t[?12;25h[?1h=[H[2J[34d[?25l[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Fundamental) -----------------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[35d[?25lLoading /etc/emacs/site-start.d/00debian.el (source)...done[K[H
+[?12l[?25h[?12;25h[35;33H[?25l50a2ps.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lsymptote.el (source)...[H
+[?12l[?25h[?12;25h[35;59H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lutoconf.el (source)...[K[H
+[?12l[?25h[?12;25h[35;58H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lcmake-data.el (source)...[K[H
+[?12l[?25h[?12;25h[35;60H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ldevhelp.el (source)...[K[H
+[?12l[?25h[?12;25h[35;57H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lictionaries-common.el (source)...[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-default.el (source)...[H
+[?12l[?25h[?12;25h[35;77H[?25ldone[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...done[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50dictionaries-common[6P[H
+[?12l[?25h[?12;25h[35;35H[?25lerlang-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;61H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lhaskell-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/elpa/haskel[34@l-mode-16.1/haskell-mode-autoloads[H
+[?12l[?25h[?12;25h[35;96H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50haskell-mode[34P[H
+[?12l[?25h[?12;25h[35;35H[?25llatex-cjk-common.el (source)...[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/latex-cjk-commo[9@n/cjk-enc[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50latex-cjk-common[9P[H
+[?12l[?25h[?12;25h[35;45H[?25lthai.el (source)...[K[H
+[?12l[?25h[?12;25h[35;64H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lpsvn.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lython-docutils.el (source)...[H
+[?12l[?25h[?12;25h[35;65H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ltcsh.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lexlive-lang-english.el (source)...[H
+[?12l[?25h[?12;25h[35;70H[?25ldone[H
+[?12l[?25h[?12;25h[>0c[35d[?25lLoading /etc/emacs/site-start.d/50texlive-lang-english.el (source)...done[K[H[7mFile Edit Options Buffers Tools Lisp-Interaction Help                                               [0m[39;49m[27m
+[A
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Lisp Interaction ElDoc) ------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[?2004h[35d[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.[K[H
+[?12l[?25h[?12;25h[35d[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.[K[H[7mFile Edit Options Buffers Tools Haskell Help                                                        [0m[39;49m[27m
+[A
+[31m-- Exercise 1                                                                                       [39;49m
+[A
+[K
+[31m-- function which adds two numbers                                                                  [39;49m
+[A
+[1m[34madd[0m[39;49m n1 n2 [33m=[39;49m n1 [33m+[39;49m n2[K
+[K
+[31m-- same, but define without using args                                                              [39;49m
+[A
+[1m[34mplus[0m[39;49m [33m=[39;49m ([33m+[39;49m)[K
+[K
+[31m-- function which concats two lists                                                                 [39;49m
+[A
+[1m[34mconc[0m[39;49m ls1 ls2 [33m=[39;49m ls1 [33m++[39;49m ls2[K
+[K
+[31m-- partially apply above functions:                                                                 [39;49m
+[A
+[K
+[1m[34madd10[0m[39;49m [33m=[39;49m add 10[K
+[1m[34mplus5[0m[39;49m [33m=[39;49m plus 5[K
+[1m[34mconcHello[0m[39;49m [33m=[39;49m conc [32m"hello"[39;49m[K
+[K
+[31m-- Exercise 2                                                                                       [39;49m
+[A
+[1m[34mfirst[0m[39;49m (v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msecond[0m[39;49m ([1m[36m_[0m[39;49m, v) [33m=[39;49m v[K
+[1m[34mfst3[0m[39;49m (v, [1m[36m_[0m[39;49m, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msnd3[0m[39;49m ([1m[36m_[0m[39;49m, v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msumFirst2[0m[39;49m lst [33m=[39;49m sum (take 2 lst)[K
+[1m[34mfnFirst2[0m[39;49m ls f1 f2 [33m=[39;49m [1m[36mif[0m[39;49m (length ls) [33m==[39;49m  2 [1m[36mthen[0m[39;49m f1 (take 2 ls) [1m[36melse[0m[39;49m f2 (take 2 ls)[K
+[31m-- Exercise 3                                                                                       [39;49m
+[A
+[K
+[1m[34mcartesianProduct[0m[39;49m ls1 ls2 [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2 ][K
+[K
+[1m[34mcartesianProductIf[0m[39;49m ls1 ls2 predicate [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2, predicate x y ][K
+[K
+[7m-UU-:----F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   All L1     (Haskell ElDoc) ---------------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[35d[K[2d[35d[K[?2004l[?1l>[?12l[?25h[?1049l[23;0;0t[39;49mthur1@remote01:~/cs471/i471a/submit/lab5$ emacs lab5-sol.hs hugs[K
+__   __ __  __  ____   ___      _________________________________________
+||   || ||  || ||  || ||__      Hugs 98: Based on the Haskell 98 standard
+||___|| ||__|| ||__||  __||     Copyright (c) 1994-2005
+||---||         ___||           World Wide Web: http://haskell.org/hugs
+||   ||                         Bugs: http://hackage.haskell.org/trac/hugs
+||   || Version: September 2006 _________________________________________
+
+Haskell 98 mode: Restart with command line option -98 to enable extensions
+
+Type :? for help
+Hugs> :l "lab5-os[K[Ksol.hs"
+Main> fnFirst2 [3, 4] (+) (*)
+ERROR - Cannot infer instance
+*** Instance   : Num [a]
+*** Expression : fnFirst2 [3,4] (+) (*)
+
+Main> [Leaving Hugs]
+thur1@remote01:~/cs471/i471a/submit/lab5$ hugsemacs lab5-sol.hs 
+[?1049h[22;0;0t[?12;25h[?1h=[H[2J[35d[K[?1l>[?12l[?25h[?1049l[23;0;0t[39;49m[?1049h[22;0;0t[?12;25h[?1h=[H[2J[34d[?25l[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Fundamental) -----------------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[35d[?25lLoading /etc/emacs/site-start.d/00debian.el (source)...done[K[H
+[?12l[?25h[?12;25h[35;33H[?25l50a2ps.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lsymptote.el (source)...[H
+[?12l[?25h[?12;25h[35;59H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lutoconf.el (source)...[K[H
+[?12l[?25h[?12;25h[35;58H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lcmake-data.el (source)...[K[H
+[?12l[?25h[?12;25h[35;60H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ldevhelp.el (source)...[K[H
+[?12l[?25h[?12;25h[35;57H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lictionaries-common.el (source)...[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-default.el (source)...[H
+[?12l[?25h[?12;25h[35;77H[?25ldone[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...done[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50dictionaries-common[6P[H
+[?12l[?25h[?12;25h[35;35H[?25lerlang-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;61H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lhaskell-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/elpa/haskel[34@l-mode-16.1/haskell-mode-autoloads[H
+[?12l[?25h[?12;25h[35;96H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50haskell-mode[34P[H
+[?12l[?25h[?12;25h[35;35H[?25llatex-cjk-common.el (source)...[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/latex-cjk-commo[9@n/cjk-enc[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50latex-cjk-common[9P[H
+[?12l[?25h[?12;25h[35;45H[?25lthai.el (source)...[K[H
+[?12l[?25h[?12;25h[35;64H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lpsvn.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lython-docutils.el (source)...[H
+[?12l[?25h[?12;25h[35;65H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ltcsh.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lexlive-lang-english.el (source)...[H
+[?12l[?25h[?12;25h[35;70H[?25ldone[H
+[?12l[?25h[?12;25h[>0c[35d[?25lLoading /etc/emacs/site-start.d/50texlive-lang-english.el (source)...done[K[H[7mFile Edit Options Buffers Tools Lisp-Interaction Help                                               [0m[39;49m[27m
+[A
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Lisp Interaction ElDoc) ------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[?2004h[35d[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.[K[H
+[?12l[?25h[?12;25h[35d[K[H[?25l[7mFile Edit Options Buffers Tools Haskell Help                                                        [0m[39;49m[27m
+[A
+[31m-- Exercise 1                                                                                       [39;49m
+[A
+[K
+[31m-- function which adds two numbers                                                                  [39;49m
+[A
+[1m[34madd[0m[39;49m n1 n2 [33m=[39;49m n1 [33m+[39;49m n2[K
+[K
+[31m-- same, but define without using args                                                              [39;49m
+[A
+[1m[34mplus[0m[39;49m [33m=[39;49m ([33m+[39;49m)[K
+[K
+[31m-- function which concats two lists                                                                 [39;49m
+[A
+[1m[34mconc[0m[39;49m ls1 ls2 [33m=[39;49m ls1 [33m++[39;49m ls2[K
+[K
+[31m-- partially apply above functions:                                                                 [39;49m
+[A
+[K
+[1m[34madd10[0m[39;49m [33m=[39;49m add 10[K
+[1m[34mplus5[0m[39;49m [33m=[39;49m plus 5[K
+[1m[34mconcHello[0m[39;49m [33m=[39;49m conc [32m"hello"[39;49m[K
+[K
+[31m-- Exercise 2                                                                                       [39;49m
+[A
+[1m[34mfirst[0m[39;49m (v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msecond[0m[39;49m ([1m[36m_[0m[39;49m, v) [33m=[39;49m v[K
+[1m[34mfst3[0m[39;49m (v, [1m[36m_[0m[39;49m, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msnd3[0m[39;49m ([1m[36m_[0m[39;49m, v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msumFirst2[0m[39;49m lst [33m=[39;49m sum (take 2 lst)[K
+[1m[34mfnFirst2[0m[39;49m ls f1 f2 [33m=[39;49m [1m[36mif[0m[39;49m (length ls) [33m==[39;49m  2 [1m[36mthen[0m[39;49m f1 (take 2 ls) [1m[36melse[0m[39;49m f2 (take 2 ls)[K
+[31m-- Exercise 3                                                                                       [39;49m
+[A
+[K
+[1m[34mcartesianProduct[0m[39;49m ls1 ls2 [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2 ][K
+[K
+[1m[34mcartesianProductIf[0m[39;49m ls1 ls2 predicate [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2, predicate x y ][K
+[K
+[7m-UU-:----F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   All L2     (Haskell ElDoc) ---------------------------------------------[0m[39;49m[27m
+[A[3d[?12l[?25h[?12;25h[34;34H[?25l[7m3[0m[39;49m[27m[4;1H[?12l[?25h[?12;25h[34;34H[?25l[7m4[0m[39;49m[27m[5;1H[?12l[?25h[?12;25h[34;34H[?25l[7m5[0m[39;49m[27m[6;1H[?12l[?25h[?12;25h[34;34H[?25l[7m6[0m[39;49m[27m[7;1H[?12l[?25h[?12;25h[34;34H[?25l[7m7[0m[39;49m[27m[8;1H[?12l[?25h[?12;25h[34;34H[?25l[7m8[0m[39;49m[27m[9;1H[?12l[?25h[?12;25h[34;34H[?25l[7m9[0m[39;49m[27m[10;1H[?12l[?25h[?12;25h[34;34H[?25l[7m10[0m[39;49m[27m[11;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[12;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[13;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[14;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[15;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[16;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[17;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[19;1H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[20;1H[?12l[?25h[?12;25h[C[34;34H[?25l[7m20[0m[39;49m[27m[21;2H[?12l[?25h[?12;25h[C[34;35H[?25l[7m1[0m[39;49m[27m[22;3H[?12l[?25h[?12;25h[C[34;35H[?25l[7m2[0m[39;49m[27m[23;4H[?12l[?25h[?12;25h[C[34;35H[?25l[7m3[0m[39;49m[27m[24;5H[?12l[?25h[?12;25h[C[34;35H[?25l[7m4[0m[39;49m[27m[25;6H[?12l[?25h[?12;25h[C	[C[35;1H[K[?2004l[?1l>[?12l[?25h[?1049l[23;0;0t[39;49mthur1@remote01:~/cs471/i471a/submit/lab5$ emacs lab5-sol.hs hugs[K
+__   __ __  __  ____   ___      _________________________________________
+||   || ||  || ||  || ||__      Hugs 98: Based on the Haskell 98 standard
+||___|| ||__|| ||__||  __||     Copyright (c) 1994-2005
+||---||         ___||           World Wide Web: http://haskell.org/hugs
+||   ||                         Bugs: http://hackage.haskell.org/trac/hugs
+||   || Version: September 2006 _________________________________________
+
+Haskell 98 mode: Restart with command line option -98 to enable extensions
+
+Type :? for help
+Hugs> :l "lab5-sol.pro:"[K[K[K[K[Khs:
+ERROR - a closing quote, '"', was expected
+Hugs> :l "lab5-sol.hs:[K"
+Main> :l "lab5-sol.hs"[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KfnFirst2 [3, 4] (+) (*)[C[K[K[K[K[K[K[K+ *
+ERROR - Syntax error in expression (unexpected symbol "*")
+Main> [Leaving Hugs]
+thur1@remote01:~/cs471/i471a/submit/lab5$ hugsemacs lab5-sol.hs 
+[?1049h[22;0;0t[?12;25h[?1h=[H[2J[35d[K[?1l>[?12l[?25h[?1049l[23;0;0t[39;49m[?1049h[22;0;0t[?12;25h[?1h=[H[2J[34d[?25l[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Fundamental) -----------------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[35d[?25lLoading /etc/emacs/site-start.d/00debian.el (source)...done[K[H
+[?12l[?25h[?12;25h[35;33H[?25l50a2ps.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lsymptote.el (source)...[H
+[?12l[?25h[?12;25h[35;59H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lutoconf.el (source)...[K[H
+[?12l[?25h[?12;25h[35;58H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lcmake-data.el (source)...[K[H
+[?12l[?25h[?12;25h[35;60H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ldevhelp.el (source)...[K[H
+[?12l[?25h[?12;25h[35;57H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lictionaries-common.el (source)...[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-default.el (source)...[H
+[?12l[?25h[?12;25h[35;77H[?25ldone[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...done[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50dictionaries-common[6P[H
+[?12l[?25h[?12;25h[35;35H[?25lerlang-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;61H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lhaskell-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/elpa/haskel[34@l-mode-16.1/haskell-mode-autoloads[H
+[?12l[?25h[?12;25h[35;96H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50haskell-mode[34P[H
+[?12l[?25h[?12;25h[35;35H[?25llatex-cjk-common.el (source)...[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/latex-cjk-commo[9@n/cjk-enc[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50latex-cjk-common[9P[H
+[?12l[?25h[?12;25h[35;45H[?25lthai.el (source)...[K[H
+[?12l[?25h[?12;25h[35;64H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lpsvn.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lython-docutils.el (source)...[H
+[?12l[?25h[?12;25h[35;65H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ltcsh.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lexlive-lang-english.el (source)...[H
+[?12l[?25h[?12;25h[35;70H[?25ldone[H
+[?12l[?25h[?12;25h[>0c[35d[?25lLoading /etc/emacs/site-start.d/50texlive-lang-english.el (source)...done[K[H[7mFile Edit Options Buffers Tools Lisp-Interaction Help                                               [0m[39;49m[27m
+[A
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Lisp Interaction ElDoc) ------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[?2004h[35d[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.[K[H
+[?12l[?25h[?12;25h[35d[K[H[?25l[7mFile Edit Options Buffers Tools Haskell Help                                                        [0m[39;49m[27m
+[A
+[31m-- Exercise 1                                                                                       [39;49m
+[A
+[K
+[31m-- function which adds two numbers                                                                  [39;49m
+[A
+[1m[34madd[0m[39;49m n1 n2 [33m=[39;49m n1 [33m+[39;49m n2[K
+[K
+[31m-- same, but define without using args                                                              [39;49m
+[A
+[1m[34mplus[0m[39;49m [33m=[39;49m ([33m+[39;49m)[K
+[K
+[31m-- function which concats two lists                                                                 [39;49m
+[A
+[1m[34mconc[0m[39;49m ls1 ls2 [33m=[39;49m ls1 [33m++[39;49m ls2[K
+[K
+[31m-- partially apply above functions:                                                                 [39;49m
+[A
+[K
+[1m[34madd10[0m[39;49m [33m=[39;49m add 10[K
+[1m[34mplus5[0m[39;49m [33m=[39;49m plus 5[K
+[1m[34mconcHello[0m[39;49m [33m=[39;49m conc [32m"hello"[39;49m[K
+[K
+[31m-- Exercise 2                                                                                       [39;49m
+[A
+[1m[34mfirst[0m[39;49m (v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msecond[0m[39;49m ([1m[36m_[0m[39;49m, v) [33m=[39;49m v[K
+[1m[34mfst3[0m[39;49m (v, [1m[36m_[0m[39;49m, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msnd3[0m[39;49m ([1m[36m_[0m[39;49m, v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msumFirst2[0m[39;49m lst [33m=[39;49m sum (take 2 lst)[K
+[1m[34mfnFirst2[0m[39;49m ls f1 f2 [33m=[39;49m [1m[36mif[0m[39;49m (length ls) [33m==[39;49m  2 [1m[36mthen[0m[39;49m f1 (take 2 ls) [1m[36melse[0m[39;49m f2 (take 2 ls)[K
+[31m-- Exercise 3                                                                                       [39;49m
+[A
+[K
+[1m[34mcartesianProduct[0m[39;49m ls1 ls2 [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2 ][K
+[K
+[1m[34mcartesianProductIf[0m[39;49m ls1 ls2 predicate [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2, predicate x y ][K
+[K
+[7m-UU-:----F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   All L2     (Haskell ElDoc) ---------------------------------------------[0m[39;49m[27m
+[A[3d[?12l[?25h[?12;25h[34;34H[?25l[7m3[0m[39;49m[27m[4;1H[?12l[?25h[?12;25h[34;34H[?25l[7m4[0m[39;49m[27m[5;1H[?12l[?25h[?12;25h[34;34H[?25l[7m5[0m[39;49m[27m[6;1H[?12l[?25h[?12;25h[34;34H[?25l[7m6[0m[39;49m[27m[7;1H[?12l[?25h[?12;25h[34;34H[?25l[7m7[0m[39;49m[27m[8;1H[?12l[?25h[?12;25h[34;34H[?25l[7m8[0m[39;49m[27m[9;1H[?12l[?25h[?12;25h[34;34H[?25l[7m9[0m[39;49m[27m[10;1H[?12l[?25h[?12;25h[34;34H[?25l[7m10[0m[39;49m[27m[11;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[12;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[13;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[14;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[15;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[16;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[17;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[19;1H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[20;1H[?12l[?25h[?12;25h[34;34H[?25l[7m20[0m[39;49m[27m[21;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[22;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[23;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[24;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[25;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[26;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[27;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[28;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[29;1H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[30;1H[?12l[?25h[?12;25h[34;34H[?25l[7m30[0m[39;49m[27m[31;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[32;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[A[?12l[?25h[?12;25h
+
+[?25lEnd of buffer[33;1H[?12l[?25h[?12;25h
+
+[K[34;35H[?25l[7m1[0m[39;49m[27m[32;1H[?12l[?25h[?12;25h[34;35H[?25l[7m0[0m[39;49m[27m[31;1H[?12l[?25h[?12;25h[34;34H[?25l[7m29[0m[39;49m[27m[30;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[29;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[28;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[27;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[26;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[25;1H[?12l[?25h[?12;25h[35d[K[?2004l[?1l>[?12l[?25h[?1049l[23;0;0t[39;49mthur1@remote01:~/cs471/i471a/submit/lab5$ hg[Kugs
+__   __ __  __  ____   ___      _________________________________________
+||   || ||  || ||  || ||__      Hugs 98: Based on the Haskell 98 standard
+||___|| ||__|| ||__||  __||     Copyright (c) 1994-2005
+||---||         ___||           World Wide Web: http://haskell.org/hugs
+||   ||                         Bugs: http://hackage.haskell.org/trac/hugs
+||   || Version: September 2006 _________________________________________
+
+Haskell 98 mode: Restart with command line option -98 to enable extensions
+
+Type :? for help
+Hugs> let ls1 = [1..10] in [(x,y) | x <- ls1, y <- (3 * x^2 + 2 * x + 1)] 
+ERROR - Cannot infer instance
+*** Instance   : Num [a]
+*** Expression : let {ls1 ($0 (0 (enumFromTo 1 10)) $0) $0 $0} in [ (x,y) | x<-ls1, y<-3 * x ^ 2 + 2 * x + 1 ]
+
+Hugs> let ls1 = [1..10] in [(x,y) | x <- ls1, y <- (3 * x^2 + 2 * x + 1)] [C[1P[1@[[C[C[C[C[C[1P[1@][C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+ERROR - Type error in list
+*** Expression     : [x,y]
+*** Term           : y
+*** Type           : a
+*** Does not match : [a]
+*** Because        : unification would give infinite type
+
+Hugs> let ls1 = [1..10] in [[x,y] | x <- ls1, y <- (3 * x^2 + 2 * x + 1)] [1P[1@[[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[C] 
+[[1,6],[2,17],[3,34],[4,57],[5,86],[6,121],[7,162],[8,209],[9,262],[10,321]]
+Hugs> let ls1 = [1..10] ion[K[K[Kin [[x, y] | x <- ls1, y <- [rem x 3]]
+[[1,1],[2,2],[3,0],[4,1],[5,2],[6,0],[7,1],[8,2],[9,0],[10,1]]
+Hugs> [Leaving Hugs]
+thur1@remote01:~/cs471/i471a/submit/lab5$ hugsemacs lab5-sol.hs 
+[?1049h[22;0;0t[?12;25h[?1h=[H[2J[35d[K[?1l>[?12l[?25h[?1049l[23;0;0t[39;49m[?1049h[22;0;0t[?12;25h[?1h=[H[2J[34d[?25l[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Fundamental) -----------------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[35d[?25lLoading /etc/emacs/site-start.d/00debian.el (source)...done[K[H
+[?12l[?25h[?12;25h[35;33H[?25l50a2ps.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lsymptote.el (source)...[H
+[?12l[?25h[?12;25h[35;59H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lutoconf.el (source)...[K[H
+[?12l[?25h[?12;25h[35;58H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lcmake-data.el (source)...[K[H
+[?12l[?25h[?12;25h[35;60H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ldevhelp.el (source)...[K[H
+[?12l[?25h[?12;25h[35;57H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lictionaries-common.el (source)...[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-default.el (source)...[H
+[?12l[?25h[?12;25h[35;77H[?25ldone[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...done[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50dictionaries-common[6P[H
+[?12l[?25h[?12;25h[35;35H[?25lerlang-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;61H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lhaskell-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/elpa/haskel[34@l-mode-16.1/haskell-mode-autoloads[H
+[?12l[?25h[?12;25h[35;96H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50haskell-mode[34P[H
+[?12l[?25h[?12;25h[35;35H[?25llatex-cjk-common.el (source)...[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/latex-cjk-commo[9@n/cjk-enc[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50latex-cjk-common[9P[H
+[?12l[?25h[?12;25h[35;45H[?25lthai.el (source)...[K[H
+[?12l[?25h[?12;25h[35;64H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lpsvn.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lython-docutils.el (source)...[H
+[?12l[?25h[?12;25h[35;65H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ltcsh.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lexlive-lang-english.el (source)...[H
+[?12l[?25h[?12;25h[35;70H[?25ldone[H
+[?12l[?25h[?12;25h[>0c[35d[?25lLoading /etc/emacs/site-start.d/50texlive-lang-english.el (source)...done[K[H[7mFile Edit Options Buffers Tools Lisp-Interaction Help                                               [0m[39;49m[27m
+[A
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Lisp Interaction ElDoc) ------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[?2004h[35d[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.[K[H
+[?12l[?25h[?12;25h[35d[K[H[?25l[7mFile Edit Options Buffers Tools Haskell Help                                                        [0m[39;49m[27m
+[A
+[31m-- Exercise 1                                                                                       [39;49m
+[A
+[K
+[31m-- function which adds two numbers                                                                  [39;49m
+[A
+[1m[34madd[0m[39;49m n1 n2 [33m=[39;49m n1 [33m+[39;49m n2[K
+[K
+[31m-- same, but define without using args                                                              [39;49m
+[A
+[1m[34mplus[0m[39;49m [33m=[39;49m ([33m+[39;49m)[K
+[K
+[31m-- function which concats two lists                                                                 [39;49m
+[A
+[1m[34mconc[0m[39;49m ls1 ls2 [33m=[39;49m ls1 [33m++[39;49m ls2[K
+[K
+[31m-- partially apply above functions:                                                                 [39;49m
+[A
+[K
+[1m[34madd10[0m[39;49m [33m=[39;49m add 10[K
+[1m[34mplus5[0m[39;49m [33m=[39;49m plus 5[K
+[1m[34mconcHello[0m[39;49m [33m=[39;49m conc [32m"hello"[39;49m[K
+[K
+[31m-- Exercise 2                                                                                       [39;49m
+[A
+[1m[34mfirst[0m[39;49m (v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msecond[0m[39;49m ([1m[36m_[0m[39;49m, v) [33m=[39;49m v[K
+[1m[34mfst3[0m[39;49m (v, [1m[36m_[0m[39;49m, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msnd3[0m[39;49m ([1m[36m_[0m[39;49m, v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msumFirst2[0m[39;49m lst [33m=[39;49m sum (take 2 lst)[K
+[1m[34mfnFirst2[0m[39;49m ls f1 f2 [33m=[39;49m [1m[36mif[0m[39;49m (length ls) [33m==[39;49m  2 [1m[36mthen[0m[39;49m f1 (take 2 ls) [1m[36melse[0m[39;49m f2 (take 2 ls)[K
+[31m-- Exercise 3                                                                                       [39;49m
+[A
+[K
+[1m[34mcartesianProduct[0m[39;49m ls1 ls2 [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2 ][K
+[K
+[1m[34mcartesianProductIf[0m[39;49m ls1 ls2 predicate [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2, predicate x y ][K
+[K
+[7m-UU-:----F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   All L2     (Haskell ElDoc) ---------------------------------------------[0m[39;49m[27m
+[A[3d[?12l[?25h[?12;25h[34;34H[?25l[7m3[0m[39;49m[27m[4;1H[?12l[?25h[?12;25h[34;34H[?25l[7m4[0m[39;49m[27m[5;1H[?12l[?25h[?12;25h[34;34H[?25l[7m5[0m[39;49m[27m[6;1H[?12l[?25h[?12;25h[34;34H[?25l[7m6[0m[39;49m[27m[7;1H[?12l[?25h[?12;25h[34;34H[?25l[7m7[0m[39;49m[27m[8;1H[?12l[?25h[?12;25h[34;34H[?25l[7m8[0m[39;49m[27m[9;1H[?12l[?25h[?12;25h[34;34H[?25l[7m9[0m[39;49m[27m[10;1H[?12l[?25h[?12;25h[34;34H[?25l[7m10[0m[39;49m[27m[11;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[12;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[13;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[14;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[15;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[16;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[17;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[19;1H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[20;1H[?12l[?25h[?12;25h[34;34H[?25l[7m20[0m[39;49m[27m[21;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[22;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[23;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[24;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[25;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[26;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[27;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[28;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[29;1H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[30;1H[?12l[?25h[?12;25h[34;34H[?25l[7m30[0m[39;49m[27m[31;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[32;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[A[?12l[?25h[?12;25h
+
+[?25lEnd of buffer[33;1H[?12l[?25h[?12;25h
+
+[K[34;35H[?25l[7m1[0m[39;49m[27m[32;1H[?12l[?25h[?12;25h[34;35H[?25l[7m0[0m[39;49m[27m[31;1H[?12l[?25h[?12;25h[34;34H[?25l[7m29[0m[39;49m[27m[30;1H[?12l[?25h[?12;25h[34;34H[?25l[7m30[0m[39;49m[27m[31;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[32;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[A[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[32;1H[?12l[?25h[?12;25h[34;35H[?25l[7m0[0m[39;49m[27m[31;1H[?12l[?25h[?12;25h[34;34H[?25l[7m29[0m[39;49m[27m[30;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[29;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[28;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[27;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[28;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[29;1H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[30;1H[?12l[?25h[?12;25h[34;34H[?25l[7m30[0m[39;49m[27m[31;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[32;1H[?12l[?25h[?12;25h
+
+
+[?25lEnd of buffer[34;35H[7m2[0m[39;49m[27m[A[?12l[?25h[?12;25h[1;32r[3;1H[16M[1;35r[35;1H[K[2d[K[17d[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K[34;6H[?25l[7m**--F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   Bot L33[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[17;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[35d[?25lAuto-saving...[18;1H[?12l[?25h[?12;25h[35;15H[?25ldone[18;1H[?12l[?25h[?12;25h[35d[K[34;35H[?25l[7m2[0m[39;49m[27m[17;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[16;1H[?12l[?25h[?12;25h[34;35H[?25l[7m0[0m[39;49m[27m[15;1H[?12l[?25h[?12;25h[34;34H[?25l[7m29[0m[39;49m[27m[14;1H[?12l[?25h[?12;25h[34;34H[?25l[7m30[0m[39;49m[27m[15;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[16;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[17;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[35d[?25lSaving file /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs...[18;1H[?12l[?25h[?12;25h[35d[?25lWrote /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs[K[18;1H[?12l[?25h[?12;25h[34;6H[?25l[7m--[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[35d[K[18d[35d[K[?2004l[?1l>[?12l[?25h[?1049l[23;0;0t[39;49mthur1@remote01:~/cs471/i471a/submit/lab5$ emacs lab5-sol.hs 
+[?1049h[22;0;0t[?12;25h[?1h=[H[2J[35d[K[?1l>[?12l[?25h[?1049l[23;0;0t[39;49m[?1049h[22;0;0t[?12;25h[?1h=[H[2J[34d[?25l[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Fundamental) -----------------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[35d[?25lLoading /etc/emacs/site-start.d/00debian.el (source)...done[K[H
+[?12l[?25h[?12;25h[35;33H[?25l50a2ps.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lsymptote.el (source)...[H
+[?12l[?25h[?12;25h[35;59H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lutoconf.el (source)...[K[H
+[?12l[?25h[?12;25h[35;58H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lcmake-data.el (source)...[K[H
+[?12l[?25h[?12;25h[35;60H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ldevhelp.el (source)...[K[H
+[?12l[?25h[?12;25h[35;57H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lictionaries-common.el (source)...[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-default.el (source)...[H
+[?12l[?25h[?12;25h[35;77H[?25ldone[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...done[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50dictionaries-common[6P[H
+[?12l[?25h[?12;25h[35;35H[?25lerlang-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;61H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lhaskell-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/elpa/haskel[34@l-mode-16.1/haskell-mode-autoloads[H
+[?12l[?25h[?12;25h[35;96H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50haskell-mode[34P[H
+[?12l[?25h[?12;25h[35;35H[?25llatex-cjk-common.el (source)...[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/latex-cjk-commo[9@n/cjk-enc[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50latex-cjk-common[9P[H
+[?12l[?25h[?12;25h[35;45H[?25lthai.el (source)...[K[H
+[?12l[?25h[?12;25h[35;64H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lpsvn.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lython-docutils.el (source)...[H
+[?12l[?25h[?12;25h[35;65H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ltcsh.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lexlive-lang-english.el (source)...[H
+[?12l[?25h[?12;25h[35;70H[?25ldone[H
+[?12l[?25h[?12;25h[>0c[?2004h[35d[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.[K[H
+[?12l[?25h[?12;25h[35d[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.[K[H[7mFile Edit Options Buffers Tools Haskell Help                                                        [0m[39;49m[27m
+[A
+[31m-- Exercise 1                                                                                       [39;49m
+[A
+[K
+[31m-- function which adds two numbers                                                                  [39;49m
+[A
+[1m[34madd[0m[39;49m n1 n2 [33m=[39;49m n1 [33m+[39;49m n2[K
+[K
+[31m-- same, but define without using args                                                              [39;49m
+[A
+[1m[34mplus[0m[39;49m [33m=[39;49m ([33m+[39;49m)[K
+[K
+[31m-- function which concats two lists                                                                 [39;49m
+[A
+[1m[34mconc[0m[39;49m ls1 ls2 [33m=[39;49m ls1 [33m++[39;49m ls2[K
+[K
+[31m-- partially apply above functions:                                                                 [39;49m
+[A
+[K
+[1m[34madd10[0m[39;49m [33m=[39;49m add 10[K
+[1m[34mplus5[0m[39;49m [33m=[39;49m plus 5[K
+[1m[34mconcHello[0m[39;49m [33m=[39;49m conc [32m"hello"[39;49m[K
+[K
+[31m-- Exercise 2                                                                                       [39;49m
+[A
+[1m[34mfirst[0m[39;49m (v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msecond[0m[39;49m ([1m[36m_[0m[39;49m, v) [33m=[39;49m v[K
+[1m[34mfst3[0m[39;49m (v, [1m[36m_[0m[39;49m, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msnd3[0m[39;49m ([1m[36m_[0m[39;49m, v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msumFirst2[0m[39;49m lst [33m=[39;49m sum (take 2 lst)[K
+[1m[34mfnFirst2[0m[39;49m ls f1 f2 [33m=[39;49m [1m[36mif[0m[39;49m (length ls) [33m==[39;49m  2 [1m[36mthen[0m[39;49m f1 (take 2 ls) [1m[36melse[0m[39;49m f2 (take 2 ls)[K
+[31m-- Exercise 3                                                                                       [39;49m
+[A
+[K
+[1m[34mcartesianProduct[0m[39;49m ls1 ls2 [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2 ][K
+[K
+[1m[34mcartesianProductIf[0m[39;49m ls1 ls2 predicate [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2, predicate x y ][K
+[K
+[7m-UU-:----F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   All L1     (Haskell ElDoc) ---------------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[35d[K[34;34H[?25l[7m2[0m[39;49m[27m[H
+
+[?12l[?25h[?12;25h[34;34H[?25l[7m3[0m[39;49m[27m[4;1H[?12l[?25h[?12;25h[34;34H[?25l[7m4[0m[39;49m[27m[5;1H[?12l[?25h[?12;25h[34;34H[?25l[7m5[0m[39;49m[27m[6;1H[?12l[?25h[?12;25h[34;34H[?25l[7m6[0m[39;49m[27m[7;1H[?12l[?25h[?12;25h[34;34H[?25l[7m7[0m[39;49m[27m[8;1H[?12l[?25h[?12;25h[34;34H[?25l[7m8[0m[39;49m[27m[9;1H[?12l[?25h[?12;25h[34;34H[?25l[7m9[0m[39;49m[27m[10;1H[?12l[?25h[?12;25h[34;34H[?25l[7m10[0m[39;49m[27m[11;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[12;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[13;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[14;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[15;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[16;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[17;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[19;1H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[20;1H[?12l[?25h[?12;25h[34;34H[?25l[7m20[0m[39;49m[27m[21;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[22;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[23;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[24;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[25;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[26;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[27;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[28;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[29;1H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[30;1H[?12l[?25h[?12;25h[34;34H[?25l[7m30[0m[39;49m[27m[31;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[32;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[A[?12l[?25h[?12;25h[1;32r[3;1H[16M[1;35r[2;1H[K[17d[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K[34;29H[?25l[7mBot L33[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[35d[?25lEnd of buffer[18;1H[?12l[?25h[?12;25h[35d[K[34;35H[?25l[7m2[0m[39;49m[27m[17;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[C[?25l[1m[36mlet[0m[39;49m ls1 [33m=[39;49m [1[33m..[39;49m10] [1m[36min[0m[39;49m [46m[[39;49m[x,y] [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m [3 [33m*[39;49m x[33m^[39;49m2 [33m+[39;49m 2 [33m*[39;49m x [33m+[39;49m 1]][34;6H[7m**[0m[39;49m[27m[18;69H[?12l[?25h[?12;25h[18;23H[?25l[[18;69H[?12l[?25h[?12;25h[35;1H[?25lEnd of buffer[18;69H[?12l[?25h[?12;25h[35;1H[K[18;68H[35;1H[?25lAuto-saving...[18;31H[?12l[?25h[?12;25h[35;15H[?25ldone[18;31H[?12l[?25h[?12;25h[35;1H[K[18;30H[C[C[35;1H[?25llet { decl; ...; decl [;] } in exp[18;5H[?12l[?25h[?12;25h[35;1H[K[18;2H[?25lle[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[2P[1@[1P[?25l[1@[1m[34mo[0m[39;49m[?12l[?25h[?12;25h[?25l[1@[1m[34md[0m[39;49m[?12l[?25h[?12;25h[?25l[1@[1m[34md[0m[39;49m[?12l[?25h[?12;25h[?25l[1@[1m[34mE[0m[39;49m[?12l[?25h[?12;25h[?25l[1@[1m[34mv[0m[39;49m[?12l[?25h[?12;25h[?25l[1@[1m[34me[0m[39;49m[?12l[?25h[?12;25h[?25l[1@[1m[34mn[0m[39;49m[?12l[?25h[?12;25h[?25l[1@[1m[34mP[0m[39;49m[?12l[?25h[?12;25h[?25l[1@[1m[34ma[0m[39;49m[?12l[?25h[?12;25h[?25l[1@[1m[34mi[0m[39;49m[?12l[?25h[?12;25h[?25l[1@[1m[34mr[0m[39;49m[?12l[?25h[?12;25h[?25l[1@[1m[34ms[0m[39;49m[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[17;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[C[C[C[C[C[C		[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1@n[?12l[?25h[?12;25h		[C[C[C[C[C[C		[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1@n[?12l[?25h[?12;25h		[C[C[C[C[C[C		[C[C[C[C[C[C		[C[C[C[C[C[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1@n[?12l[?25h[?12;25h[C[C[C[C		[C[C[C[35;1H[?25lAuto-saving...[18;52H[?12l[?25h[?12;25h[35;15H[?25ldone[18;52H[?12l[?25h[?12;25h[35;1H[K[18;53H[C[C		[C[C[C[C[C[C		[C[C[C[C[C[C	[?25l]][K[?12l[?25h[?12;25h[?25l]][K[?12l[?25h[?12;25h[?25l]][K[?12l[?25h[?12;25h[?25l]][K[?12l[?25h[?12;25h[?25l]][K[?12l[?25h[?12;25h[?25l]][K[?12l[?25h[?12;25h[?25l]][K[?12l[?25h[?12;25h[?25l]][K[?12l[?25h[?12;25h[?25l]][K[?12l[?25h[?12;25h[?25l]][K[?12l[?25h[?12;25h[?25l]][K[?12l[?25h[?12;25h[?25l]][K[?12l[?25h[?12;25h[?25l]][K[?12l[?25h[?12;25h[?25l]][K[?12l[?25h[?12;25h[?25l]][K[?12l[?25h[?12;25h[?25l]][K[?12l[?25h[?12;25h[?25l]][K[?12l[?25h[?12;25h[?25l]][K[?12l[?25h[?12;25h[?25l[32m[][39;49m][K[?12l[?25h[?12;25h[35;1H[?25lAuto-saving...[18;51H[?12l[?25h[?12;25h[35;15H[?25ldone[18;51H[?12l[?25h[?12;25h[35;1H[K[18;50H[?25l[1@e[?12l[?25h[?12;25h[?25l[1@v[?12l[?25h[?12;25h[?25l[1@e[?12l[?25h[?12;25h[?25l[1@n[?12l[?25h[?12;25h[?25l[1@ [?12l[?25h[?12;25h[35;1H[?25lAuto-saving...[18;42H[?12l[?25h[?12;25h[35;15H[?25ldone[18;42H[?12l[?25h[?12;25h[35;1H[K[18;43H[C[C[C[C		[C[C[C[C[C[C				[K[?25l][K[?12l[?25h[?12;25h[?25lo][?12l[?25h[?12;25h[?25l][K[?12l[?25h[?12;25h[?25l][K[?12l[?25h[?12;25h[?25loy [33m<-[39;49m][?12l[?25h[?12;25h[?25ldy [33m<-[39;49m][?12l[?25h[?12;25h[?25ldy [33m<-[39;49m][?12l[?25h[?12;25h[?25l y [33m<-[39;49m][?12l[?25h[?12;25h[C[35;1H[?25lAuto-saving...[18;55H[?12l[?25h[?12;25h[35;15H[?25ldone[18;55H[?12l[?25h[?12;25h[35;1H[K[18;56H	[C[C[34;35H[?25l[7m4[0m[39;49m[27m[19;1H[?12l[?25h[?12;25h[?25l[46m[[39;49m(x,y) [33m|[39;49m x [33m<-[39;49m [1[33m..[39;49m10000], x[33m==[39;49m2000, y [33m<-[39;49m [1[33m..[39;49m100], odd y][?12l[?25h[?12;25h[?25l[[34;35H[7m3[0m[39;49m[27m[18;57H[?12l[?25h[?12;25h[C[C[C[34;35H[?25l[7m4[0m[39;49m[27m[19;1H[?12l[?25h[?12;25h[C[34;35H[?25l[7m3[0m[39;49m[27m[18;59H[?12l[?25h[?12;25h[K[K[K	[K[C[K[K[K[C[K[K[C[K[K[C[K[C[K[K[K[K[C[K[C[K[K[K[K[K[K[C[?25li[K[?12l[?25h[?12;25h[K	[K[K[K[K[K[K[C[?25l[[?12l[?25h[?12;25h[?25l[[?12l[?25h[?12;25h[?25lx[?12l[?25h[?12;25h[?25lx[?12l[?25h[?12;25h[K[?25l,[?12l[?25h[?12;25h[C[?25ly[?12l[?25h[?12;25h[?25l[46m[[39;49mx, y][?12l[?25h[?12;25h[?25l[	[C[?12l[?25h[?12;25h[?25l[33m|[39;49m[?12l[?25h[?12;25h[C[?25lx[?12l[?25h[?12;25h[C[?25l[33m<[39;49m[?12l[?25h[?12;25h[?25l[33m=-[39;49m[?12l[?25h[?12;25h[K[K[?25l[33m=[39;49m[?12l[?25h[?12;25h[35;1H[?25l[1m<= :: Ord a => a -> a -> Bool[0m[18;32H[?12l[?25h[?12;25h[35;1H[K[18;31H[K[?25l[33m-[39;49m[?12l[?25h[?12;25h	[?25l[[?12l[?25h[?12;25h[?25l1[?12l[?25h[?12;25h[?25l,[?12l[?25h[?12;25h[C[C[C[C[C[C		[C[C[C[C[C[C		[C[C[C[C[?25ln[?12l[?25h[?12;25h[?25l[46m[[39;49m1, n][?12l[?25h[?12;25h				[?25l[	[?12l[?25h[?12;25h[?25l,[?12l[?25h[?12;25h	[?25lx[?12l[?25h[?12;25h[C[K	[?25lo[?12l[?25h[?12;25h[?25ld[?12l[?25h[?12;25h[?25ld[?12l[?25h[?12;25h[C[?25lx[?12l[?25h[?12;25h[?25l,[?12l[?25h[?12;25h	[?25ly[?12l[?25h[?12;25h[C[?25l[33m<[39;49m[?12l[?25h[?12;25h[?25l[33m-[39;49m[?12l[?25h[?12;25h[C[?25l[[?12l[?25h[?12;25h[35;1H[?25lAuto-saving...[18;54H[?12l[?25h[?12;25h[35;15H[?25ldone[18;54H[?12l[?25h[?12;25h[35;1H[K[18;54H[?25l1[?12l[?25h[?12;25h[?25l[33m.[39;49m[?12l[?25h[?12;25h[35;1H[?25l[1m. :: (b -> c) -> (a -> b) -> a -> c[0m[18;56H[?12l[?25h[?12;25h[35;1H[K[18;55H[K[?25l,[?12l[?25h[?12;25h	[?25ln[?12l[?25h[?12;25h[?25l[46m[[39;49m1, n][?12l[?25h[?12;25h[?25l[[18;59H[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1@e[?12l[?25h[?12;25h[?25l[1@v[?12l[?25h[?12;25h[?25l[1@e[?12l[?25h[?12;25h[?25l[1@n[?12l[?25h[?12;25h[C[C		[C[C[C[C[C[C		[C[C[C[34;35H[?25l[7m4[0m[39;49m[27m[19;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[18;60H[?12l[?25h[?12;25h[?25l,[?12l[?25h[?12;25h[C[?25lo[?12l[?25h[?12;25h[?25ld[?12l[?25h[?12;25h[?25ld[?12l[?25h[?12;25h[C[?25ly[?12l[?25h[?12;25h[18;18H[?25l[46m[[39;49m[x, y] [33m|[39;49m x [33m<-[39;49m [1, n], even x, y [33m<-[39;49m [1, n], odd y][?12l[?25h[?12;25h[18;18H[?25l[[18;68H[?12l[?25h[?12;25h[35;1H[?25lNo matching parenthesis found[18;68H[?12l[?25h[?12;25h[?25l][?12l[?25h[?12;25h[35;1H[K[18;68H[K[34;35H[?25l[7m4[0m[39;49m[27m[19;57H[?12l[?25h[?12;25h[35;1H[?25lMark set[19;57H[?12l[?25h[?12;25h[35;1H[K[19;56H[?25l[37m[44m][39;49m[?12l[?25h[?12;25h[?25l[37m[44my[39;49m[?12l[?25h[?12;25h[?25l[37m[44m [39;49m[?12l[?25h[?12;25h[?25l[37m[44md[39;49m[?12l[?25h[?12;25h[?25l[37m[44md[39;49m[?12l[?25h[?12;25h[?25l[37m[44mo[39;49m[?12l[?25h[?12;25h[?25l[37m[44m [39;49m[?12l[?25h[?12;25h[?25l[37m[44m,[39;49m[?12l[?25h[?12;25h[?25l[37m[44m][39;49m[?12l[?25h[?12;25h[?25l[37m[44m0[39;49m[?12l[?25h[?12;25h[?25l[37m[44m0[39;49m[?12l[?25h[?12;25h[?25l[37m[44m1[39;49m[?12l[?25h[?12;25h[?25l[37m[44m.[39;49m[?12l[?25h[?12;25h[?25l[37m[44m.[39;49m[?12l[?25h[?12;25h[?25l[37m[44m1[39;49m[?12l[?25h[?12;25h[?25l[37m[44m[[39;49m[?12l[?25h[?12;25h[?25l[37m[44m [39;49m[?12l[?25h[?12;25h[?25l[37m[44m-[39;49m[?12l[?25h[?12;25h[?25l[37m[44m<[39;49m[?12l[?25h[?12;25h[?25l[37m[44m [39;49m[?12l[?25h[?12;25h[?25l[37m[44my[39;49m[?12l[?25h[?12;25h[?25l[37m[44m [39;49m[?12l[?25h[?12;25h[?25l[37m[44m,[39;49m[?12l[?25h[?12;25h[?25l[37m[44m0[39;49m[?12l[?25h[?12;25h[?25l[37m[44m0[39;49m[?12l[?25h[?12;25h[?25l[37m[44m0[39;49m[?12l[?25h[?12;25h[?25l[37m[44m2[39;49m[?12l[?25h[?12;25h[?25l[37m[44m=[39;49m[?12l[?25h[?12;25h[?25l[37m[44m=[39;49m[?12l[?25h[?12;25h[?25l[37m[44mx[39;49m[?12l[?25h[?12;25h[?25l[37m[44m [39;49m[?12l[?25h[?12;25h[?25l[37m[44m,[39;49m[?12l[?25h[?12;25h[?25l[37m[44m][39;49m[?12l[?25h[?12;25h[?25l[37m[44m0[39;49m[?12l[?25h[?12;25h[?25l[37m[44m0[39;49m[?12l[?25h[?12;25h[?25l[37m[44m0[39;49m[?12l[?25h[?12;25h[?25l[37m[44m0[39;49m[?12l[?25h[?12;25h[?25l[37m[44m1[39;49m[?12l[?25h[?12;25h[?25l[37m[44m.[39;49m[?12l[?25h[?12;25h[?25l[37m[44m.[39;49m[?12l[?25h[?12;25h[?25l[37m[44m1[39;49m[?12l[?25h[?12;25h[?25l[37m[44m[[39;49m[?12l[?25h[?12;25h[?25l[37m[44m [39;49m[?12l[?25h[?12;25h[?25l[37m[44m-[39;49m[?12l[?25h[?12;25h[?25l[37m[44m<[39;49m[?12l[?25h[?12;25h[?25l[37m[44m [39;49m[?12l[?25h[?12;25h[?25l[37m[44mx[39;49m[?12l[?25h[?12;25h[?25l[37m[44m [39;49m[?12l[?25h[?12;25h[?25l[37m[44m|[39;49m[?12l[?25h[?12;25h[?25l[37m[44m [39;49m[?12l[?25h[?12;25h[?25l[37m[44m)[39;49m[?12l[?25h[?12;25h[?25l[37m[44my[39;49m[?12l[?25h[?12;25h[?25l[37m[44m,[39;49m[?12l[?25h[?12;25h[?25l[37m[44mx[39;49m[?12l[?25h[?12;25h[?25l[37m[44m([39;49m[?12l[?25h[?12;25h[?25l[37m[44m[[39;49m[?12l[?25h[?12;25h[K[34;35H[?25l[7m3[0m[39;49m[27m[18;68H[?12l[?25h[?12;25h[35;1H[?25lSaving file /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs...[18;68H[?12l[?25h[?12;25h[35;1H[?25lWrote /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs[K[18;68H[?12l[?25h[?12;25h[34;6H[?25l[7m--[0m[39;49m[27m[18;68H[?12l[?25h[?12;25h[35;1H[K[18;68H[35;1H[K[?2004l[?1l>[?12l[?25h[?1049l[23;0;0t[39;49mthur1@remote01:~/cs471/i471a/submit/lab5$ b[Khugs
+__   __ __  __  ____   ___      _________________________________________
+||   || ||  || ||  || ||__      Hugs 98: Based on the Haskell 98 standard
+||___|| ||__|| ||__||  __||     Copyright (c) 1994-2005
+||---||         ___||           World Wide Web: http://haskell.org/hugs
+||   ||                         Bugs: http://hackage.haskell.org/trac/hugs
+||   || Version: September 2006 _________________________________________
+
+Haskell 98 mode: Restart with command line option -98 to enable extensions
+
+Type :? for help
+Hugs> :l "lab5-sol,.h[K[K[K,h[K[K,.h[K[K[K.hs"
+Main> oddEvenPairs 5
+[]
+Main> oddEvenPairs 5[K2
+[[2,1]]
+Main> oddEvenPairs 2[K3
+[]
+Main> oddEvenPairs 3[K2
+[[2,1]]
+Main> oddEvenPairs 2[K13
+[]
+Main> 
+Main> [Leaving Hugs]
+thur1@remote01:~/cs471/i471a/submit/lab5$ hugsemacs lab5-sol.hs 
+[?1049h[22;0;0t[?12;25h[?1h=[H[2J[35d[K[?1l>[?12l[?25h[?1049l[23;0;0t[39;49m[?1049h[22;0;0t[?12;25h[?1h=[H[2J[34d[?25l[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Fundamental) -----------------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[35d[?25lLoading /etc/emacs/site-start.d/00debian.el (source)...done[K[H
+[?12l[?25h[?12;25h[35;33H[?25l50a2ps.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lsymptote.el (source)...[H
+[?12l[?25h[?12;25h[35;59H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lutoconf.el (source)...[K[H
+[?12l[?25h[?12;25h[35;58H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lcmake-data.el (source)...[K[H
+[?12l[?25h[?12;25h[35;60H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ldevhelp.el (source)...[K[H
+[?12l[?25h[?12;25h[35;57H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lictionaries-common.el (source)...[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-default.el (source)...[H
+[?12l[?25h[?12;25h[35;77H[?25ldone[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...done[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50dictionaries-common[6P[H
+[?12l[?25h[?12;25h[35;35H[?25lerlang-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;61H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lhaskell-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/elpa/haskel[34@l-mode-16.1/haskell-mode-autoloads[H
+[?12l[?25h[?12;25h[35;96H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50haskell-mode[34P[H
+[?12l[?25h[?12;25h[35;35H[?25llatex-cjk-common.el (source)...[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/latex-cjk-commo[9@n/cjk-enc[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50latex-cjk-common[9P[H
+[?12l[?25h[?12;25h[35;45H[?25lthai.el (source)...[K[H
+[?12l[?25h[?12;25h[35;64H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lpsvn.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lython-docutils.el (source)...[H
+[?12l[?25h[?12;25h[35;65H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ltcsh.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lexlive-lang-english.el (source)...[H
+[?12l[?25h[?12;25h[35;70H[?25ldone[H
+[?12l[?25h[?12;25h[>0c[35d[?25lLoading /etc/emacs/site-start.d/50texlive-lang-english.el (source)...done[K[H[7mFile Edit Options Buffers Tools Lisp-Interaction Help                                               [0m[39;49m[27m
+[A
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Lisp Interaction ElDoc) ------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[?2004h[35d[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.[K[H
+[?12l[?25h[?12;25h[35d[K[H[?25l[7mFile Edit Options Buffers Tools Haskell Help                                                        [0m[39;49m[27m
+[A
+[31m-- Exercise 1                                                                                       [39;49m
+[A
+[K
+[31m-- function which adds two numbers                                                                  [39;49m
+[A
+[1m[34madd[0m[39;49m n1 n2 [33m=[39;49m n1 [33m+[39;49m n2[K
+[K
+[31m-- same, but define without using args                                                              [39;49m
+[A
+[1m[34mplus[0m[39;49m [33m=[39;49m ([33m+[39;49m)[K
+[K
+[31m-- function which concats two lists                                                                 [39;49m
+[A
+[1m[34mconc[0m[39;49m ls1 ls2 [33m=[39;49m ls1 [33m++[39;49m ls2[K
+[K
+[31m-- partially apply above functions:                                                                 [39;49m
+[A
+[K
+[1m[34madd10[0m[39;49m [33m=[39;49m add 10[K
+[1m[34mplus5[0m[39;49m [33m=[39;49m plus 5[K
+[1m[34mconcHello[0m[39;49m [33m=[39;49m conc [32m"hello"[39;49m[K
+[K
+[31m-- Exercise 2                                                                                       [39;49m
+[A
+[1m[34mfirst[0m[39;49m (v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msecond[0m[39;49m ([1m[36m_[0m[39;49m, v) [33m=[39;49m v[K
+[1m[34mfst3[0m[39;49m (v, [1m[36m_[0m[39;49m, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msnd3[0m[39;49m ([1m[36m_[0m[39;49m, v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msumFirst2[0m[39;49m lst [33m=[39;49m sum (take 2 lst)[K
+[1m[34mfnFirst2[0m[39;49m ls f1 f2 [33m=[39;49m [1m[36mif[0m[39;49m (length ls) [33m==[39;49m  2 [1m[36mthen[0m[39;49m f1 (take 2 ls) [1m[36melse[0m[39;49m f2 (take 2 ls)[K
+[31m-- Exercise 3                                                                                       [39;49m
+[A
+[K
+[1m[34mcartesianProduct[0m[39;49m ls1 ls2 [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2 ][K
+[K
+[1m[34mcartesianProductIf[0m[39;49m ls1 ls2 predicate [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2, predicate x y ][K
+[K
+[7m-UU-:----F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   Top L2     (Haskell ElDoc) ---------------------------------------------[0m[39;49m[27m
+[A[3d[?12l[?25h[?12;25h[34;34H[?25l[7m3[0m[39;49m[27m[4;1H[?12l[?25h[?12;25h[34;34H[?25l[7m4[0m[39;49m[27m[5;1H[?12l[?25h[?12;25h[34;34H[?25l[7m5[0m[39;49m[27m[6;1H[?12l[?25h[?12;25h[34;34H[?25l[7m6[0m[39;49m[27m[7;1H[?12l[?25h[?12;25h[34;34H[?25l[7m7[0m[39;49m[27m[8;1H[?12l[?25h[?12;25h[34;34H[?25l[7m8[0m[39;49m[27m[9;1H[?12l[?25h[?12;25h[34;34H[?25l[7m9[0m[39;49m[27m[10;1H[?12l[?25h[?12;25h[34;34H[?25l[7m10[0m[39;49m[27m[11;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[12;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[13;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[14;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[15;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[16;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[17;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[19;1H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[20;1H[?12l[?25h[?12;25h[34;34H[?25l[7m20[0m[39;49m[27m[21;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[22;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[23;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[24;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[25;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[26;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[27;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[28;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[29;1H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[30;1H[?12l[?25h[?12;25h[34;34H[?25l[7m30[0m[39;49m[27m[31;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[32;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[A[?12l[?25h[?12;25h[1;32r[3;1H[16M[1;35r[2;1H[K[17d[K
+[?25l[1m[34moddEvenPairs[0m[39;49m n [33m=[39;49m [[x, y] [33m|[39;49m x [33m<-[39;49m [1, n], even x, y [33m<-[39;49m [1, n], odd y][K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K[34;29H[7mBot L33[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[19;1H[?12l[?25h[?12;25h[35d[?25lEnd of buffer[19;1H[?12l[?25h[?12;25h[35d[K[34;35H[?25l[7m3[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[C[C[C[C[C[C		[C[C[C[C[C[C		[C[C[C[C[C[C		[C[C[C[C[C[C		[C[C[C[C[C[C[C[?25l[1@[[34;6H[7m**[0m[39;49m[27m[18;19H[?12l[?25h[?12;25h[?25l[1@1[?12l[?25h[?12;25h[?25l[1@[33m.[39;49m[?12l[?25h[?12;25h[?25l[1@[33m.[39;49m[?12l[?25h[?12;25h[?25l[1@ [?12l[?25h[?12;25h[?25l[1@x[?12l[?25h[?12;25h[?25l[46m[[39;49m1[33m..[39;49m x[1@][?12l[?25h[?12;25h[?25l[1[33m..[39;49m x[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[C[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1@ [?12l[?25h[?12;25h[?25l[1@[33m=[39;49m[?12l[?25h[?12;25h[?25l[1@ [?12l[?25h[?12;25h[35;1H[?25lAuto-saving...[18;18H[?12l[?25h[?12;25h[35;15H[?25ldone[18;18H[?12l[?25h[?12;25h[35;1H[K[18;19H[C			[C[C[18;29H[C[C		[18;36H[C[C[C	[C[C[C[C[35;1H[?25l[1meven :: (Integral a) => a -> Bool[0m[18;45H[?12l[?25h[?12;25h[35;1H[K[18;44H[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1@o[?12l[?25h[?12;25h[?25l[1@d[?12l[?25h[?12;25h[?25l[1@d[?12l[?25h[?12;25h[C[C[C		[C[C[C[C[C[C		[C[C[C[C[C[C	[?25l y][K[?12l[?25h[?12;25h[?25l y][K[?12l[?25h[?12;25h[?25l y][K[?12l[?25h[?12;25h[?25le y][?12l[?25h[?12;25h[?25ln y][?12l[?25h[?12;25h[?25le y][?12l[?25h[?12;25h[?25l y][K[?12l[?25h[?12;25h[?25l y][K[?12l[?25h[?12;25h[?25lv y][?12l[?25h[?12;25h[?25le y][?12l[?25h[?12;25h[?25ln y][?12l[?25h[?12;25h[35;1H[?25lSaving file /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs...[18;65H[?12l[?25h[?12;25h[35;1H[?25lWrote /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs[K[18;65H[?12l[?25h[?12;25h[34;6H[?25l[7m--[0m[39;49m[27m[18;65H[?12l[?25h[?12;25h[35;1H[K[18;64H[35;1H[?25l[1meven :: (Integral a) => a -> Bool[0m[18;64H[?12l[?25h[?12;25h[35;1H[K[18;17H[C[?25l[1@p[34;6H[7m**[0m[39;49m[27m[18;19H[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[C[C[?25l[1@[[?12l[?25h[?12;25h[?25l[1@1[?12l[?25h[?12;25h[?25l[1@[33m.[39;49m[?12l[?25h[?12;25h[?25l[1@[33m.[39;49m[?12l[?25h[?12;25h[?25l[1@n[?12l[?25h[?12;25h[?25l[46m[[39;49m1[33m..[39;49mn[1@][?12l[?25h[?12;25h[?25l[1[33m..[39;49mn][1@ [?12l[?25h[?12;25h[?25l[1@i[?12l[?25h[?12;25h[?25l[2@bn[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1m[36mi[0m[39;49m[1@[1m[36mn[0m[39;49m[?12l[?25h[?12;25h[?25l[1@ [?12l[?25h[?12;25h[35;1H[?25lSaving file /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs...[18;28H[?12l[?25h[?12;25h[35;1H[?25lWrote /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs[K[18;28H[?12l[?25h[?12;25h[34;6H[?25l[7m--[0m[39;49m[27m[18;28H[?12l[?25h[?12;25h[35;1H[K[18;28H[35;1H[K[?2004l[?1l>[?12l[?25h[?1049l[23;0;0t[39;49mthur1@remote01:~/cs471/i471a/submit/lab5$ emacs lab5-sol.hs hugs[K
+__   __ __  __  ____   ___      _________________________________________
+||   || ||  || ||  || ||__      Hugs 98: Based on the Haskell 98 standard
+||___|| ||__|| ||__||  __||     Copyright (c) 1994-2005
+||---||         ___||           World Wide Web: http://haskell.org/hugs
+||   ||                         Bugs: http://hackage.haskell.org/trac/hugs
+||   || Version: September 2006 _________________________________________
+
+Haskell 98 mode: Restart with command line option -98 to enable extensions
+
+Type :? for help
+Hugs> :'[Kl "lab5-sol.hs"
+ERROR "lab5-sol.hs":33 - Syntax error in input (unexpected keyword "in")
+Hugs> [Leaving Hugs]
+thur1@remote01:~/cs471/i471a/submit/lab5$ hugsemacs lab5-sol.hs 
+[?1049h[22;0;0t[?12;25h[?1h=[H[2J[35d[K[?1l>[?12l[?25h[?1049l[23;0;0t[39;49m[?1049h[22;0;0t[?12;25h[?1h=[H[2J[34d[?25l[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Fundamental) -----------------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[35d[?25lLoading /etc/emacs/site-start.d/00debian.el (source)...done[K[H
+[?12l[?25h[?12;25h[35;33H[?25l50a2ps.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lsymptote.el (source)...[H
+[?12l[?25h[?12;25h[35;59H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lutoconf.el (source)...[K[H
+[?12l[?25h[?12;25h[35;58H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lcmake-data.el (source)...[K[H
+[?12l[?25h[?12;25h[35;60H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ldevhelp.el (source)...[K[H
+[?12l[?25h[?12;25h[35;57H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lictionaries-common.el (source)...[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-default.el (source)...[H
+[?12l[?25h[?12;25h[35;77H[?25ldone[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...done[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50dictionaries-common[6P[H
+[?12l[?25h[?12;25h[35;35H[?25lerlang-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;61H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lhaskell-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/elpa/haskel[34@l-mode-16.1/haskell-mode-autoloads[H
+[?12l[?25h[?12;25h[35;96H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50haskell-mode[34P[H
+[?12l[?25h[?12;25h[35;35H[?25llatex-cjk-common.el (source)...[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/latex-cjk-commo[9@n/cjk-enc[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50latex-cjk-common[9P[H
+[?12l[?25h[?12;25h[35;45H[?25lthai.el (source)...[K[H
+[?12l[?25h[?12;25h[35;64H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lpsvn.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lython-docutils.el (source)...[H
+[?12l[?25h[?12;25h[35;65H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ltcsh.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lexlive-lang-english.el (source)...[H
+[?12l[?25h[?12;25h[35;70H[?25ldone[H
+[?12l[?25h[?12;25h[>0c[35d[?25lLoading /etc/emacs/site-start.d/50texlive-lang-english.el (source)...done[K[H[7mFile Edit Options Buffers Tools Lisp-Interaction Help                                               [0m[39;49m[27m
+[A
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Lisp Interaction ElDoc) ------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[?2004h[35d[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.[K[H
+[?12l[?25h[?12;25h[35d[K[H[?25l[7mFile Edit Options Buffers Tools Haskell Help                                                        [0m[39;49m[27m
+[A
+[31m-- Exercise 1                                                                                       [39;49m
+[A
+[K
+[31m-- function which adds two numbers                                                                  [39;49m
+[A
+[1m[34madd[0m[39;49m n1 n2 [33m=[39;49m n1 [33m+[39;49m n2[K
+[K
+[31m-- same, but define without using args                                                              [39;49m
+[A
+[1m[34mplus[0m[39;49m [33m=[39;49m ([33m+[39;49m)[K
+[K
+[31m-- function which concats two lists                                                                 [39;49m
+[A
+[1m[34mconc[0m[39;49m ls1 ls2 [33m=[39;49m ls1 [33m++[39;49m ls2[K
+[K
+[31m-- partially apply above functions:                                                                 [39;49m
+[A
+[K
+[1m[34madd10[0m[39;49m [33m=[39;49m add 10[K
+[1m[34mplus5[0m[39;49m [33m=[39;49m plus 5[K
+[1m[34mconcHello[0m[39;49m [33m=[39;49m conc [32m"hello"[39;49m[K
+[K
+[31m-- Exercise 2                                                                                       [39;49m
+[A
+[1m[34mfirst[0m[39;49m (v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msecond[0m[39;49m ([1m[36m_[0m[39;49m, v) [33m=[39;49m v[K
+[1m[34mfst3[0m[39;49m (v, [1m[36m_[0m[39;49m, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msnd3[0m[39;49m ([1m[36m_[0m[39;49m, v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msumFirst2[0m[39;49m lst [33m=[39;49m sum (take 2 lst)[K
+[1m[34mfnFirst2[0m[39;49m ls f1 f2 [33m=[39;49m [1m[36mif[0m[39;49m (length ls) [33m==[39;49m  2 [1m[36mthen[0m[39;49m f1 (take 2 ls) [1m[36melse[0m[39;49m f2 (take 2 ls)[K
+[31m-- Exercise 3                                                                                       [39;49m
+[A
+[K
+[1m[34mcartesianProduct[0m[39;49m ls1 ls2 [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2 ][K
+[K
+[1m[34mcartesianProductIf[0m[39;49m ls1 ls2 predicate [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2, predicate x y ][K
+[K
+[7m-UU-:----F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   Top L2     (Haskell ElDoc) ---------------------------------------------[0m[39;49m[27m
+[A[3d[?12l[?25h[?12;25h[34;34H[?25l[7m3[0m[39;49m[27m[4;1H[?12l[?25h[?12;25h[34;34H[?25l[7m4[0m[39;49m[27m[5;1H[?12l[?25h[?12;25h[34;34H[?25l[7m5[0m[39;49m[27m[6;1H[?12l[?25h[?12;25h[34;34H[?25l[7m6[0m[39;49m[27m[7;1H[?12l[?25h[?12;25h[34;34H[?25l[7m7[0m[39;49m[27m[8;1H[?12l[?25h[?12;25h[34;34H[?25l[7m8[0m[39;49m[27m[9;1H[?12l[?25h[?12;25h[34;34H[?25l[7m9[0m[39;49m[27m[10;1H[?12l[?25h[?12;25h[34;34H[?25l[7m10[0m[39;49m[27m[11;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[12;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[13;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[14;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[15;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[16;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[17;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[19;1H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[20;1H[?12l[?25h[?12;25h[34;34H[?25l[7m20[0m[39;49m[27m[21;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[22;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[23;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[24;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[25;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[26;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[27;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[28;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[29;1H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[30;1H[?12l[?25h[?12;25h[34;34H[?25l[7m30[0m[39;49m[27m[31;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[32;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[A[?12l[?25h[?12;25h[1;32r[3;1H[16M[1;35r[2;1H[K[17d[K
+[?25l[1m[34moddEvenPairs[0m[39;49m n [33m=[39;49m [1[33m..[39;49mn] [1m[36min[0m[39;49m [[x, y] [33m|[39;49m x [33m<-[39;49m [1, n], odd x, y [33m<-[39;49m [1, n], even y][K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K[34;29H[7mBot L33[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[19;1H[?12l[?25h[?12;25h[35d[?25lEnd of buffer[19;1H[?12l[?25h[?12;25h[35d[K[34;35H[?25l[7m3[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[17;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[C[C[C[C[C[C		[C[C[C[C[C[C		[C[C[C[C[C[C		[C[C[35;1H[?25llet decllist in exp[18;27H[?12l[?25h[?12;25h[35;1H[K[18;25H[?25li[1P[34;6H[7m**[0m[39;49m[27m[18;26H[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[C[C[C[C[C		[C[C[C[C[C[C		[35;1H[?25lAuto-saving...[18;33H[?12l[?25h[?12;25h[35;15H[?25ldone[18;33H[?12l[?25h[?12;25h[35;1H[K[18;34H[C[C[C[C[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1@[33m.[39;49m[?12l[?25h[?12;25h[?25l[1@[33m.[39;49m[?12l[?25h[?12;25h[C		[C[C[C[C[C[C		[C[C[C[C[C[C		[C[C[?25l[1P[?12l[?25h[?12;25h[?25l[1P[?12l[?25h[?12;25h[?25l[1@[33m.[39;49m[?12l[?25h[?12;25h[?25l[1@[33m.[39;49m[?12l[?25h[?12;25h[35;1H[?25lSaving file /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs...[18;58H[?12l[?25h[?12;25h[35;1H[?25lWrote /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs[K[18;58H[?12l[?25h[?12;25h[34;6H[?25l[7m--[0m[39;49m[27m[18;58H[?12l[?25h[?12;25h[35;1H[K[18;58H[35;1H[K[?2004l[?1l>[?12l[?25h[?1049l[23;0;0t[39;49mthur1@remote01:~/cs471/i471a/submit/lab5$ emacs lab5-sol.hs hugs[K
+__   __ __  __  ____   ___      _________________________________________
+||   || ||  || ||  || ||__      Hugs 98: Based on the Haskell 98 standard
+||___|| ||__|| ||__||  __||     Copyright (c) 1994-2005
+||---||         ___||           World Wide Web: http://haskell.org/hugs
+||   ||                         Bugs: http://hackage.haskell.org/trac/hugs
+||   || Version: September 2006 _________________________________________
+
+Haskell 98 mode: Restart with command line option -98 to enable extensions
+
+Type :? for help
+Hugs> :l "lab5-sol[Kl.hs"
+Main> [(x,y) | x <- [1..10000], x==2000, y <- [1..100], odd y][K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KoddEvenPairs 5
+[[1,2],[1,4],[3,2],[3,4],[5,2],[5,4]]
+Main> oddEvenPairs 5[K7
+[[1,2],[1,4],[1,6],[3,2],[3,4],[3,6],[5,2],[5,4],[5,6],[7,2],[7,4],[7,6]]
+Main> [Leaving Hugs]
+thur1@remote01:~/cs471/i471a/submit/lab5$ hugsemacs lab5-sol.hs 
+[?1049h[22;0;0t[?12;25h[?1h=[H[2J[35d[K[?1l>[?12l[?25h[?1049l[23;0;0t[39;49m[?1049h[22;0;0t[?12;25h[?1h=[H[2J[34d[?25l[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Fundamental) -----------------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[35d[?25lLoading /etc/emacs/site-start.d/00debian.el (source)...done[K[H
+[?12l[?25h[?12;25h[35;33H[?25l50a2ps.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lsymptote.el (source)...[H
+[?12l[?25h[?12;25h[35;59H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lutoconf.el (source)...[K[H
+[?12l[?25h[?12;25h[35;58H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lcmake-data.el (source)...[K[H
+[?12l[?25h[?12;25h[35;60H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ldevhelp.el (source)...[K[H
+[?12l[?25h[?12;25h[35;57H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lictionaries-common.el (source)...[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-default.el (source)...[H
+[?12l[?25h[?12;25h[35;77H[?25ldone[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...done[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50dictionaries-common[6P[H
+[?12l[?25h[?12;25h[35;35H[?25lerlang-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;61H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lhaskell-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/elpa/haskel[34@l-mode-16.1/haskell-mode-autoloads[H
+[?12l[?25h[?12;25h[35;96H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50haskell-mode[34P[H
+[?12l[?25h[?12;25h[35;35H[?25llatex-cjk-common.el (source)...[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/latex-cjk-commo[9@n/cjk-enc[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50latex-cjk-common[9P[H
+[?12l[?25h[?12;25h[35;45H[?25lthai.el (source)...[K[H
+[?12l[?25h[?12;25h[35;64H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lpsvn.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lython-docutils.el (source)...[H
+[?12l[?25h[?12;25h[35;65H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ltcsh.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lexlive-lang-english.el (source)...[H
+[?12l[?25h[?12;25h[35;70H[?25ldone[H
+[?12l[?25h[?12;25h[>0c[35d[?25lLoading /etc/emacs/site-start.d/50texlive-lang-english.el (source)...done[K[H[7mFile Edit Options Buffers Tools Lisp-Interaction Help                                               [0m[39;49m[27m
+[A
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Lisp Interaction ElDoc) ------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[?2004h[35d[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.[K[H
+[?12l[?25h[?12;25h[35d[K[H[?25l[7mFile Edit Options Buffers Tools Haskell Help                                                        [0m[39;49m[27m
+[A
+[31m-- Exercise 1                                                                                       [39;49m
+[A
+[K
+[31m-- function which adds two numbers                                                                  [39;49m
+[A
+[1m[34madd[0m[39;49m n1 n2 [33m=[39;49m n1 [33m+[39;49m n2[K
+[K
+[31m-- same, but define without using args                                                              [39;49m
+[A
+[1m[34mplus[0m[39;49m [33m=[39;49m ([33m+[39;49m)[K
+[K
+[31m-- function which concats two lists                                                                 [39;49m
+[A
+[1m[34mconc[0m[39;49m ls1 ls2 [33m=[39;49m ls1 [33m++[39;49m ls2[K
+[K
+[31m-- partially apply above functions:                                                                 [39;49m
+[A
+[K
+[1m[34madd10[0m[39;49m [33m=[39;49m add 10[K
+[1m[34mplus5[0m[39;49m [33m=[39;49m plus 5[K
+[1m[34mconcHello[0m[39;49m [33m=[39;49m conc [32m"hello"[39;49m[K
+[K
+[31m-- Exercise 2                                                                                       [39;49m
+[A
+[1m[34mfirst[0m[39;49m (v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msecond[0m[39;49m ([1m[36m_[0m[39;49m, v) [33m=[39;49m v[K
+[1m[34mfst3[0m[39;49m (v, [1m[36m_[0m[39;49m, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msnd3[0m[39;49m ([1m[36m_[0m[39;49m, v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msumFirst2[0m[39;49m lst [33m=[39;49m sum (take 2 lst)[K
+[1m[34mfnFirst2[0m[39;49m ls f1 f2 [33m=[39;49m [1m[36mif[0m[39;49m (length ls) [33m==[39;49m  2 [1m[36mthen[0m[39;49m f1 (take 2 ls) [1m[36melse[0m[39;49m f2 (take 2 ls)[K
+[31m-- Exercise 3                                                                                       [39;49m
+[A
+[K
+[1m[34mcartesianProduct[0m[39;49m ls1 ls2 [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2 ][K
+[K
+[1m[34mcartesianProductIf[0m[39;49m ls1 ls2 predicate [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2, predicate x y ][K
+[K
+[7m-UU-:----F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   Top L2     (Haskell ElDoc) ---------------------------------------------[0m[39;49m[27m
+[A[3d[?12l[?25h[?12;25h[34;34H[?25l[7m3[0m[39;49m[27m[4;1H[?12l[?25h[?12;25h[34;34H[?25l[7m4[0m[39;49m[27m[5;1H[?12l[?25h[?12;25h[34;34H[?25l[7m5[0m[39;49m[27m[6;1H[?12l[?25h[?12;25h[34;34H[?25l[7m6[0m[39;49m[27m[7;1H[?12l[?25h[?12;25h[34;34H[?25l[7m7[0m[39;49m[27m[8;1H[?12l[?25h[?12;25h[34;34H[?25l[7m8[0m[39;49m[27m[9;1H[?12l[?25h[?12;25h[34;34H[?25l[7m9[0m[39;49m[27m[10;1H[?12l[?25h[?12;25h[34;34H[?25l[7m10[0m[39;49m[27m[11;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[12;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[13;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[14;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[15;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[16;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[17;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[19;1H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[20;1H[?12l[?25h[?12;25h[34;34H[?25l[7m20[0m[39;49m[27m[21;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[22;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[23;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[24;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[25;1H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[26;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[27;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[28;1H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[27;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[28;1H[?12l[?25h[?12;25h[34;34H[?25l[7m30[0m[39;49m[27m[31;1H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[32;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[A[?12l[?25h[?12;25h[1;32r[3;1H[16M[1;35r[2;1H[K[17d[K
+[?25l[1m[34moddEvenPairs[0m[39;49m n [33m=[39;49m  [[x, y] [33m|[39;49m x [33m<-[39;49m [1[33m..[39;49mn], odd x, y [33m<-[39;49m [1[33m..[39;49mn], even y][K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K[34;29H[7mBot L33[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[17;1H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[19;1H[?12l[?25h[?12;25h[35d[?25lEnd of buffer[19;1H[?12l[?25h[?12;25h[35d[K[34;35H[?25l[7m3[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[C[C[C[C[C[C		[C[C[C[C[C[C		[C[C[C[C[C[?25l[1P[34;6H[7m**[0m[39;49m[27m[18;20H[?12l[?25h[?12;25h[?25l[1@([?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[19;1H[?12l[?25h[?12;25h[35d[?25lEnd of buffer[19;1H[?12l[?25h[?12;25h[35d[K[34;35H[?25l[7m3[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[C[C[C[C[C[C		[C[C[C[C[C[C		[C[C[C[C[C[C		[C[?25l[1P[?12l[?25h[?12;25h[?25l[46m([39;49mx, y[1@)[?12l[?25h[?12;25h[?25l(	[C[?12l[?25h[?12;25h[35;1H[?25lSaving file /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs...[18;26H[?12l[?25h[?12;25h[35;1H[?25lWrote /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs[K[18;26H[?12l[?25h[?12;25h[34;6H[?25l[7m--[0m[39;49m[27m[18;26H[?12l[?25h[?12;25h[35;1H[K[18;26H[35;1H[K[?2004l[?1l>[?12l[?25h[?1049l[23;0;0t[39;49mthur1@remote01:~/cs471/i471a/submit/lab5$ emacs lab5-sol.hs hugs[K
+__   __ __  __  ____   ___      _________________________________________
+||   || ||  || ||  || ||__      Hugs 98: Based on the Haskell 98 standard
+||___|| ||__|| ||__||  __||     Copyright (c) 1994-2005
+||---||         ___||           World Wide Web: http://haskell.org/hugs
+||   ||                         Bugs: http://hackage.haskell.org/trac/hugs
+||   || Version: September 2006 _________________________________________
+
+Haskell 98 mode: Restart with command line option -98 to enable extensions
+
+Type :? for help
+Hugs> :[K:l "lab5-sol.hs"
+Main> oddD[KEvenPairs 5
+[(1,2),(1,4),(3,2),(3,4),(5,2),(5,4)]
+Main> [Leaving Hugs]
+thur1@remote01:~/cs471/i471a/submit/lab5$ hugsemacs lab5-sol.hs 
+[?1049h[22;0;0t[?12;25h[?1h=[H[2J[35d[K[?1l>[?12l[?25h[?1049l[23;0;0t[39;49m[?1049h[22;0;0t[?12;25h[?1h=[H[2J[34d[?25l[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Fundamental) -----------------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[35d[?25lLoading /etc/emacs/site-start.d/00debian.el (source)...done[K[H
+[?12l[?25h[?12;25h[35;33H[?25l50a2ps.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lsymptote.el (source)...[H
+[?12l[?25h[?12;25h[35;59H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lutoconf.el (source)...[K[H
+[?12l[?25h[?12;25h[35;58H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lcmake-data.el (source)...[K[H
+[?12l[?25h[?12;25h[35;60H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ldevhelp.el (source)...[K[H
+[?12l[?25h[?12;25h[35;57H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lictionaries-common.el (source)...[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-default.el (source)...[H
+[?12l[?25h[?12;25h[35;77H[?25ldone[H
+[?12l[?25h[?12;25h[35;9H[?25ldebian-ispell...done[K[H
+[?12l[?25h[?12;25h[35;9H[?25l/var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50dictionaries-common[6P[H
+[?12l[?25h[?12;25h[35;35H[?25lerlang-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;61H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lhaskell-mode.el (source)...[K[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/elpa/haskel[34@l-mode-16.1/haskell-mode-autoloads[H
+[?12l[?25h[?12;25h[35;96H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50haskell-mode[34P[H
+[?12l[?25h[?12;25h[35;35H[?25llatex-cjk-common.el (source)...[H
+[?12l[?25h[?12;25h[35;10H[?25lusr/share/emacs/site-lisp/latex-cjk-commo[9@n/cjk-enc[H
+[?12l[?25h[?12;25h[35;75H[?25ldone[H
+[?12l[?25h[?12;25h[35;10H[?25letc/emacs/site-start.d/50latex-cjk-common[9P[H
+[?12l[?25h[?12;25h[35;45H[?25lthai.el (source)...[K[H
+[?12l[?25h[?12;25h[35;64H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25lpsvn.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lython-docutils.el (source)...[H
+[?12l[?25h[?12;25h[35;65H[?25ldone[H
+[?12l[?25h[?12;25h[35;35H[?25ltcsh.el (source)...[K[H
+[?12l[?25h[?12;25h[35;54H[?25ldone[H
+[?12l[?25h[?12;25h[35;36H[?25lexlive-lang-english.el (source)...[H
+[?12l[?25h[?12;25h[35;70H[?25ldone[H
+[?12l[?25h[?12;25h[>0c[35d[?25lLoading /etc/emacs/site-start.d/50texlive-lang-english.el (source)...done[K[H[7mFile Edit Options Buffers Tools Lisp-Interaction Help                                               [0m[39;49m[27m
+[A
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[7m-UUU:----F1  [0m[39;49m[27m[7m[1m*scratch*   [0m[39;49m[27m[7m   All L1     (Lisp Interaction ElDoc) ------------------------------------[0m[39;49m[27m
+[A[2d[?12l[?25h[?12;25h[?2004h[35d[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.[K[H
+[?12l[?25h[?12;25h[35d[K[H[?25l[7mFile Edit Options Buffers Tools Haskell Help                                                        [0m[39;49m[27m
+[A
+[31m-- Exercise 1                                                                                       [39;49m
+[A
+[K
+[31m-- function which adds two numbers                                                                  [39;49m
+[A
+[1m[34madd[0m[39;49m n1 n2 [33m=[39;49m n1 [33m+[39;49m n2[K
+[K
+[31m-- same, but define without using args                                                              [39;49m
+[A
+[1m[34mplus[0m[39;49m [33m=[39;49m ([33m+[39;49m)[K
+[K
+[31m-- function which concats two lists                                                                 [39;49m
+[A
+[1m[34mconc[0m[39;49m ls1 ls2 [33m=[39;49m ls1 [33m++[39;49m ls2[K
+[K
+[31m-- partially apply above functions:                                                                 [39;49m
+[A
+[K
+[1m[34madd10[0m[39;49m [33m=[39;49m add 10[K
+[1m[34mplus5[0m[39;49m [33m=[39;49m plus 5[K
+[1m[34mconcHello[0m[39;49m [33m=[39;49m conc [32m"hello"[39;49m[K
+[K
+[31m-- Exercise 2                                                                                       [39;49m
+[A
+[1m[34mfirst[0m[39;49m (v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msecond[0m[39;49m ([1m[36m_[0m[39;49m, v) [33m=[39;49m v[K
+[1m[34mfst3[0m[39;49m (v, [1m[36m_[0m[39;49m, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msnd3[0m[39;49m ([1m[36m_[0m[39;49m, v, [1m[36m_[0m[39;49m) [33m=[39;49m v[K
+[1m[34msumFirst2[0m[39;49m lst [33m=[39;49m sum (take 2 lst)[K
+[1m[34mfnFirst2[0m[39;49m ls f1 f2 [33m=[39;49m [1m[36mif[0m[39;49m (length ls) [33m==[39;49m  2 [1m[36mthen[0m[39;49m f1 (take 2 ls) [1m[36melse[0m[39;49m f2 (take 2 ls)[K
+[31m-- Exercise 3                                                                                       [39;49m
+[A
+[K
+[1m[34mcartesianProduct[0m[39;49m ls1 ls2 [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2 ][K
+[K
+[1m[34mcartesianProductIf[0m[39;49m ls1 ls2 predicate [33m=[39;49m[K
+  [ (x, y) [33m|[39;49m x [33m<-[39;49m ls1, y [33m<-[39;49m ls2, predicate x y ][K
+[K
+[7m-UU-:----F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   Top L3     (Haskell ElDoc) ---------------------------------------------[0m[39;49m[27m
+[A[4d[?12l[?25h[?12;25h[34;34H[?25l[7m4[0m[39;49m[27m[5;1H[?12l[?25h[?12;25h[C[34;34H[?25l[7m6[0m[39;49m[27m[7;2H[?12l[?25h[?12;25h[34;34H[?25l[7m7[0m[39;49m[27m[8;2H[?12l[?25h[?12;25h[34;34H[?25l[7m8[0m[39;49m[27m[9;1H[?12l[?25h[?12;25h[34;34H[?25l[7m9[0m[39;49m[27m[10;2H[?12l[?25h[?12;25h[34;34H[?25l[7m10[0m[39;49m[27m[11;2H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[12;1H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[13;2H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[14;1H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[15;2H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[16;2H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[17;2H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[18;1H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[19;2H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[20;2H[?12l[?25h[?12;25h[34;34H[?25l[7m20[0m[39;49m[27m[21;2H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[22;2H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[23;2H[?12l[?25h[?12;25h[34;35H[?25l[7m3[0m[39;49m[27m[24;2H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[25;2H[?12l[?25h[?12;25h[34;35H[?25l[7m5[0m[39;49m[27m[26;2H[?12l[?25h[?12;25h[34;35H[?25l[7m6[0m[39;49m[27m[27;1H[?12l[?25h[?12;25h[34;35H[?25l[7m7[0m[39;49m[27m[28;2H[?12l[?25h[?12;25h[34;35H[?25l[7m8[0m[39;49m[27m[29;2H[?12l[?25h[?12;25h[34;35H[?25l[7m9[0m[39;49m[27m[30;1H[?12l[?25h[?12;25h[34;34H[?25l[7m30[0m[39;49m[27m[31;2H[?12l[?25h[?12;25h[34;35H[?25l[7m1[0m[39;49m[27m[32;2H[?12l[?25h[?12;25h[34;35H[?25l[7m2[0m[39;49m[27m[A[?12l[?25h[?12;25h[1;32r[3;1H[16M[1;35r[2;1H[K[17d[K
+[?25l[1m[34moddEvenPairs[0m[39;49m n [33m=[39;49m  [(x, y) [33m|[39;49m x [33m<-[39;49m [1[33m..[39;49mn], odd x, y [33m<-[39;49m [1[33m..[39;49mn], even y][K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K[34;29H[7mBot L33[0m[39;49m[27m[18;2H[?12l[?25h[?12;25h[34;35H[?25l[7m4[0m[39;49m[27m[19;1H[?12l[?25h[?12;25h[35d[?25lEnd of buffer[19;1H[?12l[?25h[?12;25h[35d[K[34;6H[?25l[7m**--F1  [0m[39;49m[27m[7m[1mlab5-sol.hs [0m[39;49m[27m[7m   Bot L35[0m[39;49m[27m[20;1H[?12l[?25h[?12;25h[?25l[33m-[39;49m[?12l[?25h[?12;25h[?25l[31m--[39;49m[?12l[?25h[?12;25h[?25l[31m [39;49m[?12l[?25h[?12;25h[?25l[31mE[39;49m[?12l[?25h[?12;25h[?25l[31mx[39;49m[?12l[?25h[?12;25h[?25l[31me[39;49m[?12l[?25h[?12;25h[?25l[31mr[39;49m[?12l[?25h[?12;25h[?25l[31mc[39;49m[?12l[?25h[?12;25h[?25l[31mi[39;49m[?12l[?25h[?12;25h[?25l[31ms[39;49m[?12l[?25h[?12;25h[?25l[31me[39;49m[?12l[?25h[?12;25h[?25l[31m [39;49m[?12l[?25h[?12;25h[?25l[31m4[39;49m[?12l[?25h[?12;25h[?25l[31m                                                                                       [39;49m
+[34;35H[7m6[0m[39;49m[27m[21;1H[?12l[?25h[?12;25h[20;14H[K[34;35H[?25l[7m5[0m[39;49m[27m[20;14H[?12l[?25h[?12;25h[K[K[K[K[K[K[K[K[K[K[K[?25l[33m-[39;49m[K[?12l[?25h[?12;25h[K[35d[?25lSaving file /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs...[20;1H[?12l[?25h[?12;25h[35d[?25lWrote /home/thur1/cs471/i471a/submit/lab5/lab5-sol.hs[K[20;1H[?12l[?25h[?12;25h[34;6H[?25l[7m--[0m[39;49m[27m[20;1H[?12l[?25h[?12;25h[35d[K[20d[35d[K[?2004l[?1l>[?12l[?25h[?1049l[23;0;0t[39;49mthur1@remote01:~/cs471/i471a/submit/lab5$ hugs
+__   __ __  __  ____   ___      _________________________________________
+||   || ||  || ||  || ||__      Hugs 98: Based on the Haskell 98 standard
+||___|| ||__|| ||__||  __||     Copyright (c) 1994-2005
+||---||         ___||           World Wide Web: http://haskell.org/hugs
+||   ||                         Bugs: http://hackage.haskell.org/trac/hugs
+||   || Version: September 2006 _________________________________________
+
+Haskell 98 mode: Restart with command line option -98 to enable extensions
+
+Type :? for help
+Hugs> map ([K(3 * x [K**2 ^C{Interrupted!}
+Hugs> map (3 * x [K^2 + 2 * x + 1) [1..10]
+ERROR - Undefined variable "x"
+Hugs> map (\x --[K> 3 * x [K^2 + 2 x[K* x + 1) [1..10]
+[6,17,34,57,86,121,162,209,262,321]
+Hugs> [Leaving Hugs]
+thur1@remote01:~/cs471/i471a/submit/lab5$ emacs l[K[K[K[K[K[K[Kexit
+exit
+
+Script done on 2021-04-22 21:41:25-04:00 [COMMAND_EXIT_CODE="0"]
