@@ -39,8 +39,7 @@ foldTree treeFn leafFn (Tree l t r) = treeFn (foldTree treeFn leafFn l) t (foldT
 
 -- Problem 8
 flattenTree :: Tree a -> [a]
-flattenTree (Leaf n) = [n]
-flattenTree (Tree l t r) = flattenTree l ++ [t] ++ flattenTree r 
+flattenTree tree = foldTree (\l t r -> l ++ t : r) (\t -> [t]) tree
 
 -- Problem 9
 catenateTreeLists :: Tree [a] -> [a]
